@@ -84,3 +84,4 @@ The card-design philosophy and exact format spec uses the [spaced-repetition-ski
 - Topic folders use **descriptive slugs** (`calculus-foundations`, `linear-algebra`); ordering is tracked in `ROADMAP.md`.
 - Lessons / materials inside a topic use a **two-digit numeric prefix** (`01-`, `02-`) so they sort in study order.
 - Avoid using acronyms (prefer "spaced repetition" over "SR").
+- When writting math Markdown, prefer $x \in A$ over `x ∈ A`.
