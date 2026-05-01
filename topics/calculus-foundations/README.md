@@ -1,6 +1,6 @@
 # Calculus foundations
 
-Vocabulary and intuition every later calculus topic rests on: what a function is, how to classify it (injective / surjective / bijective), composition, and inverse.
+Vocabulary and intuition every later calculus topic rests on: what a function is, how to classify it (as injective, surjective, or bijective), composition, and inverse.
 
 ## Status
 
@@ -10,7 +10,7 @@ Vocabulary and intuition every later calculus topic rests on: what a function is
 
 | # | Source | Topic |
 |---|--------|-------|
-| 01 | [YouTube](https://www.youtube.com/watch?v=MaszunEszVM) | Functions, injectivity, surjectivity, bijectivity |
+| 01 | [The Language of Calculus I Wish I Had Learned First](https://www.youtube.com/watch?v=MaszunEszVM) | Functions, injectivity, surjectivity, bijectivity |
 
 ## Cards
 
@@ -18,7 +18,7 @@ Vocabulary and intuition every later calculus topic rests on: what a function is
 
 ## Theory
 
-What follows is the settled prose version of what was worked out in conversation while studying material 01. The cards in `cards/calculus-foundations.txt` test the same content from different angles; this section is for re-reading before review.
+What follows is the settled prose version of what was worked out in conversation while studying the materials. The cards test the same content from different angles; this section is for re-reading before review.
 
 ### 1. What a function is
 
@@ -104,4 +104,4 @@ where `id_X(x) = x`. This rephrasing of "the inverse undoes `f`" as an **equatio
 ## Study log
 
 - **2026-05-01** — Topic created. First material downloaded and transcribed.
-- **2026-05-01** — Conversation on the *functions* block of material 01 (definition, inj/surj, restriction → arcsin, composition, inverse). Closed with 9 self-authored cards in `cards/calculus-foundations.txt`.
+- **2026-05-01** — Conversation on the *functions* block of material 01 (definition, inj/surj, restriction → arcsin, composition, inverse). Closed with [9 self-authored cards](cards/calculus-foundations.txt).

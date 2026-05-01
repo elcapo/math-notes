@@ -2,7 +2,7 @@
 
 This file is the canonical instruction set for any AI coding agent working in this repo (Claude Code, Cursor, Aider, Codex, Continue, …). `CLAUDE.md` is a symlink to this file so Claude Code picks it up automatically; if your agent looks for a different filename, add another symlink rather than forking the content.
 
-This repo is a personal math study journal. Conversations happen in Spanish; committed content is in English.
+This repo is a personal math study journal.
 
 ## The four-step study loop
 

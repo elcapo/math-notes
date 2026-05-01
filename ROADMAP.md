@@ -6,13 +6,13 @@ Living index of the math curriculum being built here. Edit freely as study progr
 
 - `[ ]` candidate — identified as a future topic, not started.
 - `[~]` in progress — material added, conversation under way, no cards yet.
-- `[x]` covered — at least one round of cards exists in `cards/`, and the concepts have entered the SR rotation.
+- `[x]` covered — at least one round of cards exists in `cards/`, and the concepts have entered the spaced repetition rotation.
 
 ## Topics
 
 ### Foundations
 
-- `[~]` **calculus-foundations** — what is a function, injectivity, surjectivity, bijectivity, composition, inverse. *(Starting material: <https://www.youtube.com/watch?v=MaszunEszVM>)*
+- `[~]` [**calculus-foundations**](https://www.youtube.com/watch?v=MaszunEszVM) — what is a function, injectivity, surjectivity, bijectivity, composition, inverse.
 
 ### Candidates (no committed order)
 
@@ -24,4 +24,4 @@ Living index of the math curriculum being built here. Edit freely as study progr
 
 ## Notes on sequencing
 
-Order is decided per-iteration, not committed in advance. The principle: the next topic should rest on what is already in `cards/` (in active SR rotation), so each step compounds rather than stacking on shaky foundations.
+Order is decided per-iteration, not committed in advance. The principle: the next topic should rest on what is already in `cards/` (in active spaced repetition rotation), so each step compounds rather than stacking on shaky foundations.
