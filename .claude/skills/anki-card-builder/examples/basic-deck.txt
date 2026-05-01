@@ -1,0 +1,10 @@
+#separator:tab
+#html:true
+#notetype:Basic
+#deck:Etymology::Greek roots
+#columns:Front	Back	Tags
+Knowing that the Greek root "ortho-" means "correct/straight", deduce what <b>orthodontics</b> corrects, and why.	The teeth (from "odont-" = tooth). An orthodontist <i>straightens</i> (corrects) the dentition.<br>The same principle applies to <b>orthopedics</b> (correcting bones, "ped-" = child/foot) and <b>orthography</b> ("correct" writing).	etymology greek principle
+Knowing that "-phobia" comes from Greek "phobos" (fear) and "claustro-" from Latin "claustrum" (enclosed place), define <b>claustrophobia</b> without memorizing the word.	Fear of enclosed spaces. The principle generalizes to arachnophobia (spiders), agoraphobia (open spaces, "agora" = marketplace), etc.	etymology principle composition
+"Hydro-" = water, "phobia" = aversion. What chemical property does a <b>hydrophobic</b> molecule have?	It repels water and does not mix with it (non-polar). The same principle explains why lipids form membranes in aqueous environments.	etymology chemistry principle
+"Geo-" = earth, "logos" = study/discourse. Apply the pattern to define <b>biology</b>, <b>psychology</b>, and <b>anthropology</b> from first principles.	Bio-logy = study of life (bios). Psycho-logy = study of the mind (psyche). Anthropo-logy = study of the human being (anthropos). The suffix "-logy" always means "study of X".	etymology principle suffix
+If "tele-" = far and "-scope" = instrument for viewing, what does a <b>microscope</b> do, literally?	It allows viewing of small things ("micro-" = small). The compositional principle "root + scope" generates stethoscope (listen to the chest), endoscope (view inside), kaleidoscope (view beautiful forms).	etymology principle composition

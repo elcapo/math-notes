@@ -1,0 +1,9 @@
+#separator:tab
+#html:true
+#notetype:Cloze
+#deck:Medicine::Pharmacological principles
+#columns:Text	Back Extra	Tags
+If a drug crosses the {{c1::blood–brain barrier}}, it can also cross {{c2::any other cell membrane}} in the body, because the lipid composition of the neuronal membrane is {{c3::identical}} to that of every other cell.	Principle: the BBB is not "special" in composition — only in its tight-junction sealing. Whatever crosses it can also cross skin, gut mucosa, etc. That is why caffeine (lipophilic, enters the CNS) can be administered orally, transdermally, or topically.	pharmacology principle BBB
+Caffeine can be administered as an {{c1::oral pill}}, a {{c2::transdermal patch}}, or an {{c3::IV infusion}} with systemic effect, all because it crosses lipid membranes. The shared principle is that it is {{c4::lipophilic}}.	Direct application of the principle "what crosses the BBB crosses any membrane". Useful for predicting administration routes of a new drug given only its lipophilicity.	pharmacology principle caffeine
+Nicotine, ethanol, and caffeine share the property of being {{c1::lipophilic}} and therefore {{c2::cross the BBB}} and produce central effects. A polar, high-molecular-weight drug will {{c3::not}} cross the BBB without a specific transporter.	Predictors of CNS penetration: lipophilicity > 0, molecular weight < 500 Da, no charged groups. The rule is not absolute (P-gp, transporters), but it is correct in roughly 80% of cases.	pharmacology principle CNS
+The "less is more" rule in pediatric dosing applies because {{c1::volume of distribution}} and {{c2::renal/hepatic clearance}} differ from the adult: an adult dose produces {{c3::toxic}} concentrations in children.	This is not an arbitrary rule. Knowing the principle (pharmacokinetics scales with body mass and the maturity of clearance organs) allows dose adjustment for drugs that have not been studied specifically in pediatrics.	pharmacology pediatrics principle

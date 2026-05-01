@@ -1,0 +1,11 @@
+#separator:tab
+#html:true
+#notetype:Basic (and reversed card)
+#deck:Languages::English::Phrasal verbs
+#columns:Front	Back	Tags
+#tags column:3
+to <b>give up</b> (something / on someone)	To surrender, to abandon (something / on someone). Principle: "give" + "up" ≈ hand upward = release. Applies to <i>give up smoking</i> (stop smoking) and <i>give up on him</i> (stop believing in him).	phrasal_verbs level_b1
+to <b>look up</b> (a word, information)	To search for (in a dictionary, map, source). Principle: "look" + "up" = look upward in a list/index. Distinguish from <i>look up to someone</i> (admire) — same "up" but a different metaphor.	phrasal_verbs level_b1 contrast
+to <b>run into</b> (someone)	To meet by chance (someone). Principle: "run" + "into" = run inward into = bump fortuitously. The same "into" yields <i>bump into</i> (synonym) and <i>crash into</i> (literal collision).	phrasal_verbs level_b2 principle
+to <b>break down</b>	(1) To break (a machine). (2) To collapse emotionally. Principle: "break" + "down" = break downward = collapse. Both meanings share the idea of loss of function.	phrasal_verbs level_b2 polysemy
+to <b>turn out</b> (to be / well / badly)	To result in being, to end up being. Principle: "turn" + "out" = turn outward = reveal itself externally. <i>It turned out to be true</i> = it resulted in being true. Cognate of <i>find out</i> (discover).	phrasal_verbs level_b2 principle
