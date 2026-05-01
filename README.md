@@ -26,7 +26,8 @@ Cards are a *closing ritual*, never an opener. If I don't yet understand somethi
 ```
 maths/
 ├── README.md            ← you are here
-├── CLAUDE.md            ← workflow rules Claude follows in this repo
+├── AGENTS.md            ← workflow rules every AI agent follows in this repo
+├── CLAUDE.md            ← symlink to AGENTS.md (for Claude Code auto-discovery)
 ├── ROADMAP.md           ← topics covered + candidates for what's next
 ├── .claude/skills/      ← discoverable skills (anki-card-builder)
 ├── topics/              ← one folder per topic; materials, transcripts, notes
