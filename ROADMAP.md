@@ -12,7 +12,7 @@ Living index of the math curriculum being built here. Edit freely as study progr
 
 ### Foundations
 
-- `[ ]` **calculus-foundations** — what is a function, injectivity, surjectivity, bijectivity, composition, inverse. *(Starting material: <https://www.youtube.com/watch?v=MaszunEszVM>)*
+- `[~]` **calculus-foundations** — what is a function, injectivity, surjectivity, bijectivity, composition, inverse. *(Starting material: <https://www.youtube.com/watch?v=MaszunEszVM>)*
 
 ### Candidates (no committed order)
 
