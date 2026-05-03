@@ -1,8 +1,4 @@
-#!/usr/bin/env -S uv run --script
-# /// script
-# requires-python = ">=3.10"
-# dependencies = ["yt-dlp"]
-# ///
+#!/usr/bin/env -S uv run --
 """
 Fetch a YouTube video and write a Markdown transcript built from its auto-generated subtitles.
 

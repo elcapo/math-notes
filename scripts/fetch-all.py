@@ -1,7 +1,4 @@
-#!/usr/bin/env -S uv run --script
-# /// script
-# requires-python = ">=3.10"
-# ///
+#!/usr/bin/env -S uv run --
 """
 Walk every material stub in topics/*/materials/ and regenerate missing binaries / transcripts.
 
@@ -57,7 +54,8 @@ def main() -> int:
         if any(host in source for host in YOUTUBE_HOSTS):
             print(f"==> {stub.relative_to(ROOT)} ({source})")
             result = subprocess.run(
-                [str(SCRIPTS_DIR / "fetch-youtube.py"), source, str(stem)],
+                ["uv", "run", "--directory", str(SCRIPTS_DIR),
+                 "fetch-youtube.py", source, str(stem)],
                 check=False,
             )
             rc |= result.returncode
