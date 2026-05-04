@@ -105,7 +105,9 @@ where $\operatorname{id}_X(x) = x$. This rephrasing of "the inverse undoes $f$" 
 
 The seven elementary families from material 01 — **polynomial, rational, exponential, logarithmic, trigonometric, absolute value, piecewise** — each have a visual signature. Reading a graph is a two-step problem: first decide which family it belongs to, then recover the parameters within it.
 
-(Note: the `graph-quiz.py` catalog only samples *one shape per family* — degree-1 and degree-2 polynomials, the $1/x$ form of rational, sine for trigonometric, etc. The theory below is about the families themselves; the quiz script trains a slice of each.)
+> [!NOTE]
+> The `graph-quiz.py` catalog only samples *one shape per family* — degree-1 and degree-2 polynomials, the $1/x$ form of rational, sine for trigonometric, etc.
+> The theory below is about the families themselves; the quiz script trains a slice of each.
 
 #### Triage: three questions before the family-by-family pass
 
@@ -114,63 +116,83 @@ Before drilling into individual signatures, three coarse questions narrow the se
 - **Are there asymptotes?** Vertical or horizontal walls/shelves the curve approaches but never reaches.
   - *Yes* ⇒ rational, exponential, logarithmic, or tangent (within trigonometric).
   - *No* ⇒ polynomial, sine/cosine, absolute value, or piecewise (without asymptote-bearing pieces).
+
 - **Is the function bounded?** Confined between two horizontal levels for all $x$.
   - *Yes* ⇒ sine/cosine — the only families that oscillate between fixed bounds.
   - *No* ⇒ everything else.
+
 - **Is the curve smooth everywhere?** No corners, no cusps, no jumps; slope defined and continuous at every point.
   - *Yes* ⇒ polynomial, rational, exponential, logarithmic, sine/cosine, or tangent.
   - *No* ⇒ absolute value or piecewise — the gluing point is the giveaway.
 
-Polynomials are the only family that answers *no, no, yes* to all three (no asymptotes, unbounded, smooth). That triple is what makes them recognizable at a glance.
-
 #### Family-by-family signatures
 
-**Polynomial** — $p(x) = a_n x^n + \dots + a_1 x + a_0$
-- Once triage has placed the curve here (no asymptotes, unbounded, smooth), the remaining question is **degree**, read off two cues that must agree:
-  - **Number of turning points** (local maxima/minima): a degree-$n$ polynomial has at most $n-1$ of them. A straight line has $0$, a parabola has $1$, a cubic up to $2$, and so on.
-  - **End behavior** at $\pm\infty$:
-    - *Even degree* ⇒ both ends go the same way (both up if leading coefficient $a_n > 0$, both down if $a_n < 0$).
-    - *Odd degree* ⇒ ends go opposite ways (down-then-up if $a_n > 0$, up-then-down if $a_n < 0$).
-- Linear ($n = 1$) and quadratic ($n = 2$, vertex form $a(x-h)^2 + k$ with vertex $(h, k)$) are the cases the quiz currently samples, but the family extends to cubics, quartics, and beyond.
+##### **Polynomial** — $p(x) = a_n x^n + \dots + a_1 x + a_0$
 
-**Rational** — $f(x) = \dfrac{p(x)}{q(x)}$ with $p, q$ polynomials
-- The defining trait: **vertical asymptotes at the real roots of $q$ that are not also roots of $p$** (a shared root produces a hole instead, but the visual is similar — a missing point on an otherwise continuous curve).
+Once triage has placed the curve here (no asymptotes, unbounded, smooth), the remaining question is **degree**, read off two cues that must agree:
+
+- **Number of turning points** (local maxima/minima): a degree-$n$ polynomial has at most $n-1$ of them. A straight line has $0$, a parabola has $1$, a cubic up to $2$, and so on.
+- **End behavior** at $\pm\infty$:
+  - *Even degree* ⇒ both ends go the same way (both up if leading coefficient $a_n > 0$, both down if $a_n < 0$).
+  - *Odd degree* ⇒ ends go opposite ways (down-then-up if $a_n > 0$, up-then-down if $a_n < 0$).
+
+Linear ($n = 1$) and quadratic ($n = 2$, vertex form $a(x-h)^2 + k$ with vertex $(h, k)$) are the cases the quiz currently samples, but the family extends to cubics, quartics, and beyond.
+
+##### **Rational** — $f(x) = \dfrac{p(x)}{q(x)}$ with $p, q$ polynomials
+
+The defining trait: **vertical asymptotes at the real roots of $q$ that are not also roots of $p$** (a shared root produces a hole instead, but the visual is similar — a missing point on an otherwise continuous curve).
+
 - **End behavior at $\pm\infty$** is governed by the degrees of $p$ and $q$:
   - $\deg p < \deg q$ ⇒ horizontal asymptote at $y = 0$.
   - $\deg p = \deg q$ ⇒ horizontal asymptote at $y = a_n / b_m$ (ratio of leading coefficients).
   - $\deg p = \deg q + 1$ ⇒ **oblique** (slant) asymptote — the curve approaches a non-horizontal line.
   - $\deg p > \deg q + 1$ ⇒ no straight-line asymptote; the curve grows polynomial-like at infinity.
-- The hyperbola $\dfrac{a}{x - h} + k$ (one vertical asymptote at $x = h$, one horizontal at $y = k$, two disconnected branches) is the simplest case — it is what the quiz samples — but the family includes any ratio of polynomials. Multiple vertical asymptotes, oblique asymptotes, and several connected components are all on the table.
 
-**Exponential** — $f(x) = a\, b^x + k$ (or $a\, e^{c x} + k$)
-- One end shoots off, the other flattens onto a **horizontal asymptote at $y = k$**. No vertical asymptote — defined for every $x$.
+The hyperbola $\dfrac{a}{x - h} + k$ (one vertical asymptote at $x = h$, one horizontal at $y = k$, two disconnected branches) is the simplest case — it is what the quiz samples — but the family includes any ratio of polynomials. Multiple vertical asymptotes, oblique asymptotes, and several connected components are all on the table.
+
+##### **Exponential** — $f(x) =a\, e^{c x} + k$
+
+One end shoots off, the other flattens onto a **horizontal asymptote at $y = k$**. No vertical asymptote — defined for every $x$.
+
 - Sign of the exponent coefficient sets the direction of growth (positive ⇒ growth to the right, negative ⇒ decay to the right). Sign of $a$ flips the curve above or below the asymptote.
 - Mirror image of the logarithmic family across $y = x$ — they are inverses of each other, and the asymptote-axis swap is a direct consequence of that reflection.
 
-**Logarithmic** — $f(x) = a\,\log_b(x - h) + k$
+##### **Logarithmic** — $f(x) = a\,\log_b(x - h) + k$
+
+**Vertical asymptote at $x = h$**; no horizontal asymptote (the curve keeps going, just slowly).
+
 - Defined only for $x > h$, with slow unbounded growth.
-- **Vertical asymptote at $x = h$**; no horizontal asymptote (the curve keeps going, just slowly).
 - Sign of $a$ controls direction (rise if $a > 0$, fall if $a < 0$).
 - Distinguishing it from exponential is a question of *which axis the asymptote sits along*: horizontal for exponential, vertical for logarithmic.
 
-**Trigonometric** — sine, cosine, tangent (and their reciprocals/combinations)
-- Two distinct visual sub-signatures inside this family:
-  - **Sine and cosine**: smooth, **bounded periodic oscillation** between two horizontal levels. Boundedness alone is enough to land here. Cosine is sine phase-shifted by $\pi/2$ — same shape, different starting position. For $a\sin(bx)$ or $a\cos(bx)$: amplitude $= |a|$, period $= 2\pi / b$. The inverse relation between $b$ and period is the standard slip — large $b$ ⇒ short period (more oscillations per unit), because $b$ is angular frequency, not period.
-  - **Tangent**: periodic but **unbounded**, with **vertical asymptotes** at every $\pi/2 + k\pi$. Each branch climbs from $-\infty$ to $+\infty$ within one period of length $\pi$. The combination "asymptotes + repeating identical branches" is the giveaway.
-- Periodicity is the family-wide trait — whether the periodic motion is bounded (sine/cosine) or punctured by asymptotes (tangent) tells you which sub-family.
+##### **Trigonometric** — sine, cosine, tangent (and their reciprocals/combinations)
 
-**Absolute value** — $f(x) = a\,|x - h| + k$
-- A V (or inverted V if $a < 0$): two straight rays meeting at a **sharp corner**. Continuous, but not smooth at the vertex.
+Two distinct visual sub-signatures inside this family:
+
+- **Sine and cosine**: smooth, **bounded periodic oscillation** between two horizontal levels. Boundedness alone is enough to land here. Cosine is sine phase-shifted by $\pi/2$ — same shape, different starting position. For $a\sin(bx)$ or $a\cos(bx)$: amplitude $= |a|$, period $= 2\pi / b$. The inverse relation between $b$ and period is the standard slip — large $b$ ⇒ short period (more oscillations per unit), because $b$ is angular frequency, not period.
+- **Tangent**: periodic but **unbounded**, with **vertical asymptotes** at every $\pi/2 + k\pi$. Each branch climbs from $-\infty$ to $+\infty$ within one period of length $\pi$. The combination "asymptotes + repeating identical branches" is the giveaway.
+
+Periodicity is the family-wide trait — whether the periodic motion is bounded (sine/cosine) or punctured by asymptotes (tangent) tells you which sub-family.
+
+##### **Absolute value** — $f(x) = a\,|x - h| + k$
+
+A V (or inverted V if $a < 0$): two straight rays meeting at a **sharp corner**. Continuous, but not smooth at the vertex.
+
 - Vertex at $(h, k)$; the V opens up if $a > 0$, down if $a < 0$; $|a|$ = slope of each ray.
-- It is the simplest piecewise function: $a|x-h| + k$ equals $a(x-h) + k$ for $x \geq h$ and $-a(x-h) + k$ for $x < h$ — two linear pieces glued at $x = h$. So it is also a special case of the next family.
 
-**Piecewise** — $f(x) = \begin{cases} f_1(x) & x \in I_1 \\ f_2(x) & x \in I_2 \\ \vdots \end{cases}$
-- Defined by different rules on different intervals of the domain. Each piece $f_i$ is itself a function from one of the families above.
-- Visual signatures at the gluing points $x = c$ between intervals:
-  - **Corner**: pieces meet (same value) but with different slopes — continuous, not smooth. The absolute value is the canonical example.
-  - **Jump**: pieces do not meet — there is a vertical gap. The function is discontinuous at $c$.
-  - **Removable**: a single missing point sitting off the curve, often filled by a separately-defined value.
-- The dead giveaway is *any visible discontinuity in value or in slope*. If a curve is smooth everywhere except at one or two distinguished $x$-values, suspect piecewise.
+It is the simplest piecewise function: $a|x-h| + k$ equals $a(x-h) + k$ for $x \geq h$ and $-a(x-h) + k$ for $x < h$ — two linear pieces glued at $x = h$. So it is also a special case of the next family.
+
+##### **Piecewise** — $f(x) = \begin{cases} f_1(x) & x \in I_1 \\ f_2(x) & x \in I_2 \\ \vdots \end{cases}$
+
+Defined by different rules on different intervals of the domain. Each piece $f_i$ is itself a function from one of the families above.
+
+Visual signatures at the gluing points $x = c$ between intervals:
+
+- **Corner**: pieces meet (same value) but with different slopes — continuous, not smooth. The absolute value is the canonical example.
+- **Jump**: pieces do not meet — there is a vertical gap. The function is discontinuous at $c$.
+- **Removable**: a single missing point sitting off the curve, often filled by a separately-defined value.
+
+The dead giveaway is *any visible discontinuity in value or in slope*. If a curve is smooth everywhere except at one or two distinguished $x$-values, suspect piecewise.
 
 #### Recovering parameters: how many observations are enough
 
