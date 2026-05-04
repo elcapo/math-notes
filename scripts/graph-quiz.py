@@ -8,11 +8,12 @@ Two modes, both writing PNGs that Claude Code can show inline.
         Plot a given expression in x. Use to test "expression → graph": predict the
         shape mentally, then run this and compare.
 
-    random [--family NAME] [--seed N] [--out PATH]
+    random [--family NAME] [--seed N] [--max-degree N] [--out PATH]
         Pick a function family from the catalog, sample clean coefficients, render
         the curve only (no label, no title), and hide the answer in a sidecar
         "<out>.answer.txt". Use to test "graph → expression": guess the family and
-        coefficients, then `reveal`.
+        coefficients, then `reveal`. --max-degree caps the polynomial degree (and
+        any future family parameterized by degree); defaults to 2.
 
     reveal [--out PATH]
         Print the sidecar answer file for the most recent random plot.
@@ -88,17 +89,39 @@ def _pick(seq, rng: rnd.Random):
 # Each family returns (display_name, formula_string, plot_domain). Coefficients
 # are drawn from small "clean" sets so the inverse problem stays a reasoning
 # exercise, not parameter fitting.
-def family_linear(rng):
-    a = _pick([-2, -1, -0.5, 0.5, 1, 2, 3], rng)
-    b = _pick([-3, -2, -1, 0, 1, 2, 3], rng)
-    return ("linear", f"{a}*x + {b}", (-5, 5))
+def _format_polynomial(coeffs: list[float]) -> str:
+    # coeffs[i] is the coefficient of x**i. Emits descending order, drops zero
+    # terms, and elides 1*/-1* so the sidecar reads like a textbook polynomial.
+    parts: list[str] = []
+    for i in range(len(coeffs) - 1, -1, -1):
+        c = coeffs[i]
+        if c == 0:
+            continue
+        sign = "-" if c < 0 else "+"
+        mag = abs(c)
+        if i == 0:
+            body = f"{mag}"
+        else:
+            x_part = "x" if i == 1 else f"x**{i}"
+            body = x_part if mag == 1 else f"{mag}*{x_part}"
+        if not parts:
+            parts.append(f"-{body}" if sign == "-" else body)
+        else:
+            parts.append(f"{sign} {body}")
+    return " ".join(parts) if parts else "0"
 
 
-def family_quadratic(rng):
-    a = _pick([-1, -0.5, 0.5, 1, 2], rng)
-    h = _pick([-2, -1, 0, 1, 2], rng)
-    k = _pick([-3, -1, 0, 1, 3], rng)
-    return ("quadratic (vertex form)", f"{a}*(x-({h}))**2 + ({k})", (-5, 5))
+def family_polynomial(rng, max_degree: int = 2):
+    # Degree uniform in [1, max_degree]. Leading coefficient never zero; lower
+    # coefficients drawn from a wider set that includes 0 so we get sparse
+    # polynomials too. Domain widens with degree so all turning points fit.
+    degree = rng.randint(1, max(1, max_degree))
+    leading_pool = [-2, -1, -0.5, 0.5, 1, 2]
+    inner_pool = [-3, -2, -1, 0, 0, 1, 2, 3]  # 0 doubled to favor sparse forms
+    coeffs = [_pick(inner_pool, rng) for _ in range(degree)]
+    coeffs.append(_pick(leading_pool, rng))
+    span = max(5, degree + 2)
+    return (f"polynomial (degree {degree})", _format_polynomial(coeffs), (-span, span))
 
 
 def family_rational(rng):
@@ -135,9 +158,11 @@ def family_absolute(rng):
     return ("absolute value", f"{a}*abs(x-({h})) + ({k})", (-5, 5))
 
 
+# Families that take a max_degree kwarg; everything else ignores it.
+DEGREE_AWARE = {"polynomial"}
+
 CATALOG = {
-    "linear": family_linear,
-    "quadratic": family_quadratic,
+    "polynomial": family_polynomial,
     "rational": family_rational,
     "exponential": family_exponential,
     "logarithmic": family_logarithmic,
@@ -157,7 +182,11 @@ def cmd_plot(args) -> int:
 def cmd_random(args) -> int:
     rng = rnd.Random(args.seed)
     name = args.family or rng.choice(list(CATALOG))
-    label, formula, domain = CATALOG[name](rng)
+    sampler = CATALOG[name]
+    if name in DEGREE_AWARE:
+        label, formula, domain = sampler(rng, max_degree=args.max_degree)
+    else:
+        label, formula, domain = sampler(rng)
     xs = np.linspace(domain[0], domain[1], 2000)
     ys = evaluate(formula, xs)
     render([(ys, "")], domain, args.out, title=None)
@@ -200,6 +229,8 @@ def main() -> int:
     pr = sub.add_parser("random", help="random graph from catalog (answer hidden)")
     pr.add_argument("--family", choices=sorted(CATALOG))
     pr.add_argument("--seed", type=int, default=None)
+    pr.add_argument("--max-degree", type=int, default=2,
+                    help="max polynomial degree (default 2; cap at 4 for legible plots)")
     pr.add_argument("--out", type=Path, default=DEFAULT_OUT)
     pr.set_defaults(func=cmd_random)
 
