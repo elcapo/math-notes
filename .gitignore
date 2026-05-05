@@ -21,3 +21,6 @@
 __pycache__/
 *.pyc
 .venv/
+
+# Marimo session cache
+__marimo__/
