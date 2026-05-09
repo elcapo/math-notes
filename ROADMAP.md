@@ -12,7 +12,7 @@ Living index of the math curriculum being built here. Edit freely as study progr
 
 ### Foundations
 
-- `[~]` [**calculus-foundations**](https://www.youtube.com/watch?v=MaszunEszVM) — functions, injectivity, surjectivity, bijectivity, composition, inverse, function families (polynomial, rational, exponential, logarithmic, trigonometric, absolute value, piecewise), algebra block, trigonometry block.
+- `[x]` [**calculus-foundations**](https://www.youtube.com/watch?v=MaszunEszVM) — functions, injectivity, surjectivity, bijectivity, composition, inverse, function families, algebra, trigonometry. 38 cards.
 
 ### Candidates (no committed order)
 
