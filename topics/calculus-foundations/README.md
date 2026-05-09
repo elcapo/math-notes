@@ -206,6 +206,91 @@ Once the family is fixed, parameter recovery is a question of having enough inde
 - **For sine and cosine, amplitude and period are independent observations.** Read amplitude off the vertical extent and period off the horizontal distance between consecutive zero-crossings (or peaks); then convert period to the angular-frequency coefficient via $b = 2\pi / \text{period}$.
 - **For polynomials, degree is constrained jointly by turning-point count and end behavior** — neither alone is sufficient (a high-degree polynomial can have fewer turning points than its maximum). Once degree is fixed, $n + 1$ independent points determine all coefficients uniquely.
 
+### 9. Algebra
+
+Algebra provides the tool to **make precise** what visual intuition only suggests. A curve "looks" linear, but only algebra confirms whether it truly is.
+
+#### 9.1 Linear functions
+
+The general form of a **linear function** is $y = ax + b$:
+- $a$ is the **slope**: the rate of vertical change per unit of horizontal change.
+- $b$ is the **y-intercept**: the value where the line crosses the vertical axis.
+
+To determine $a$ and $b$ from a graph, you need **two points** $(x_1, y_1)$ and $(x_2, y_2)$. Substituting into the general equation yields a system of two equations that solves for $a$ and $b$.
+
+#### 9.2 Rational functions (form $c/x + d$)
+
+The graph in the transcript shows a second segment that asymptotically approaches a horizontal line. The general form of this curve is:
+
+$$y = \frac{c}{x - h} + d$$
+
+where:
+- $h$ determines the **vertical asymptote position** (at $x = h$).
+- $d$ determines the **horizontal asymptote position** (at $y = d$).
+- $c$ controls the curvature: larger magnitudes make the curve "hug" the asymptotes more closely.
+
+As with linear functions, **two points** are needed to determine $c$ and $d$.
+
+#### 9.3 Algebraic techniques common in calculus
+
+- **Squaring a binomial**: $(a+b)^2 = a^2 + 2ab + b^2$.
+- **Difference of squares**: $(a-b)(a+b) = a^2 - b^2$.
+- **Radical manipulation**: $\sqrt{a^2} = |a|$.
+- **Trigonometric Pythagorean identity**: $\sin^2 x + \cos^2 x = 1$.
+
+These tools appear repeatedly when solving equations and simplifying expressions in calculus (especially in integrals).
+
+### 10. Trigonometry
+
+Trigonometry is not primarily about triangles — it is about **circular motion** and functions that describe rotations.
+
+#### 10.1 The unit circle
+
+The **unit circle** (radius = 1, centered at the origin) is the central object. A point rotating on it has coordinates:
+- $x = \cos(\theta)$
+- $y = \sin(\theta)$
+
+where $\theta$ is the angle measured from the positive x-axis.
+
+#### 10.2 The basic trigonometric functions
+
+- **Sine** $\sin(\theta)$: the vertical coordinate of the point on the unit circle.
+- **Cosine** $\cos(\theta)$: the horizontal coordinate.
+- **Tangent** $\tan(\theta) = \dfrac{\sin(\theta)}{\cos(\theta)}$: the ratio of vertical to horizontal change.
+
+The other trigonometric functions (secant, cosecant, cotangent) are algebraic variations of these three.
+
+#### 10.3 Degrees ↔ radians conversion
+
+$$\text{radians} = \frac{\pi}{180} \times \text{degrees}$$
+
+- $180^\circ = \pi$ rad
+- $360^\circ = 2\pi$ rad
+- $90^\circ = \pi/2$ rad
+- $45^\circ = \pi/4$ rad
+- $30^\circ = \pi/6$ rad
+
+#### 10.4 Trigonometric identities
+
+The most important ones for calculus:
+
+1. **Pythagorean identity**: $\sin^2 x + \cos^2 x = 1$
+2. **Complementary angles**: $\sin(\pi/2 - x) = \cos x$, $\cos(\pi/2 - x) = \sin x$
+3. **Negative angles**: $\sin(-x) = -\sin x$, $\cos(-x) = \cos x$ (cosine is even, sine is odd)
+4. **Supplementary angles**: $\sin(\pi - x) = \sin x$, $\cos(\pi - x) = -\cos x$
+5. **Sum and difference**: $\sin(a \pm b) = \sin a \cos b \pm \cos a \sin b$, $\cos(a \pm b) = \cos a \cos b \mp \sin a \sin b$
+6. **Double angle**: $\sin(2x) = 2\sin x \cos x$, $\cos(2x) = \cos^2 x - \sin^2 x$
+
+#### 10.5 Solving trigonometric equations
+
+The general procedure:
+1. Use identities to simplify the equation.
+2. Isolate the trigonometric function (e.g., $\cos x = 1/2$).
+3. Find **all** solutions within one period.
+4. Generalize by adding $+2k\pi$ (or $+\pi$ as appropriate) for all $k \in \mathbb{Z}$.
+
+Example: $\cos x = \frac{1}{2}$ has solutions in the first and fourth quadrants: $x = \pm \frac{\pi}{3} + 2k\pi$. Alternatively, $x = \frac{\pi}{3} + 2k\pi$ and $x = \frac{5\pi}{3} + 2k\pi$.
+
 ## Study log
 
 - **2026-05-01** — Topic created. First material downloaded and transcribed.
