@@ -90,6 +90,34 @@ No indeterminate forms appeared, so the answer is direct.
 
 **The danger:** These rules *fail* when we encounter $\frac{0}{0}$ or $\frac{\infty}{\infty}$. In those cases, we need other tools — algebra, L'Hôpital, or the Squeeze theorem.
 
+**The Squeeze theorem (Sandwich theorem):**
+
+If we have three functions such that $g(x) \leq f(x) \leq h(x)$ near $a$, and if:
+
+$$\lim_{x \to a} g(x) = \lim_{x \to a} h(x) = L$$
+
+then we can "squeeze" $f(x)$ to the same limit:
+
+$$\lim_{x \to a} f(x) = L$$
+
+**Why it works:** $f(x)$ is trapped between two functions that both approach the same value $L$, so it has no choice but to approach $L$ as well.
+
+**Classic example:** $\lim_{x \to 0} \frac{\sin x}{x}$
+
+We know that for $x$ near 0 (in radians): $-|x| \leq \sin x \leq |x|$
+
+Dividing by $|x|$ (positive): $-1 \leq \frac{\sin x}{|x|} \leq 1$
+
+But more precisely, we can use the geometric fact that for $0 < x < \pi/2$:
+
+$$\cos x \leq \frac{\sin x}{x} \leq 1$$
+
+As $x \to 0$, both $\cos x$ and $1$ approach 1, so by the Squeeze theorem:
+
+$$\lim_{x \to 0} \frac{\sin x}{x} = 1$$
+
+This is a fundamental limit that appears constantly in calculus.
+
 **Indeterminate forms:**
 
 Some expressions have no direct answer:
@@ -107,6 +135,31 @@ The limit is the foundational concept that allows us to define the derivative. T
 $$f'(a) = \lim_{h \to 0} \frac{f(a+h) - f(a)}{h}$$
 
 This is a limit where $h$ represents the "increment" in $x$, and we want to see what happens as that increment becomes infinitesimally small.
+
+**Continuity:**
+
+A function $f$ is *continuous at a point* $a$ if:
+
+$$\lim_{x \to a} f(x) = f(a)$$
+
+In words: the limit exists, the function value exists, and they are equal.
+
+This combines three conditions:
+1. $f(a)$ is defined (the point exists)
+2. $\lim_{x \to a} f(x)$ exists
+3. Both values coincide
+
+**Discontinuities:** When any of these fails, we have a discontinuity. Common types:
+
+- *Removable*: the limit exists but $f(a)$ is either undefined or different. Graphically, a "hole" in the curve.
+- *Jump*: the one-sided limits exist but are different (like the step function).
+- *Infinite*: the function grows without bound near $a$ (vertical asymptote).
+
+**Why continuity matters for derivatives:**
+
+For $f'(a)$ to exist, $f$ must be continuous at $a$. However, continuity alone is *not sufficient* — a function can be continuous at a point but still fail to have a derivative there (e.g., $f(x) = |x|$ at $x = 0$, where there's a "corner").
+
+This makes sense: the derivative measures the slope of the tangent, and a corner has no unique tangent line.
 
 ## Study log
 
