@@ -4,7 +4,7 @@ The bridge from functions to calculus proper: limits as the formal tool for "app
 
 ## Status
 
-`[~]` in progress — material 01 added, conversation pending.
+`[~]` in progress — material 01 added, conversation completed, cards ready (15 principles).
 
 ## Materials
 
@@ -14,7 +14,7 @@ The bridge from functions to calculus proper: limits as the formal tool for "app
 
 ## Cards
 
-*(none yet)*
+15 cards in `cards/limits-and-derivatives.txt`
 
 ## Theory
 
@@ -161,6 +161,47 @@ For $f'(a)$ to exist, $f$ must be continuous at $a$. However, continuity alone i
 
 This makes sense: the derivative measures the slope of the tangent, and a corner has no unique tangent line.
 
+### 2. The derivative: slope of the tangent line
+
+**The tangent line:**
+
+At any point $x_0$ on a smooth curve $f(x)$, there is a unique straight line that "just touches" the curve at that point — it crosses the curve at exactly one point (assuming no sharp corners). This is the **tangent line**.
+
+**Why the tangent matters:**
+
+The angle each tangent line makes with the horizontal tells us how steep the curve is at that point. This is incredibly useful:
+- In physics: instantaneous velocity of a moving particle
+- In economics: marginal cost or marginal revenue
+- In optimization: direction of fastest increase/decrease
+
+A tangent line pointing upward (positive slope) means the function is increasing; downward means decreasing.
+
+**The derivative as a limit:**
+
+The slope of the tangent line at $x = a$ is defined as the limit of the slope of secant lines as the second point approaches $a$:
+
+$$f'(a) = \lim_{h \to 0} \frac{f(a+h) - f(a)}{h}$$
+
+- $h$ is the horizontal distance between two points on the curve
+- The fraction $\frac{f(a+h) - f(a)}{h}$ is the slope of the secant line
+- Taking the limit as $h \to 0$ gives the instantaneous rate of change — the slope of the tangent
+
+This limit may not exist (e.g., at a corner or cusp), and when it does, we say $f$ is **differentiable** at $a$.
+
+**Derivative notation:**
+
+- $f'(a)$ — "f prime of a"
+- $\frac{df}{dx}$ — Leibniz notation, read as "dee-f over dee-x"
+- $D_x f(x)$ — operator notation
+
+**Interpretation:**
+
+The derivative $f'(a)$ answers: "If I move a tiny bit away from $a$, how fast does $f$ change?"
+
+- $f'(a) > 0$: $f$ is increasing at $a$
+- $f'(a) < 0$: $f$ is decreasing at $a$
+- $f'(a) = 0$: $f$ is stationary (flat) at $a$
+
 ### 3. L'Hôpital's rule
 
 **The problem:** When we encounter limits like $\lim_{x \to a} \frac{f(x)}{g(x)}$ where both $f(a) = 0$ and $g(a) = 0$ (or both tend to $\infty$), the algebraic properties of limits break down. We get the indeterminate form $\frac{0}{0}$ or $\frac{\infty}{\infty}$.
@@ -210,24 +251,6 @@ $$\lim_{x \to \infty} \frac{2x}{e^x} = \lim_{x \to \infty} \frac{2}{e^x} = 0$$
 **Connection to the theorem:**
 
 L'Hôpital can be proved using the Cauchy Mean Value Theorem, which generalizes the Mean Value Theorem to two functions. The idea: if $f(a) = g(a) = 0$, then near $a$ there exists a point $c$ where the ratio of derivatives equals the ratio of function values.
-
-### 4. Conceptual connection: why L'Hôpital works
-
-L'Hôpital is not a magical trick — it's a direct consequence of how derivatives measure rate of change.
-
-**The big picture:**
-
-1. **Limits** give us the language of "approaching"
-2. **Derivatives** give us the rate of change at a point — also defined as a limit
-3. **L'Hôpital** uses derivatives (rates of change) to compare how fast two functions approach zero or infinity
-
-The rule bridges these concepts: it's a tool that uses the derivative (section 2) to resolve indeterminate limits (section 1).
-
-**Why derivatives help with 0/0:**
-
-When $f(a) = 0$ and $g(a) = 0$, we can't compare the function values at $a$. But we can compare how they *leave* $a$ — their instantaneous rates of change. That's exactly what $f'(a)$ and $g'(a)$ tell us.
-
-If $f$ "takes off faster" from zero than $g$, then $\frac{f'(a)}{g'(a)}$ captures that, and that's what the limit will be.
 
 ## Study log
 
