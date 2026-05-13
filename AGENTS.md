@@ -21,6 +21,7 @@ For every concept, the user works through this loop:
 - **Defer to the skill.** For anything format-related — note types, separators, cloze syntax — read `.claude/skills/anki-card-builder/SKILL.md` and the `references/` files. Do not improvise.
 - **Keep the repo offline-capable.** When a material is added, ensure it has a committed transcript (audio/video) and a stub. Binaries belong in `.gitignore`.
 - **Update `ROADMAP.md`** whenever a topic moves from "candidate" to "in progress" to "covered".
+- **Always use English for the materiales.** Despite the conversations usually happening in Spanish, the repository should be maintained in English.
 
 ## Material stub format
 
