@@ -161,6 +161,74 @@ For $f'(a)$ to exist, $f$ must be continuous at $a$. However, continuity alone i
 
 This makes sense: the derivative measures the slope of the tangent, and a corner has no unique tangent line.
 
+### 3. L'Hôpital's rule
+
+**The problem:** When we encounter limits like $\lim_{x \to a} \frac{f(x)}{g(x)}$ where both $f(a) = 0$ and $g(a) = 0$ (or both tend to $\infty$), the algebraic properties of limits break down. We get the indeterminate form $\frac{0}{0}$ or $\frac{\infty}{\infty}$.
+
+**The solution:** L'Hôpital's rule lets us replace the quotient by the quotient of the derivatives:
+
+> If $\lim_{x \to a} \frac{f(x)}{g(x)}$ gives $\frac{0}{0}$ or $\frac{\infty}{\infty}$, and both $f$ and $g$ are differentiable near $a$ (with $g'(x) \neq 0$ nearby), then:
+>
+> $$\lim_{x \to a} \frac{f(x)}{g(x)} = \lim_{x \to a} \frac{f'(x)}{g'(x)}$$
+
+**The intuition:**
+
+Think of the numerator $f(x)$ and denominator $g(x)$ as two functions "racing" toward zero (or infinity). Which one gets there faster?
+
+- The derivative $f'(x)$ tells us the *instantaneous rate of change* of $f$ at each point.
+- The derivative $g'(x)$ tells us the *instantaneous rate of change* of $g$.
+- Comparing $f'(x)$ to $g'(x)$ tells us which function is "winning" the race.
+
+If $\frac{f'(x)}{g'(x)}$ still gives an indeterminate form, we can apply L'Hôpital again (and again, as needed).
+
+**Example 1 — 0/0 at a point:**
+
+$$\lim_{x \to 0} \frac{\sin x}{x}$$
+
+Both $\sin(0) = 0$ and the denominator $x \to 0$. Apply L'Hôpital:
+
+$$\lim_{x \to 0} \frac{\sin x}{x} = \lim_{x \to 0} \frac{\cos x}{1} = \frac{1}{1} = 1$$
+
+**Example 2 — ∞/∞ at infinity:**
+
+$$\lim_{x \to \infty} \frac{x^2}{e^x}$$
+
+As $x \to \infty$, both numerator and denominator grow without bound. Apply L'Hôpital:
+
+$$\lim_{x \to \infty} \frac{x^2}{e^x} = \lim_{x \to \infty} \frac{2x}{e^x}$$
+
+Still $\frac{\infty}{\infty}$. Apply again:
+
+$$\lim_{x \to \infty} \frac{2x}{e^x} = \lim_{x \to \infty} \frac{2}{e^x} = 0$$
+
+**Caveats:**
+
+- L'Hôpital only applies to $\frac{0}{0}$ or $\frac{\infty}{\infty}$. It *cannot* be used on other indeterminate forms like $0 \cdot \infty$ or $\infty - \infty$ — those must be rewritten first.
+- The rule requires both functions to be differentiable in a neighborhood of $a$ (except possibly at $a$ itself).
+- If $\lim \frac{f'(x)}{g'(x)}$ does not exist, L'Hôpital tells us nothing — the original limit might still exist.
+
+**Connection to the theorem:**
+
+L'Hôpital can be proved using the Cauchy Mean Value Theorem, which generalizes the Mean Value Theorem to two functions. The idea: if $f(a) = g(a) = 0$, then near $a$ there exists a point $c$ where the ratio of derivatives equals the ratio of function values.
+
+### 4. Conceptual connection: why L'Hôpital works
+
+L'Hôpital is not a magical trick — it's a direct consequence of how derivatives measure rate of change.
+
+**The big picture:**
+
+1. **Limits** give us the language of "approaching"
+2. **Derivatives** give us the rate of change at a point — also defined as a limit
+3. **L'Hôpital** uses derivatives (rates of change) to compare how fast two functions approach zero or infinity
+
+The rule bridges these concepts: it's a tool that uses the derivative (section 2) to resolve indeterminate limits (section 1).
+
+**Why derivatives help with 0/0:**
+
+When $f(a) = 0$ and $g(a) = 0$, we can't compare the function values at $a$. But we can compare how they *leave* $a$ — their instantaneous rates of change. That's exactly what $f'(a)$ and $g'(a)$ tell us.
+
+If $f$ "takes off faster" from zero than $g$, then $\frac{f'(a)}{g'(a)}$ captures that, and that's what the limit will be.
+
 ## Study log
 
 - **2026-05-09** — Topic created. Material 01 (DiBeos follow-up to "The Language of Calculus") downloaded and transcribed.
