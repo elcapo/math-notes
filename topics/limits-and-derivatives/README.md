@@ -171,6 +171,35 @@ For $f'(a)$ to exist, $f$ must be continuous at $a$. However, continuity alone i
 
 This makes sense: the derivative measures the slope of the tangent, and a corner has no unique tangent line.
 
+**Continuity of composition:**
+
+A fundamental property emerges from continuity: we can exchange limits with continuous functions.
+
+> **Theorem (Continuity of Composition):**
+> If $\lim_{x \to a} g(x) = L$ and $f$ is continuous at $L$, then:
+> $$\lim_{x \to a} f(g(x)) = f\left(\lim_{x \to a} g(x)\right) = f(L)$$
+
+**Why it works:**
+- $g(x) \to L$ means we can get arbitrarily close to $L$ by choosing $x$ close enough to $a$
+- $f$ being continuous at $L$ means: if $y$ is close to $L$, then $f(y)$ is close to $f(L)$
+- Chaining: $g(x)$ close to $L$ $\implies$ $f(g(x))$ close to $f(L)$
+
+**Practical consequence:**
+If $f$ is continuous everywhere (polynomials, $\sin, \cos, e^x$, etc.), we can always interchange limits and function application — as long as $\lim g(x)$ exists.
+
+**Example:**
+$\lim_{x \to 0} e^{\sin x} = e^{\lim_{x \to 0} \sin x} = e^0 = 1$
+
+Here $\sin x \to 0$ and $e^y$ is continuous at $0$.
+
+**Counterexample (when it fails):**
+Let $f(x) = \begin{cases} 0 & x = 0 \\ 1 & x \neq 0 \end{cases}$ (discontinuous at $0$)
+Let $g(x) = x$ with $\lim_{x \to 0} g(x) = 0$
+
+Then $\lim_{x \to 0} f(g(x)) = \lim_{x \to 0} f(x) = 1$, but $f(\lim_{x \to 0} g(x)) = f(0) = 0$.
+
+The theorem requires $f$ to be continuous at the limit point — otherwise the exchange fails.
+
 ### 2. The derivative: slope of the tangent line
 
 **The tangent line:**
