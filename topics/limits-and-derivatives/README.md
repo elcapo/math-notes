@@ -128,6 +128,16 @@ Some expressions have no direct answer:
 
 "Indeterminate" does not mean "does not exist" — it means we need further analysis to determine the limit. L'Hôpital is precisely a tool to resolve the most common ones ($\frac{0}{0}$ and $\frac{\infty}{\infty}$).
 
+**A discrete preview — racing to zero:**
+
+Before reaching for L'Hôpital, it helps to see why $\frac{0}{0}$ can still produce a clear answer. Consider the sequence $\frac{a_n}{b_n}$ defined recursively by
+
+$$a_{n+1} = \frac{a_n}{2}, \qquad b_{n+1} = b_n^{\,2}$$
+
+with $a_1, b_1 \in (0, 1)$. Both $a_n \to 0$ and $b_n \to 0$, so naively $\frac{a_n}{b_n}$ has the shape $\frac{0}{0}$. But squaring a small number shrinks it far more aggressively than halving it: after a few iterations, $a_n$ is still "moderately small" while $b_n$ is effectively zero. The quotient then behaves like "fixed-ish number / vanishingly small" and runs off to $\infty$.
+
+The lesson: an indeterminate form is the symptom of two competing *rates* of approach to zero (or to infinity). Once we identify which side moves faster, the apparent ambiguity disappears. L'Hôpital automates exactly this comparison for continuous functions, using derivatives as the rate-of-change yardstick.
+
 **Connection to derivatives:**
 
 The limit is the foundational concept that allows us to define the derivative. The derivative at a point is:
@@ -176,6 +186,21 @@ The angle each tangent line makes with the horizontal tells us how steep the cur
 
 A tangent line pointing upward (positive slope) means the function is increasing; downward means decreasing.
 
+**Slope and angle are the same number:**
+
+If a tangent line makes angle $\theta$ with the horizontal, its slope is exactly $\tan(\theta)$:
+
+- $\theta = 0°$: slope $= \tan(0°) = 0$ (horizontal tangent, function locally flat).
+- $\theta = 45°$: slope $= \tan(45°) = 1$ (function rising "1 unit up per 1 unit right").
+- $\theta = -45°$: slope $= \tan(-45°) = -1$ (falling at the same rate).
+- $\theta \to 90°$: slope $\to \infty$ (vertical tangent, no well-defined derivative).
+
+This is not a coincidence in naming. In the right triangle formed by the tangent line, the *rise* is the side opposite to $\theta$ and the *run* is the side adjacent to $\theta$. Their ratio is the definition of the trigonometric tangent:
+
+$$\text{slope} = \frac{\text{rise}}{\text{run}} = \frac{\text{opposite}}{\text{adjacent}} = \tan(\theta)$$
+
+So "slope of the tangent line" and "trigonometric tangent of the tangent line's angle" are the same number. This is the bridge from the geometric picture (an angle) to the algebraic object we will compute via a limit.
+
 **The derivative as a limit:**
 
 The slope of the tangent line at $x = a$ is defined as the limit of the slope of secant lines as the second point approaches $a$:
@@ -222,6 +247,20 @@ Think of the numerator $f(x)$ and denominator $g(x)$ as two functions "racing" t
 
 If $\frac{f'(x)}{g'(x)}$ still gives an indeterminate form, we can apply L'Hôpital again (and again, as needed).
 
+**Geometric interpretation:**
+
+Since the derivative at a point is the slope of the tangent line — which equals $\tan(\theta)$ of the angle that tangent makes with the horizontal — the ratio $\frac{f'}{g'}$ has a clean visual meaning.
+
+Recall the unit-circle picture of the tangent function: starting from the origin, draw a ray at angle $\theta$ and extend it until it crosses the vertical line $x = 1$; the height at which it meets that vertical is exactly $\tan(\theta)$. Drawing this construction for the numerator's tangent angle $\theta_N$ and the denominator's tangent angle $\theta_D$ at the same point produces two heights on the *same* vertical reference:
+
+$$\tan(\theta_N) = f'(x), \qquad \tan(\theta_D) = g'(x)$$
+
+The L'Hôpital quotient becomes a literal ratio of two visible segments:
+
+$$\frac{f'(x)}{g'(x)} = \frac{\tan(\theta_N)}{\tan(\theta_D)}$$
+
+If this ratio equals $3$ at some point, it means the numerator's tangent fits three copies of the denominator's tangent on that vertical line — the numerator is climbing three times as steeply right there. Repeating the comparison at every point near $a$ tells us which function "wins the race" using directly comparable lengths.
+
 **Example 1 — 0/0 at a point:**
 
 $$\lim_{x \to 0} \frac{\sin x}{x}$$
@@ -248,10 +287,53 @@ $$\lim_{x \to \infty} \frac{2x}{e^x} = \lim_{x \to \infty} \frac{2}{e^x} = 0$$
 - The rule requires both functions to be differentiable in a neighborhood of $a$ (except possibly at $a$ itself).
 - If $\lim \frac{f'(x)}{g'(x)}$ does not exist, L'Hôpital tells us nothing — the original limit might still exist.
 
-**Connection to the theorem:**
+**From Rolle to L'Hôpital — a formal derivation:**
 
-L'Hôpital can be proved using the Cauchy Mean Value Theorem, which generalizes the Mean Value Theorem to two functions. The idea: if $f(a) = g(a) = 0$, then near $a$ there exists a point $c$ where the ratio of derivatives equals the ratio of function values.
+The "racing" intuition becomes fully rigorous by climbing a short ladder of three theorems, each one a small step beyond the previous.
+
+**Rolle's theorem.**
+
+> If $f$ is continuous on $[a, b]$, differentiable on $(a, b)$, and $f(a) = f(b)$, then there exists $c \in (a, b)$ such that $f'(c) = 0$.
+
+*Geometric reading:* if a smooth curve starts and ends at the same height, it must turn around somewhere in between, and at the turning point the tangent is horizontal. This is essentially the only piece of "magic" in the chain — once we accept Rolle, the rest is bookkeeping.
+
+**Lagrange's Mean Value Theorem (MVT).**
+
+> If $f$ is continuous on $[a, b]$ and differentiable on $(a, b)$, then there exists $c \in (a, b)$ such that
+> $$f'(c) = \frac{f(b) - f(a)}{b - a}$$
+
+*Geometric reading:* the slope of the secant line joining the endpoints is achieved as the instantaneous slope at some interior point — somewhere, the tangent is parallel to the chord.
+
+*Derivation from Rolle:* let $\varphi(x)$ be the secant line through $(a, f(a))$ and $(b, f(b))$, and define $h(x) = f(x) - \varphi(x)$. Then $h(a) = h(b) = 0$, so Rolle gives a $c$ with $h'(c) = 0$, i.e. $f'(c) = \varphi'(c) = \frac{f(b) - f(a)}{b - a}$.
+
+**Cauchy's Mean Value Theorem (Generalized MVT).**
+
+> If $f$ and $g$ are continuous on $[a, b]$, differentiable on $(a, b)$, and $g'(x) \neq 0$ on $(a, b)$, then there exists $c \in (a, b)$ such that
+> $$\frac{f'(c)}{g'(c)} = \frac{f(b) - f(a)}{g(b) - g(a)}$$
+
+*Geometric reading:* think of $(g(t), f(t))$ as a parametric curve in the plane. Cauchy's MVT says that somewhere along this curve, the *ratio* of instantaneous rates of change matches the *ratio* of total changes over the interval — the parametric tangent direction is parallel to the chord direction. When $g(x) = x$, this collapses back to Lagrange.
+
+*Derivation from Rolle:* apply Rolle to the auxiliary function
+
+$$h(x) = [f(x) - f(a)] \cdot [g(b) - g(a)] - [g(x) - g(a)] \cdot [f(b) - f(a)]$$
+
+which satisfies $h(a) = h(b) = 0$. Rolle yields a $c$ with $h'(c) = 0$, and rearranging gives the stated identity (here we use $g'(c) \neq 0$ to divide).
+
+**L'Hôpital follows in one line.**
+
+Suppose $f(a) = g(a) = 0$ and we want $\lim_{x \to a} \frac{f(x)}{g(x)}$. For any $x$ near $a$, apply Cauchy's MVT on the interval between $a$ and $x$: there exists $c$ strictly between $a$ and $x$ with
+
+$$\frac{f(x)}{g(x)} = \frac{f(x) - f(a)}{g(x) - g(a)} = \frac{f'(c)}{g'(c)}$$
+
+(the first equality uses $f(a) = g(a) = 0$). Now let $x \to a$. Since $c$ is squeezed between $a$ and $x$, we also have $c \to a$, so
+
+$$\lim_{x \to a} \frac{f(x)}{g(x)} = \lim_{c \to a} \frac{f'(c)}{g'(c)} = \lim_{x \to a} \frac{f'(x)}{g'(x)}$$
+
+whenever the right-hand limit exists. That is precisely L'Hôpital's rule for the $\frac{0}{0}$ case.
+
+The $\frac{\infty}{\infty}$ case is true as well but requires a more delicate $\varepsilon$-$\delta$ argument (or a Stolz–Cesàro-style trick); the engine, however, is the same — Cauchy's MVT lets us trade a quotient of function values for a quotient of derivatives evaluated at some intermediate point.
 
 ## Study log
 
 - **2026-05-09** — Topic created. Material 01 (DiBeos follow-up to "The Language of Calculus") downloaded and transcribed.
+- **2026-05-15** — Theory expanded with three geometric pieces from the transcript: discrete preview of $\frac{0}{0}$ as a race to zero, slope/angle identity ($m = \tan\theta$), and visual interpretation of L'Hôpital as a ratio of tangent-line segments on a shared vertical reference. Added a formal derivation of L'Hôpital's rule via Rolle → Lagrange → Cauchy, with the geometric reading and Rolle-based proof sketch for each MVT variant.
