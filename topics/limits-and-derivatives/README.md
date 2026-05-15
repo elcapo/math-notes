@@ -4,7 +4,7 @@ The bridge from functions to calculus proper: limits as the formal tool for "app
 
 ## Status
 
-`[~]` in progress — material 01 added, conversation completed, cards ready (15 principles).
+`[x]` covered — material 01 added, full proof chain (Fermat → Rolle → Lagrange → Cauchy → L'Hôpital) discussed in conversation, 22 cards in active rotation.
 
 ## Materials
 
@@ -14,7 +14,7 @@ The bridge from functions to calculus proper: limits as the formal tool for "app
 
 ## Cards
 
-15 cards in `cards/limits-and-derivatives.txt`
+22 cards in `cards/limits-and-derivatives.txt`, split across subdecks: Limits (7), Derivative (3), L'Hôpital (5), Continuity (1), Mean Value Theorems (5), Conceptual (1).
 
 ## Theory
 
@@ -451,3 +451,4 @@ The $\frac{\infty}{\infty}$ case is true as well but requires a more delicate $\
 
 - **2026-05-09** — Topic created. Material 01 (DiBeos follow-up to "The Language of Calculus") downloaded and transcribed.
 - **2026-05-15** — Theory expanded with three geometric pieces from the transcript: discrete preview of $\frac{0}{0}$ as a race to zero, slope/angle identity ($m = \tan\theta$), and visual interpretation of L'Hôpital as a ratio of tangent-line segments on a shared vertical reference. Added a formal derivation of L'Hôpital's rule via Rolle → Lagrange → Cauchy, with the geometric reading and Rolle-based proof sketch for each Mean Value Theorem variant. Extended the chain at both ends: Fermat's theorem as the foundational lemma underpinning Rolle (one-sided difference quotients with opposite signs forcing $f'(c) = 0$ at an interior extremum) and a sign-of-derivative corollary placed after Lagrange that retroactively formalizes the claim "$f'(a) > 0 \Rightarrow$ $f$ increasing at $a$", flagging the pointwise-vs-interval asymmetry.
+- **2026-05-15** — Second round of cards (7 added, total 22): one for continuity of composition, one per link of the Fermat → Rolle → Lagrange → Cauchy chain, one for the pointwise-vs-interval sign-of-derivative corollary, and one for the Cauchy-based closure to L'Hôpital. Topic closed.

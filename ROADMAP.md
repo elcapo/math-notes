@@ -13,7 +13,7 @@ Living index of the math curriculum being built here. Edit freely as study progr
 ### Foundations
 
 - `[x]` [**calculus-foundations**](https://www.youtube.com/watch?v=MaszunEszVM) — functions, injectivity, surjectivity, bijectivity, composition, inverse, function families, algebra, trigonometry. 38 cards.
-- `[x]` [**limits-and-derivatives**](https://youtu.be/sInn2CkPRWs) — limits as the formal "approaching" tool, derivatives as instantaneous rate of change, L'Hôpital's rule. 15 cards.
+- `[x]` [**limits-and-derivatives**](https://youtu.be/sInn2CkPRWs) — limits as the formal "approaching" tool, derivatives as instantaneous rate of change, full Fermat → Rolle → Lagrange → Cauchy → L'Hôpital proof chain. 22 cards.
 
 ### Candidates (no committed order)
 
