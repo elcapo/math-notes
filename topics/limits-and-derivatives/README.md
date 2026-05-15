@@ -287,17 +287,34 @@ $$\lim_{x \to \infty} \frac{2x}{e^x} = \lim_{x \to \infty} \frac{2}{e^x} = 0$$
 - The rule requires both functions to be differentiable in a neighborhood of $a$ (except possibly at $a$ itself).
 - If $\lim \frac{f'(x)}{g'(x)}$ does not exist, L'Hôpital tells us nothing — the original limit might still exist.
 
-**From Rolle to L'Hôpital — a formal derivation:**
+**From Fermat to L'Hôpital — a formal derivation:**
 
-The "racing" intuition becomes fully rigorous by climbing a short ladder of three theorems, each one a small step beyond the previous.
+The "racing" intuition becomes fully rigorous by climbing a short ladder of four theorems, each one a small step beyond the previous.
+
+**Fermat's theorem.**
+
+> If $f$ has a local extremum at an interior point $c \in (a, b)$ and $f'(c)$ exists, then $f'(c) = 0$.
+
+*Geometric reading:* at a local maximum or minimum, the tangent line must be horizontal. There is no consistent "uphill" or "downhill" direction at such a point — both sides of $c$ have already been beaten in height (max) or undercut (min) by the function value at $c$ itself, so the slope cannot favor either side.
+
+*Proof sketch:* at a local maximum $c$, the difference quotient $\frac{f(c+h) - f(c)}{h}$ has opposite signs from the two sides. For $h > 0$ near $0$: $f(c+h) \leq f(c)$, so the quotient is $\leq 0$. For $h < 0$ near $0$: $f(c+h) \leq f(c)$ while $h < 0$, so the quotient is $\geq 0$. If $f'(c)$ exists, both one-sided limits agree and equal $f'(c)$, forcing $f'(c) \leq 0$ and $f'(c) \geq 0$ simultaneously — hence $f'(c) = 0$. The argument for a local minimum is identical with the inequalities flipped.
+
+This is the only step in the chain with genuine analytical content — one-sided difference quotients squeezing $f'(c)$ to zero. Everything that follows builds on Fermat plus the extreme value theorem.
 
 **Rolle's theorem.**
 
 > If $f$ is continuous on $[a, b]$, differentiable on $(a, b)$, and $f(a) = f(b)$, then there exists $c \in (a, b)$ such that $f'(c) = 0$.
 
-*Geometric reading:* if a smooth curve starts and ends at the same height, it must turn around somewhere in between, and at the turning point the tangent is horizontal. This is essentially the only piece of "magic" in the chain — once we accept Rolle, the rest is bookkeeping.
+*Geometric reading:* if a smooth curve starts and ends at the same height, it must turn around somewhere in between, and at the turning point the tangent is horizontal.
 
-**Lagrange's Mean Value Theorem (MVT).**
+*Derivation from Fermat:* by the extreme value theorem, $f$ attains a maximum and a minimum on $[a, b]$. Two cases:
+
+- If either extremum is reached at an interior point $c \in (a, b)$, Fermat's theorem gives $f'(c) = 0$.
+- If both extrema occur at the endpoints, then since $f(a) = f(b)$, the max and min coincide; $f$ is constant on $[a, b]$ and $f'(c) = 0$ for every $c \in (a, b)$.
+
+Either way we get a point with zero derivative.
+
+**Lagrange's Mean Value Theorem.**
 
 > If $f$ is continuous on $[a, b]$ and differentiable on $(a, b)$, then there exists $c \in (a, b)$ such that
 > $$f'(c) = \frac{f(b) - f(a)}{b - a}$$
@@ -306,12 +323,28 @@ The "racing" intuition becomes fully rigorous by climbing a short ladder of thre
 
 *Derivation from Rolle:* let $\varphi(x)$ be the secant line through $(a, f(a))$ and $(b, f(b))$, and define $h(x) = f(x) - \varphi(x)$. Then $h(a) = h(b) = 0$, so Rolle gives a $c$ with $h'(c) = 0$, i.e. $f'(c) = \varphi'(c) = \frac{f(b) - f(a)}{b - a}$.
 
-**Cauchy's Mean Value Theorem (Generalized MVT).**
+**Corollary — sign of the derivative.**
+
+> If $f$ is continuous on $[a, b]$, differentiable on $(a, b)$, and $f'(x) > 0$ for all $x \in (a, b)$, then $f$ is strictly increasing on $[a, b]$. (Symmetrically, $f'(x) < 0$ on $(a, b)$ implies $f$ is strictly decreasing.)
+
+*Derivation from Lagrange:* take any two points $x_1 < x_2$ in $[a, b]$. Lagrange's Mean Value Theorem on $[x_1, x_2]$ gives some $c \in (x_1, x_2)$ with
+
+$$f(x_2) - f(x_1) = f'(c) \cdot (x_2 - x_1)$$
+
+The right-hand side is a product of two positives (by hypothesis $f'(c) > 0$, and $x_2 - x_1 > 0$ by choice), so $f(x_2) > f(x_1)$ — that is exactly the definition of strictly increasing.
+
+The derivative section earlier stated, informally, that:
+
+> $f'(a) > 0$ means $f$ is increasing at $a$
+
+The corollary above is its rigorous form, with one important asymmetry to flag: the §2 claim is *pointwise* ($f' > 0$ at the single point $a$), while the corollary requires $f' > 0$ *on a whole interval* to conclude monotonicity. Strict monotonicity on an interval is an interval property — a single positive value of $f'$ at one point does not, by itself, guarantee that $f$ is increasing in any neighborhood of it.
+
+**Cauchy's Mean Value Theorem (Generalized Mean Value Theorem).**
 
 > If $f$ and $g$ are continuous on $[a, b]$, differentiable on $(a, b)$, and $g'(x) \neq 0$ on $(a, b)$, then there exists $c \in (a, b)$ such that
 > $$\frac{f'(c)}{g'(c)} = \frac{f(b) - f(a)}{g(b) - g(a)}$$
 
-*Geometric reading:* think of $(g(t), f(t))$ as a parametric curve in the plane. Cauchy's MVT says that somewhere along this curve, the *ratio* of instantaneous rates of change matches the *ratio* of total changes over the interval — the parametric tangent direction is parallel to the chord direction. When $g(x) = x$, this collapses back to Lagrange.
+*Geometric reading:* think of $(g(t), f(t))$ as a parametric curve in the plane. Cauchy's Mean Value Theorem says that somewhere along this curve, the *ratio* of instantaneous rates of change matches the *ratio* of total changes over the interval — the parametric tangent direction is parallel to the chord direction. When $g(x) = x$, this collapses back to Lagrange.
 
 *Derivation from Rolle:* apply Rolle to the auxiliary function
 
@@ -321,7 +354,7 @@ which satisfies $h(a) = h(b) = 0$. Rolle yields a $c$ with $h'(c) = 0$, and rear
 
 **L'Hôpital follows in one line.**
 
-Suppose $f(a) = g(a) = 0$ and we want $\lim_{x \to a} \frac{f(x)}{g(x)}$. For any $x$ near $a$, apply Cauchy's MVT on the interval between $a$ and $x$: there exists $c$ strictly between $a$ and $x$ with
+Suppose $f(a) = g(a) = 0$ and we want $\lim_{x \to a} \frac{f(x)}{g(x)}$. For any $x$ near $a$, apply Cauchy's Mean Value Theorem on the interval between $a$ and $x$: there exists $c$ strictly between $a$ and $x$ with
 
 $$\frac{f(x)}{g(x)} = \frac{f(x) - f(a)}{g(x) - g(a)} = \frac{f'(c)}{g'(c)}$$
 
@@ -331,9 +364,9 @@ $$\lim_{x \to a} \frac{f(x)}{g(x)} = \lim_{c \to a} \frac{f'(c)}{g'(c)} = \lim_{
 
 whenever the right-hand limit exists. That is precisely L'Hôpital's rule for the $\frac{0}{0}$ case.
 
-The $\frac{\infty}{\infty}$ case is true as well but requires a more delicate $\varepsilon$-$\delta$ argument (or a Stolz–Cesàro-style trick); the engine, however, is the same — Cauchy's MVT lets us trade a quotient of function values for a quotient of derivatives evaluated at some intermediate point.
+The $\frac{\infty}{\infty}$ case is true as well but requires a more delicate $\varepsilon$-$\delta$ argument (or a Stolz–Cesàro-style trick); the engine, however, is the same — Cauchy's Mean Value Theorem lets us trade a quotient of function values for a quotient of derivatives evaluated at some intermediate point.
 
 ## Study log
 
 - **2026-05-09** — Topic created. Material 01 (DiBeos follow-up to "The Language of Calculus") downloaded and transcribed.
-- **2026-05-15** — Theory expanded with three geometric pieces from the transcript: discrete preview of $\frac{0}{0}$ as a race to zero, slope/angle identity ($m = \tan\theta$), and visual interpretation of L'Hôpital as a ratio of tangent-line segments on a shared vertical reference. Added a formal derivation of L'Hôpital's rule via Rolle → Lagrange → Cauchy, with the geometric reading and Rolle-based proof sketch for each MVT variant.
+- **2026-05-15** — Theory expanded with three geometric pieces from the transcript: discrete preview of $\frac{0}{0}$ as a race to zero, slope/angle identity ($m = \tan\theta$), and visual interpretation of L'Hôpital as a ratio of tangent-line segments on a shared vertical reference. Added a formal derivation of L'Hôpital's rule via Rolle → Lagrange → Cauchy, with the geometric reading and Rolle-based proof sketch for each Mean Value Theorem variant. Extended the chain at both ends: Fermat's theorem as the foundational lemma underpinning Rolle (one-sided difference quotients with opposite signs forcing $f'(c) = 0$ at an interior extremum) and a sign-of-derivative corollary placed after Lagrange that retroactively formalizes the claim "$f'(a) > 0 \Rightarrow$ $f$ increasing at $a$", flagging the pointwise-vs-interval asymmetry.
