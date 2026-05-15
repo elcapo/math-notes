@@ -341,7 +341,39 @@ Either way we get a point with zero derivative.
 
 *Geometric reading:* the slope of the secant line joining the endpoints is achieved as the instantaneous slope at some interior point — somewhere, the tangent is parallel to the chord.
 
-*Derivation from Rolle:* let $\varphi(x)$ be the secant line through $(a, f(a))$ and $(b, f(b))$, and define $h(x) = f(x) - \varphi(x)$. Then $h(a) = h(b) = 0$, so Rolle gives a $c$ with $h'(c) = 0$, i.e. $f'(c) = \varphi'(c) = \frac{f(b) - f(a)}{b - a}$.
+*Derivation from Rolle (step by step):*
+
+**Step 1: Build the secant line.**
+The line passing through $(a, f(a))$ and $(b, f(b))$ is:
+$$\varphi(x) = f(a) + \frac{f(b) - f(a)}{b - a}(x - a)$$
+
+This is the straight line that connects the endpoints — its slope is the slope of the chord.
+
+**Step 2: Define the auxiliary function.**
+Let $h(x)$ be the vertical distance between $f(x)$ and the secant:
+$$h(x) = f(x) - \varphi(x)$$
+
+**Step 3: Verify $h$ satisfies Rolle's conditions.**
+- $h$ is continuous on $[a, b]$ (difference of continuous functions)
+- $h$ is differentiable on $(a, b)$ (difference of differentiable functions)
+- At the endpoints:
+  - $h(a) = f(a) - \varphi(a) = f(a) - f(a) = 0$
+  - $h(b) = f(b) - \varphi(b) = f(b) - f(b) = 0$
+  So $h(a) = h(b) = 0$.
+
+**Step 4: Apply Rolle.**
+Since $h(a) = h(b) = 0$, Rolle guarantees $c \in (a, b)$ with $h'(c) = 0$.
+
+**Step 5: Compute $h'(x)$ and evaluate at $c$.**
+$$h'(x) = f'(x) - \varphi'(x) = f'(x) - \frac{f(b) - f(a)}{b - a}$$
+
+At $x = c$:
+$$h'(c) = f'(c) - \frac{f(b) - f(a)}{b - a} = 0$$
+
+**Step 6: Rearrange.**
+$$f'(c) = \frac{f(b) - f(a)}{b - a}$$
+
+The geometric intuition: $h(x)$ measures how far $f$ deviates from the secant. Since $h(a) = h(b) = 0$, the deviation is zero at both ends. Rolle says there's a point $c$ where $h$ is "flat" — the curve $f$ has the same slope as the secant there.
 
 **Corollary — sign of the derivative.**
 
