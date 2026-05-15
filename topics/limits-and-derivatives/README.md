@@ -297,7 +297,27 @@ The "racing" intuition becomes fully rigorous by climbing a short ladder of four
 
 *Geometric reading:* at a local maximum or minimum, the tangent line must be horizontal. There is no consistent "uphill" or "downhill" direction at such a point — both sides of $c$ have already been beaten in height (max) or undercut (min) by the function value at $c$ itself, so the slope cannot favor either side.
 
-*Proof sketch:* at a local maximum $c$, the difference quotient $\frac{f(c+h) - f(c)}{h}$ has opposite signs from the two sides. For $h > 0$ near $0$: $f(c+h) \leq f(c)$, so the quotient is $\leq 0$. For $h < 0$ near $0$: $f(c+h) \leq f(c)$ while $h < 0$, so the quotient is $\geq 0$. If $f'(c)$ exists, both one-sided limits agree and equal $f'(c)$, forcing $f'(c) \leq 0$ and $f'(c) \geq 0$ simultaneously — hence $f'(c) = 0$. The argument for a local minimum is identical with the inequalities flipped.
+*Proof sketch (step by step):*
+
+At a local maximum $c$, for sufficiently small $h$ we have $f(c+h) \leq f(c)$.
+
+**From the right ($h > 0$):**
+Since $f(c+h) - f(c) \leq 0$ and $h > 0$ (positive, preserves sign):
+$$\frac{f(c+h) - f(c)}{h} \leq 0$$
+Taking the limit as $h \to 0^+$:
+$$f'(c) \leq 0$$
+
+**From the left ($h < 0$):**
+Since $f(c+h) - f(c) \leq 0$ and $h < 0$ (negative, inverts sign):
+$$\frac{f(c+h) - f(c)}{h} \geq 0$$
+Taking the limit as $h \to 0^-$:
+$$f'(c) \geq 0$$
+
+**Combining both sides:**
+If $f'(c)$ exists, both one-sided limits must agree and equal $f'(c)$. We get:
+$$f'(c) \leq 0 \quad \text{and} \quad f'(c) \geq 0 \implies f'(c) = 0$$
+
+The key is that the sign of $h$ determines whether the inequality is preserved or inverted when dividing. For a local minimum, the inequalities flip ($f(c+h) \geq f(c)$), but the conclusion is the same.
 
 This is the only step in the chain with genuine analytical content — one-sided difference quotients squeezing $f'(c)$ to zero. Everything that follows builds on Fermat plus the extreme value theorem.
 
