@@ -6,9 +6,13 @@ A stub is a Markdown file with YAML front-matter:
 
     ---
     source: https://www.youtube.com/watch?v=...
+    kind: video        # one of: video, pdf, reference
     ---
 
     Free-form notes about why this material was added, license, etc.
+
+`kind: video` runs the YouTube fetcher. `kind: pdf` downloads the file alongside the stub.
+`kind: reference` is a link-only entry that needs no local copy.
 
 Idempotent — already-fetched materials are skipped by the underlying fetcher.
 """
@@ -16,6 +20,7 @@ Idempotent — already-fetched materials are skipped by the underlying fetcher.
 import re
 import subprocess
 import sys
+import urllib.request
 from pathlib import Path
 
 
@@ -51,6 +56,10 @@ def main() -> int:
         if not source:
             continue
         stem = stub.with_suffix("")
+        kind = fm.get("kind", "")
+        if kind == "reference":
+            print(f"[ref] {stub.relative_to(ROOT)} — link-only ({source})")
+            continue
         if any(host in source for host in YOUTUBE_HOSTS):
             print(f"==> {stub.relative_to(ROOT)} ({source})")
             result = subprocess.run(
@@ -59,6 +68,18 @@ def main() -> int:
                 check=False,
             )
             rc |= result.returncode
+        elif kind == "pdf" or source.lower().endswith(".pdf"):
+            pdf_path = stem.with_suffix(".pdf")
+            if pdf_path.exists():
+                print(f"[skip] {pdf_path.relative_to(ROOT)} already present")
+                continue
+            print(f"==> {stub.relative_to(ROOT)} ({source})")
+            try:
+                urllib.request.urlretrieve(source, pdf_path)
+                print(f"[ok] -> {pdf_path.relative_to(ROOT)}")
+            except Exception as exc:
+                print(f"[err] failed to download {source}: {exc}", file=sys.stderr)
+                rc |= 1
         else:
             print(f"[skip] {stub.relative_to(ROOT)} — unknown source: {source}")
     return rc
