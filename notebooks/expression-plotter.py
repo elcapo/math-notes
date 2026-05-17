@@ -40,15 +40,15 @@ def _(mo):
 
 @app.cell(hide_code=True)
 def _(mo):
-    x_min = mo.ui.number(value=-5.0, step=0.5, label=r"$x_{\min}$")
-    x_max = mo.ui.number(value=5.0, step=0.5, label=r"$x_{\max}$")
+    x_min = mo.ui.number(value=-5.0, step=0.1, label=r"$x_{\min}$")
+    x_max = mo.ui.number(value=5.0, step=0.1, label=r"$x_{\max}$")
     resolution = mo.ui.slider(
         start=100, stop=5000, step=100, value=1000, label="puntos", show_value=True
     )
 
     y_override = mo.ui.checkbox(value=False, label="fijar eje $y$")
-    y_min = mo.ui.number(value=-10.0, step=1.0, label=r"$y_{\min}$")
-    y_max = mo.ui.number(value=10.0, step=1.0, label=r"$y_{\max}$")
+    y_min = mo.ui.number(value=-10.0, step=0.1, label=r"$y_{\min}$")
+    y_max = mo.ui.number(value=10.0, step=0.1, label=r"$y_{\max}$")
 
     controls = mo.hstack(
         [
