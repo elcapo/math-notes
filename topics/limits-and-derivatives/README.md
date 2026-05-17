@@ -11,6 +11,7 @@ The bridge from functions to calculus proper: limits as the formal tool for "app
 | # | Source | Topic |
 |---|--------|-------|
 | 01 | [How to Get to Derivatives & de L'Hôpital Rule Naturally](https://youtu.be/sInn2CkPRWs) | Limits, derivatives, L'Hôpital's rule |
+| 02 | [Introduction to Real Analysis — W. F. Trench](https://digitalcommons.trinity.edu/mono/7/) (CC BY-NC-SA 3.0) | Rigorous reference: ε-δ, continuity, Fermat → Rolle → Lagrange → Cauchy → L'Hôpital (Ch. 2.1–2.3) |
 
 ## Cards
 
@@ -495,3 +496,4 @@ The $\frac{\infty}{\infty}$ case is true as well but requires a more delicate $\
 - **2026-05-09** — Topic created. Material 01 (DiBeos follow-up to "The Language of Calculus") downloaded and transcribed.
 - **2026-05-15** — Theory expanded with three geometric pieces from the transcript: discrete preview of $\frac{0}{0}$ as a race to zero, slope/angle identity ($m = \tan\theta$), and visual interpretation of L'Hôpital as a ratio of tangent-line segments on a shared vertical reference. Added a formal derivation of L'Hôpital's rule via Rolle → Lagrange → Cauchy, with the geometric reading and Rolle-based proof sketch for each Mean Value Theorem variant. Extended the chain at both ends: Fermat's theorem as the foundational lemma underpinning Rolle (one-sided difference quotients with opposite signs forcing $f'(c) = 0$ at an interior extremum) and a sign-of-derivative corollary placed after Lagrange that retroactively formalizes the claim "$f'(a) > 0 \Rightarrow$ $f$ increasing at $a$", flagging the pointwise-vs-interval asymmetry.
 - **2026-05-15** — Second round of cards (7 added, total 22): one for continuity of composition, one per link of the Fermat → Rolle → Lagrange → Cauchy chain, one for the pointwise-vs-interval sign-of-derivative corollary, and one for the Cauchy-based closure to L'Hôpital. Topic closed.
+- **2026-05-17** — Added material 02: Trench's *Introduction to Real Analysis* (CC BY-NC-SA 3.0) as the rigorous reference text for ε-δ limits, continuity, and the full Fermat → Rolle → Lagrange → Cauchy → L'Hôpital chain (including the ∞/∞ case omitted from the in-line proof). PDF fetched via `scripts/fetch-all.py`; not committed (matches the repo convention of treating PDFs as regeneratable binaries).
