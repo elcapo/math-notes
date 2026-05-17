@@ -11,17 +11,13 @@ Cuadernos [Marimo](https://marimo.io/) para experimentar interactivamente con lo
 Marimo tiene dos modos principales:
 
 ```bash
+cd notebooks/
+
 # Edición reactiva (lo habitual durante el estudio)
-uv run --directory notebooks/ marimo edit notebooks/expression-plotter.py
+uv run marimo edit expression-plotter.py
 
 # Modo "app" sólo lectura (oculta el código)
-uv run --directory notebooks/ marimo run notebooks/expression-plotter.py
-```
-
-Equivalente desde dentro del directorio:
-
-```bash
-cd notebooks && uv run marimo edit expression-plotter.py
+uv run marimo run expression-plotter.py
 ```
 
 La primera ejecución descarga e instala dependencias en `notebooks/.venv/` (ignorado por git).
