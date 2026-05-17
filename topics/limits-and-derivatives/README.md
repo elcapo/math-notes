@@ -427,23 +427,66 @@ The corollary above is its rigorous form, with one important asymmetry to flag: 
 
 *Geometric reading:* think of $(g(t), f(t))$ as a parametric curve in the plane. Cauchy's Mean Value Theorem says that somewhere along this curve, the *ratio* of instantaneous rates of change matches the *ratio* of total changes over the interval — the parametric tangent direction is parallel to the chord direction. When $g(x) = x$, this collapses back to Lagrange.
 
-*Derivation from Rolle:* apply Rolle to the auxiliary function
+*Derivation from Rolle (step by step):*
 
+**Step 1: Define the auxiliary function.**
+The goal is to generalize the Lagrange proof to two functions. We build a function that vanishes at both endpoints:
 $$h(x) = [f(x) - f(a)] \cdot [g(b) - g(a)] - [g(x) - g(a)] \cdot [f(b) - f(a)]$$
 
-which satisfies $h(a) = h(b) = 0$. Rolle yields a $c$ with $h'(c) = 0$, and rearranging gives the stated identity (here we use $g'(c) \neq 0$ to divide).
+**Step 2: Verify $h$ satisfies Rolle's conditions.**
+- $h$ is continuous on $[a, b]$ (difference of products of continuous functions)
+- $h$ is differentiable on $(a, b)$ (difference of products of differentiable functions)
+- At the endpoints:
+  - $h(a) = [f(a) - f(a)] \cdot [g(b) - g(a)] - [g(a) - g(a)] \cdot [f(b) - f(a)] = 0$
+  - $h(b) = [f(b) - f(a)] \cdot [g(b) - g(a)] - [g(b) - g(a)] \cdot [f(b) - f(a)] = 0$
 
-**L'Hôpital follows in one line.**
+Thus $h(a) = h(b) = 0$.
 
-Suppose $f(a) = g(a) = 0$ and we want $\lim_{x \to a} \frac{f(x)}{g(x)}$. For any $x$ near $a$, apply Cauchy's Mean Value Theorem on the interval between $a$ and $x$: there exists $c$ strictly between $a$ and $x$ with
+**Step 3: Apply Rolle.**
+Rolle guarantees $c \in (a, b)$ with $h'(c) = 0$.
 
-$$\frac{f(x)}{g(x)} = \frac{f(x) - f(a)}{g(x) - g(a)} = \frac{f'(c)}{g'(c)}$$
+**Step 4: Compute $h'(x)$.**
+Using the product rule on each term:
+$$h'(x) = f'(x) \cdot [g(b) - g(a)] - g'(x) \cdot [f(b) - f(a)]$$
 
-(the first equality uses $f(a) = g(a) = 0$). Now let $x \to a$. Since $c$ is squeezed between $a$ and $x$, we also have $c \to a$, so
+**Step 5: Evaluate at $x = c$ and use $h'(c) = 0$.**
+$$h'(c) = f'(c) \cdot [g(b) - g(a)] - g'(c) \cdot [f(b) - f(a)] = 0$$
 
-$$\lim_{x \to a} \frac{f(x)}{g(x)} = \lim_{c \to a} \frac{f'(c)}{g'(c)} = \lim_{x \to a} \frac{f'(x)}{g'(x)}$$
+**Step 6: Rearrange to isolate the ratio.**
+Since $g'(c) \neq 0$ (given in the theorem's hypotheses) and $g(b) - g(a) \neq 0$ (otherwise Rolle applied to $g$ would give $g'(c) = 0$ somewhere, contradicting the hypothesis), we can divide:
+$$f'(c) \cdot [g(b) - g(a)] = g'(c) \cdot [f(b) - f(a)]$$
 
-whenever the right-hand limit exists. That is precisely L'Hôpital's rule for the $\frac{0}{0}$ case.
+$$\frac{f'(c)}{g'(c)} = \frac{f(b) - f(a)}{g(b) - g(a)}$$
+
+**Intuition:** The auxiliary function $h(x)$ is the 2D generalization of the Lagrange construction. Just as we subtracted the secant line from $f(x)$ to get a function vanishing at the endpoints, here we subtract the "secant ratio" applied to both functions simultaneously. The product structure $[f(x)-f(a)]\cdot[g(b)-g(a)] - [g(x)-g(a)]\cdot[f(b)-f(a)]$ ensures the cross-terms cancel at $a$ and $b$.
+
+**From Cauchy to L'Hôpital (step by step):**
+
+We now derive L'Hôpital as a direct consequence of Cauchy's Mean Value Theorem.
+
+**Setting:** Suppose $f(a) = g(a) = 0$ (the $\frac{0}{0}$ case). We want $\lim_{x \to a} \frac{f(x)}{g(x)}$.
+
+**Step 1: Apply Cauchy to each $x$ near $a$.**
+For any $x \neq a$ close to $a$, consider the interval $[a, x]$. Cauchy's theorem applies (both functions are differentiable near $a$), so there exists $c$ strictly between $a$ and $x$ such that:
+$$\frac{f(x) - f(a)}{g(x) - g(a)} = \frac{f'(c)}{g'(c)}$$
+
+**Step 2: Use $f(a) = g(a) = 0$.**
+Since $f(a) = g(a) = 0$:
+$$\frac{f(x)}{g(x)} = \frac{f'(c)}{g'(c)}$$
+
+**Step 3: Relate $c$ to $x$.**
+The point $c$ returned by Cauchy's theorem always lies between $a$ and $x$. As $x \to a$, the intermediate point $c$ is squeezed closer to $a$ as well. In the limit, $c \to a$.
+
+**Step 4: Take the limit.**
+Letting $x \to a$:
+$$\lim_{x \to a} \frac{f(x)}{g(x)} = \lim_{x \to a} \frac{f'(c)}{g'(c)}$$
+
+Since $c$ depends on $x$ and $c \to a$ when $x \to a$:
+$$\lim_{x \to a} \frac{f'(c)}{g'(c)} = \lim_{c \to a} \frac{f'(c)}{g'(c)} = \lim_{x \to a} \frac{f'(x)}{g'(x)}$$
+
+This is exactly L'Hôpital's rule, but only valid when the right-hand limit exists.
+
+**Key insight:** Cauchy's theorem lets us replace the quotient of function values by a quotient of derivatives evaluated at an intermediate point. The same $c$ that makes the equality true for each $x$ becomes the bridge to the derivative limit.
 
 The $\frac{\infty}{\infty}$ case is true as well but requires a more delicate $\varepsilon$-$\delta$ argument (or a Stolz–Cesàro-style trick); the engine, however, is the same — Cauchy's Mean Value Theorem lets us trade a quotient of function values for a quotient of derivatives evaluated at some intermediate point.
 
