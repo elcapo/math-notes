@@ -4,14 +4,15 @@ This file is the canonical instruction set for any AI coding agent working in th
 
 This repo is a personal math study journal.
 
-## The four-step study loop
+## The five-step study loop
 
 For every concept, the user works through this loop:
 
 1. **Pick next topic** — read `ROADMAP.md` and the `topics/` tree. Recommend the natural continuation; do not invent a curriculum unilaterally.
 2. **Add material** — when the user shares a URL or file, drop a stub in `topics/<topic>/materials/NN-<slug>.md`, run the appropriate fetcher in `scripts/`, and update the topic's `README.md` log.
-3. **Challenge understanding** — in conversation, push on weak spots, surface ambiguities, ask "what would change if…" questions. Do not pre-summarize the material; force the user to explain it back.
-4. **Author cards** — only at the end of the conversation, only for concepts the user signals as understood. The user dictates the angle; the agent edits for clarity and format. Cards go to `cards/<topic>.txt` in the format specified by the anki-card-builder skill (see "Skills" below).
+3. **Draft the theory summary** — once the materials are in, read them and write a coherent article into the topic's `topics/<topic>/README.md` (the *Theory* section), structured into named sections with proofs/derivations where useful. This is the **only** place pre-summarizing is allowed: the summary is the artifact the user reads before the conversation begins. Confirm scope and section outline with the user before writing if there is any ambiguity about boundaries (e.g. what to leave for a later UE).
+4. **Challenge understanding** — once the summary exists and the user has read it, the agent pushes on weak spots, surfaces ambiguities, asks "what would change if…" questions. From this point on the pre-summarize rule applies: **do not re-explain or paraphrase the material back to the user**; force them to articulate it themselves.
+5. **Author cards** — only at the end of the conversation, only for concepts the user signals as understood. The user dictates the angle; the agent edits for clarity and format. Cards go to `cards/<topic>.txt` in the format specified by the anki-card-builder skill (see "Skills" below).
 
 ## Hard rules
 
