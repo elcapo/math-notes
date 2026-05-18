@@ -32,6 +32,7 @@ maths/
 ├── .claude/skills/      ← discoverable skills (anki-card-builder)
 ├── topics/              ← one folder per topic; materials, transcripts, notes
 ├── cards/               ← Anki-importable .txt decks, one per topic
+├── notebooks/           ← interactive Marimo notebooks (uv-managed Python)
 └── scripts/             ← project-local tooling (uv-managed Python)
 ```
 
@@ -67,6 +68,22 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
 Make sure `ffmpeg` is on your PATH, and the rest is automatic.
+
+## Running notebooks
+
+The `notebooks/` folder holds interactive [Marimo](https://marimo.io/) notebooks for experimenting with concepts visually (plotting expressions, comparing functions, etc.). It is a self-contained `uv` project with its own `pyproject.toml` and `uv.lock`.
+
+Two run modes:
+
+```bash
+# Reactive editor (the usual mode while studying)
+cd notebooks && uv run marimo edit expression-plotter.py
+
+# Read-only "app" mode (hides the code)
+cd notebooks && uv run marimo run expression-plotter.py
+```
+
+The first run installs dependencies into `notebooks/.venv/` (gitignored). See `notebooks/README.md` for the catalogue of available notebooks and their parameters.
 
 ## Spaced repetition
 
