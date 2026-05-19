@@ -42,3 +42,18 @@ Igual que el anterior pero con **dos** expresiones $f(x)$ y $g(x)$ representadas
 Parámetros adicionales sobre `expression-plotter.py`:
 
 - **Mostrar $f-g$** — superpone la diferencia como línea verde discontinua (rápido sanity-check de cuándo dos curvas coinciden).
+
+### `parametric-curves-2d.py`
+
+Define dos curvas paramétricas $\gamma_1(t) = (x_1(t), y_1(t))$ y $\gamma_2(t) = (x_2(t), y_2(t))$ sobre un mismo intervalo $t \in [t_{\min}, t_{\max}]$ y las dibuja superpuestas en el plano. Útil para circunferencias, elipses, espirales, figuras de Lissajous o para contrastar dos trayectorias.
+
+Las cuatro componentes se analizan con `sympy.sympify` y solo se admite la variable `t`; cualquier otro símbolo libre se rechaza con un mensaje. El resultado se renderiza en LaTeX como confirmación antes de plotear.
+
+Parámetros:
+
+- **Dominio en $t$** — controles numéricos $t_{\min}$ y $t_{\max}$ (por defecto $[0, 2\pi]$).
+- **Ejes** — por defecto autoescala $x$ e $y$ al percentil 2-98 de los valores muestreados de cada curva. Marcando *fijar ejes* puedes imponer límites manuales para ambos ejes.
+- **Aspecto 1:1** — activo por defecto (las circunferencias se ven circulares). Desactívalo si prefieres que la curva llene los ejes.
+- **Muestreo** — número de puntos en $t$ (100 a 5000).
+
+Colores: `tab:blue` para $\gamma_1$, `tab:orange` para $\gamma_2$.
