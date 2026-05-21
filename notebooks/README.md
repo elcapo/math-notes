@@ -43,6 +43,19 @@ Parámetros adicionales sobre `expression-plotter.py`:
 
 - **Mostrar $f-g$** — superpone la diferencia como línea verde discontinua (rápido sanity-check de cuándo dos curvas coinciden).
 
+### `riemann-darboux-sums.py`
+
+Igual que `expression-plotter.py` (misma expresión $f(x)$, mismo dominio y eje $y$, mismo muestreo), pero añade una sección para visualizar las sumas que aparecen en `topics/integration-of-one-variable`: dado un intervalo $[a, b]$ y un número de particiones $n$, se dibujan los rectángulos de las **sumas de Darboux** (inferior y superior) y de las **sumas de Riemann** (extremo izquierdo, extremo derecho y punto medio) en dos gráficas separadas, cada una con su propio multi-selector para elegir qué familia mostrar.
+
+Controles añadidos:
+
+- **Intervalo $[a, b]$** — independiente del dominio del plot (el plot se extiende automáticamente para incluirlo). Si $a = b$, el cuaderno avisa y aborta el cálculo.
+- **Partición $n$** — slider de 1 a 200 (uniforme).
+- **Sumas de Darboux** — multi-select entre *Inferior* (`tab:blue`) y *Superior* (`tab:red`). El $\inf$ / $\sup$ de cada subintervalo se aproxima muestreando densamente $f$ dentro de él, así que basta con que la resolución supere holgadamente a $n$ para que el valor numérico coincida con el analítico para $f$ regulares.
+- **Sumas de Riemann** — multi-select entre *Izquierda* (`tab:green`), *Derecha* (`tab:orange`) y *Punto medio* (`tab:purple`).
+
+Debajo de las gráficas se muestra una tabla con los cinco valores y la regla del trapecio como referencia, útil para comprobar visualmente que $L(f, P) \le S(f, P, \{c_i\}) \le U(f, P)$ y cómo todas convergen al refinar la partición.
+
 ### `parametric-curves-2d.py`
 
 Define dos curvas paramétricas $\gamma_1(t) = (x_1(t), y_1(t))$ y $\gamma_2(t) = (x_2(t), y_2(t))$ sobre un mismo intervalo $t \in [t_{\min}, t_{\max}]$ y las dibuja superpuestas en el plano. Útil para circunferencias, elipses, espirales, figuras de Lissajous o para contrastar dos trayectorias.
