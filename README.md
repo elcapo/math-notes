@@ -47,17 +47,19 @@ Materials live in `topics/<topic>/materials/`. For each material:
 To regenerate every missing binary in the repo:
 
 ```bash
-./scripts/fetch-all.py
+cd scripts
+
+uv run fetch-all.py
 ```
 
 To fetch a single YouTube video manually:
 
 ```bash
 # Pattern
-./scripts/fetch-youtube.py <url> <output-stem>
+uv run fetch-youtube.py <url> <output-stem>
 
 # Example
-./scripts/fetch-youtube.py https://www.youtube.com/watch?v=MaszunEszVM \
+uv run fetch-youtube.py https://www.youtube.com/watch?v=MaszunEszVM \
     topics/calculus-foundations/materials/01-functions-basics
 ```
 
@@ -76,11 +78,13 @@ The `notebooks/` folder holds interactive [Marimo](https://marimo.io/) notebooks
 Two run modes:
 
 ```bash
+cd notebooks
+
 # Reactive editor (the usual mode while studying)
-cd notebooks && uv run marimo edit expression-plotter.py
+uv run marimo edit expression-plotter.py
 
 # Read-only "app" mode (hides the code)
-cd notebooks && uv run marimo run expression-plotter.py
+uv run marimo run expression-plotter.py
 ```
 
 The first run installs dependencies into `notebooks/.venv/` (gitignored). See `notebooks/README.md` for the catalogue of available notebooks and their parameters.
