@@ -48,6 +48,8 @@ $$L(f, P) = \sum_{i=1}^n m_i \, \Delta x_i, \qquad U(f, P) = \sum_{i=1}^n M_i \,
 
 Geometrically, $L$ is the area of the tallest staircase that stays below the graph, $U$ the shortest staircase that covers it. By construction $L(f, P) \le U(f, P)$ for every partition $P$.
 
+![Darboux sums](./resources/darboux-sums.png)
+
 #### 1.3 Riemann sums and the limit
 
 A *Riemann sum* uses a free sample point $c_i \in [x_{i-1}, x_i]$ on each sub-interval, not the inf/sup:
@@ -65,6 +67,8 @@ For uniform partitions on $[a, b]$ with $\Delta x = (b-a)/n$, the prototypical c
 $$\int_0^b x^2 \, dx = \lim_{n \to \infty} \frac{b^3}{n^3}(1^2 + 2^2 + \cdots + n^2) = \frac{b^3}{3},$$
 
 using the staircase-pyramid bound $\tfrac{1}{3} n^3 < 1^2 + 2^2 + \cdots + n^2 < \tfrac{1}{3}(n+1)^3$.
+
+![Riemann sums](./resources/riemann-sums.png)
 
 #### 1.4 Sufficient conditions for integrability
 
