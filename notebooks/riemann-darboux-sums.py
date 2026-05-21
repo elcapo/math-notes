@@ -221,83 +221,89 @@ def _(a, b, mo, n_parts, np, parsed, resolution, sp, x_max, x_min, x_sym):
 
 @app.cell(hide_code=True)
 def _(darboux_sel, plt, sum_data, y_max, y_min, y_override):
-    _fig, _ax = plt.subplots(figsize=(8, 5))
-    _ax.plot(sum_data["xs_plot"], sum_data["ys_plot"], linewidth=2, color="black")
-    _ax.axhline(0, color="black", linewidth=0.6)
-    _ax.axvline(0, color="black", linewidth=0.6)
-    _ax.axvspan(sum_data["lo"], sum_data["hi"], color="gray", alpha=0.07)
-    _ax.grid(True, alpha=0.3)
-    _ax.set_xlabel("x")
-    _ax.set_ylabel("f(x)")
-    _ax.set_title("Sumas de Darboux")
-    _ax.set_xlim(*sum_data["plot_xlim"])
+    def plot_darboux():
+        fig, ax = plt.subplots(figsize=(8, 5))
+        ax.plot(sum_data["xs_plot"], sum_data["ys_plot"], linewidth=2, color="black")
+        ax.axhline(0, color="black", linewidth=0.6)
+        ax.axvline(0, color="black", linewidth=0.6)
+        ax.axvspan(sum_data["lo"], sum_data["hi"], color="gray", alpha=0.07)
+        ax.grid(True, alpha=0.3)
+        ax.set_xlabel("x")
+        ax.set_ylabel("f(x)")
+        ax.set_title("Sumas de Darboux")
+        ax.set_xlim(*sum_data["plot_xlim"])
+    
+        colors = {"Inferior": "tab:blue", "Superior": "tab:red"}
+        for _kind in darboux_sel.value:
+            h = sum_data["heights"][_kind]
+            s = sum_data["sums"][_kind]
+            ax.bar(
+                sum_data["edges"][:-1], h, width=sum_data["dx"], align="edge",
+                color=colors[_kind], alpha=0.3, edgecolor=colors[_kind],
+                label=f"{_kind} ({s:.5f})",
+            )
+    
+        if y_override.value:
+            ylo, yhi = sorted([y_min.value, y_max.value])
+            if yhi - ylo < 1e-9:
+                yhi = ylo + 1.0
+            ax.set_ylim(ylo, yhi)
+        else:
+            ax.set_ylim(*sum_data["y_auto"])
+    
+        if darboux_sel.value:
+            ax.legend(loc="best")
+    
+        fig.tight_layout()
+        return fig
 
-    _colors = {"Inferior": "tab:blue", "Superior": "tab:red"}
-    for _kind in darboux_sel.value:
-        _h = sum_data["heights"][_kind]
-        _s = sum_data["sums"][_kind]
-        _ax.bar(
-            sum_data["edges"][:-1], _h, width=sum_data["dx"], align="edge",
-            color=_colors[_kind], alpha=0.3, edgecolor=_colors[_kind],
-            label=f"{_kind} ({_s:.5f})",
-        )
-
-    if y_override.value:
-        _ylo, _yhi = sorted([y_min.value, y_max.value])
-        if _yhi - _ylo < 1e-9:
-            _yhi = _ylo + 1.0
-        _ax.set_ylim(_ylo, _yhi)
-    else:
-        _ax.set_ylim(*sum_data["y_auto"])
-
-    if darboux_sel.value:
-        _ax.legend(loc="best")
-
-    _fig.tight_layout()
-    _fig
+    plot_darboux()
     return
 
 
 @app.cell(hide_code=True)
 def _(plt, riemann_sel, sum_data, y_max, y_min, y_override):
-    _fig, _ax = plt.subplots(figsize=(8, 5))
-    _ax.plot(sum_data["xs_plot"], sum_data["ys_plot"], linewidth=2, color="black")
-    _ax.axhline(0, color="black", linewidth=0.6)
-    _ax.axvline(0, color="black", linewidth=0.6)
-    _ax.axvspan(sum_data["lo"], sum_data["hi"], color="gray", alpha=0.07)
-    _ax.grid(True, alpha=0.3)
-    _ax.set_xlabel("x")
-    _ax.set_ylabel("f(x)")
-    _ax.set_title("Sumas de Riemann")
-    _ax.set_xlim(*sum_data["plot_xlim"])
+    def plot_riemann():
+        fig, ax = plt.subplots(figsize=(8, 5))
+        ax.plot(sum_data["xs_plot"], sum_data["ys_plot"], linewidth=2, color="black")
+        ax.axhline(0, color="black", linewidth=0.6)
+        ax.axvline(0, color="black", linewidth=0.6)
+        ax.axvspan(sum_data["lo"], sum_data["hi"], color="gray", alpha=0.07)
+        ax.grid(True, alpha=0.3)
+        ax.set_xlabel("x")
+        ax.set_ylabel("f(x)")
+        ax.set_title("Sumas de Riemann")
+        ax.set_xlim(*sum_data["plot_xlim"])
+    
+        colors = {
+            "Izquierda": "tab:green",
+            "Derecha": "tab:orange",
+            "Punto medio": "tab:purple",
+        }
+        for kind in riemann_sel.value:
+            h = sum_data["heights"][kind]
+            s = sum_data["sums"][kind]
+            ax.bar(
+                sum_data["edges"][:-1], h, width=sum_data["dx"], align="edge",
+                color=colors[kind], alpha=0.3, edgecolor=colors[kind],
+                label=f"{kind} ({s:.5f})",
+            )
+    
+        if y_override.value:
+            ylo, yhi = sorted([y_min.value, y_max.value])
+            if yhi - ylo < 1e-9:
+                yhi = ylo + 1.0
+            ax.set_ylim(ylo, yhi)
+        else:
+            ax.set_ylim(*sum_data["y_auto"])
+    
+        if riemann_sel.value:
+            ax.legend(loc="best")
+    
+        fig.tight_layout()
+        return fig
 
-    _colors = {
-        "Izquierda": "tab:green",
-        "Derecha": "tab:orange",
-        "Punto medio": "tab:purple",
-    }
-    for _kind in riemann_sel.value:
-        _h = sum_data["heights"][_kind]
-        _s = sum_data["sums"][_kind]
-        _ax.bar(
-            sum_data["edges"][:-1], _h, width=sum_data["dx"], align="edge",
-            color=_colors[_kind], alpha=0.3, edgecolor=_colors[_kind],
-            label=f"{_kind} ({_s:.5f})",
-        )
-
-    if y_override.value:
-        _ylo, _yhi = sorted([y_min.value, y_max.value])
-        if _yhi - _ylo < 1e-9:
-            _yhi = _ylo + 1.0
-        _ax.set_ylim(_ylo, _yhi)
-    else:
-        _ax.set_ylim(*sum_data["y_auto"])
-
-    if riemann_sel.value:
-        _ax.legend(loc="best")
-
-    _fig.tight_layout()
-    _fig
+    plot_riemann()
     return
 
 
