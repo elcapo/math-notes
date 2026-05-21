@@ -17,21 +17,21 @@ def _():
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
-    # Sumas de Darboux y de Riemann
+    # Darboux and Riemann sums
 
-    Escribe una expresión en $x$ y elige el intervalo $[a, b]$ y el número
-    de particiones $n$. Se dibujan dos gráficas: una con las sumas de
-    Darboux (inferior $L(f, P)$ y superior $U(f, P)$) y otra con las sumas
-    de Riemann (extremo izquierdo, extremo derecho y punto medio). Debajo,
-    una tabla con los cinco valores numéricos más la regla del trapecio
-    como referencia.
+    Type an expression in $x$ and choose the interval $[a, b]$ and the
+    number of partitions $n$. Two plots are drawn: one with the Darboux
+    sums (lower $L(f, P)$ and upper $U(f, P)$) and another with the
+    Riemann sums (left endpoint, right endpoint, and midpoint). Below
+    them, a table with the five numerical values plus the trapezoidal
+    rule as reference.
 
-    El intervalo de integración $[a, b]$ es independiente del dominio
-    mostrado: el plot se extiende automáticamente para incluir ambos. La
-    aproximación del $\inf$ / $\sup$ de Darboux en cada subintervalo se
-    obtiene muestreando densamente; basta con que la resolución sea
-    cómodamente mayor que $n$ para que coincida con el valor analítico
-    cuando $f$ es suficientemente regular.
+    The integration interval $[a, b]$ is independent of the displayed
+    domain: the plot extends automatically to include both. The
+    $\inf$ / $\sup$ of Darboux on each subinterval is approximated by
+    dense sampling; as long as the resolution is comfortably larger than
+    $n$, the numerical value will match the analytical one for
+    sufficiently regular $f$.
     """)
     return
 
@@ -52,18 +52,18 @@ def _(mo):
     x_min = mo.ui.number(value=-4.0, step=0.1, label=r"$x_{\min}$")
     x_max = mo.ui.number(value=4.0, step=0.1, label=r"$x_{\max}$")
     resolution = mo.ui.slider(
-        start=100, stop=5000, step=100, value=1000, label="puntos", show_value=True
+        start=100, stop=5000, step=100, value=1000, label="points", show_value=True
     )
 
-    y_override = mo.ui.checkbox(value=False, label="fijar eje $y$")
+    y_override = mo.ui.checkbox(value=False, label="fix $y$-axis")
     y_min = mo.ui.number(value=-2, step=0.5, label=r"$y_{\min}$")
     y_max = mo.ui.number(value=2, step=0.5, label=r"$y_{\max}$")
 
     controls = mo.hstack(
         [
-            mo.vstack([mo.md("**Dominio**"), x_min, x_max]),
-            mo.vstack([mo.md("**Eje $y$**"), y_override, y_min, y_max]),
-            mo.vstack([mo.md("**Muestreo**"), resolution]),
+            mo.vstack([mo.md("**Domain**"), x_min, x_max]),
+            mo.vstack([mo.md("**$y$-axis**"), y_override, y_min, y_max]),
+            mo.vstack([mo.md("**Sampling**"), resolution]),
         ],
         justify="start",
         gap=2,
@@ -80,21 +80,21 @@ def _(mo):
         start=1, stop=200, step=1, value=7, label="$n$", show_value=True,
     )
     darboux_sel = mo.ui.multiselect(
-        options=["Inferior", "Superior"],
-        value=["Inferior", "Superior"],
-        label="Sumas de Darboux",
+        options=["Lower", "Upper"],
+        value=["Lower", "Upper"],
+        label="Darboux sums",
     )
     riemann_sel = mo.ui.multiselect(
-        options=["Izquierda", "Derecha", "Punto medio"],
-        value=["Izquierda", "Derecha"],
-        label="Sumas de Riemann",
+        options=["Left", "Right", "Midpoint"],
+        value=["Left", "Right"],
+        label="Riemann sums",
     )
 
     integ_controls = mo.hstack(
         [
-            mo.vstack([mo.md(r"**Intervalo $[a, b]$**"), a, b]),
-            mo.vstack([mo.md("**Partición**"), n_parts]),
-            mo.vstack([mo.md("**Mostrar**"), darboux_sel, riemann_sel]),
+            mo.vstack([mo.md(r"**Interval $[a, b]$**"), a, b]),
+            mo.vstack([mo.md("**Partition**"), n_parts]),
+            mo.vstack([mo.md("**Show**"), darboux_sel, riemann_sel]),
         ],
         justify="start",
         gap=2,
@@ -112,10 +112,10 @@ def _(expr, mo, sp):
         parsed = sp.sympify(expr.value, locals={"x": x_sym})
         extra = parsed.free_symbols - {x_sym}
         if extra:
-            error = f"Solo se permite la variable `x`. Símbolos extra: {extra}."
+            error = f"Only the variable `x` is allowed. Extra symbols: {extra}."
             parsed = None
     except (sp.SympifyError, SyntaxError, TypeError) as e:
-        error = f"No se puede interpretar la expresión: `{e}`."
+        error = f"Cannot parse the expression: `{e}`."
 
     mo.stop(parsed is None, mo.md(f"⚠️ {error}"))
     mo.md(rf"$$f(x) = {sp.latex(parsed)}$$")
@@ -138,7 +138,7 @@ def _(a, b, mo, n_parts, np, parsed, resolution, sp, x_max, x_min, x_sym):
     lo, hi = sorted([a.value, b.value])
     mo.stop(
         hi - lo < 1e-9,
-        mo.md("⚠️ El intervalo de integración es degenerado ($a = b$)."),
+        mo.md("⚠️ The integration interval is degenerate ($a = b$)."),
     )
 
     # Plot domain extended to always include [a, b]
@@ -173,11 +173,11 @@ def _(a, b, mo, n_parts, np, parsed, resolution, sp, x_max, x_min, x_sym):
         return float(np.nansum(h) * dx)
 
     sums = {
-        "Inferior": _sum(inf_h),
-        "Superior": _sum(sup_h),
-        "Izquierda": _sum(left_h),
-        "Derecha": _sum(right_h),
-        "Punto medio": _sum(mid_h),
+        "Lower": _sum(inf_h),
+        "Upper": _sum(sup_h),
+        "Left": _sum(left_h),
+        "Right": _sum(right_h),
+        "Midpoint": _sum(mid_h),
     }
 
     # Trapezoidal reference on a dense grid over [a, b]
@@ -206,11 +206,11 @@ def _(a, b, mo, n_parts, np, parsed, resolution, sp, x_max, x_min, x_sym):
         "lo": lo,
         "hi": hi,
         "heights": {
-            "Inferior": inf_h,
-            "Superior": sup_h,
-            "Izquierda": left_h,
-            "Derecha": right_h,
-            "Punto medio": mid_h,
+            "Lower": inf_h,
+            "Upper": sup_h,
+            "Left": left_h,
+            "Right": right_h,
+            "Midpoint": mid_h,
         },
         "sums": sums,
         "trapezoid": trapezoid,
@@ -230,10 +230,10 @@ def _(darboux_sel, plt, sum_data, y_max, y_min, y_override):
         ax.grid(True, alpha=0.3)
         ax.set_xlabel("x")
         ax.set_ylabel("f(x)")
-        ax.set_title("Sumas de Darboux")
+        ax.set_title("Darboux sums")
         ax.set_xlim(*sum_data["plot_xlim"])
-    
-        colors = {"Inferior": "tab:blue", "Superior": "tab:red"}
+
+        colors = {"Lower": "tab:blue", "Upper": "tab:red"}
         for _kind in darboux_sel.value:
             h = sum_data["heights"][_kind]
             s = sum_data["sums"][_kind]
@@ -272,13 +272,13 @@ def _(plt, riemann_sel, sum_data, y_max, y_min, y_override):
         ax.grid(True, alpha=0.3)
         ax.set_xlabel("x")
         ax.set_ylabel("f(x)")
-        ax.set_title("Sumas de Riemann")
+        ax.set_title("Riemann sums")
         ax.set_xlim(*sum_data["plot_xlim"])
-    
+
         colors = {
-            "Izquierda": "tab:green",
-            "Derecha": "tab:orange",
-            "Punto medio": "tab:purple",
+            "Left": "tab:green",
+            "Right": "tab:orange",
+            "Midpoint": "tab:purple",
         }
         for kind in riemann_sel.value:
             h = sum_data["heights"][kind]
@@ -311,15 +311,15 @@ def _(plt, riemann_sel, sum_data, y_max, y_min, y_override):
 def _(mo, sum_data):
     _s = sum_data["sums"]
     _rows = [
-        ("Darboux inferior $L(f, P)$", _s["Inferior"]),
-        ("Darboux superior $U(f, P)$", _s["Superior"]),
-        ("Riemann izquierda", _s["Izquierda"]),
-        ("Riemann derecha", _s["Derecha"]),
-        ("Riemann punto medio", _s["Punto medio"]),
-        ("Regla del trapecio (referencia)", sum_data["trapezoid"]),
+        ("Lower Darboux $L(f, P)$", _s["Lower"]),
+        ("Upper Darboux $U(f, P)$", _s["Upper"]),
+        ("Riemann left", _s["Left"]),
+        ("Riemann right", _s["Right"]),
+        ("Riemann midpoint", _s["Midpoint"]),
+        ("Trapezoidal rule (reference)", sum_data["trapezoid"]),
     ]
     _body = "\n".join(f"| {_name} | {_val:.6f} |" for _name, _val in _rows)
-    mo.md("| Suma | Valor |\n|---|---:|\n" + _body)
+    mo.md("| Sum | Value |\n|---|---:|\n" + _body)
     return
 
 

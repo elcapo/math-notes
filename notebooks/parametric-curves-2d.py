@@ -17,13 +17,13 @@ def _():
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
-    # Curvas paramétricas en 2D
+    # Parametric curves in 2D
 
-    Define dos curvas paramétricas $\gamma_1(t) = (x_1(t),\, y_1(t))$ y
-    $\gamma_2(t) = (x_2(t),\, y_2(t))$ sobre un mismo intervalo $t \in
-    [t_{\min}, t_{\max}]$ y se dibujan superpuestas en el plano. Útil
-    para visualizar circunferencias, elipses, figuras de Lissajous,
-    espirales, o comparar dos trayectorias.
+    Define two parametric curves $\gamma_1(t) = (x_1(t),\, y_1(t))$ and
+    $\gamma_2(t) = (x_2(t),\, y_2(t))$ on a common interval $t \in
+    [t_{\min}, t_{\max}]$, and they are drawn superimposed on the plane.
+    Useful for visualizing circles, ellipses, Lissajous figures, spirals,
+    or comparing two trajectories.
     """)
     return
 
@@ -37,8 +37,8 @@ def _(mo):
 
     mo.hstack(
         [
-            mo.vstack([mo.md("**Curva 1**"), x1, y1]),
-            mo.vstack([mo.md("**Curva 2**"), x2, y2]),
+            mo.vstack([mo.md("**Curve 1**"), x1, y1]),
+            mo.vstack([mo.md("**Curve 2**"), x2, y2]),
         ],
         justify="start",
         gap=2,
@@ -52,24 +52,24 @@ def _(mo):
     t_min = mo.ui.number(value=0.0, step=0.1, label=r"$t_{\min}$")
     t_max = mo.ui.number(value=6.283185307179586, step=0.1, label=r"$t_{\max}$")
     resolution = mo.ui.slider(
-        start=100, stop=5000, step=100, value=1000, label="puntos", show_value=True
+        start=100, stop=5000, step=100, value=1000, label="points", show_value=True
     )
 
-    axes_override = mo.ui.checkbox(value=False, label="fijar ejes")
+    axes_override = mo.ui.checkbox(value=False, label="fix axes")
     x_min = mo.ui.number(value=-1.5, step=0.1, label=r"$x_{\min}$")
     x_max = mo.ui.number(value=1.5, step=0.1, label=r"$x_{\max}$")
     y_min = mo.ui.number(value=-1.5, step=0.1, label=r"$y_{\min}$")
     y_max = mo.ui.number(value=1.5, step=0.1, label=r"$y_{\max}$")
 
-    equal_aspect = mo.ui.checkbox(value=True, label="aspecto 1:1")
+    equal_aspect = mo.ui.checkbox(value=True, label="1:1 aspect")
 
     controls = mo.hstack(
         [
-            mo.vstack([mo.md("**Dominio en $t$**"), t_min, t_max]),
+            mo.vstack([mo.md("**Domain in $t$**"), t_min, t_max]),
             mo.vstack(
-                [mo.md("**Ejes**"), axes_override, x_min, x_max, y_min, y_max]
+                [mo.md("**Axes**"), axes_override, x_min, x_max, y_min, y_max]
             ),
-            mo.vstack([mo.md("**Muestreo**"), resolution, equal_aspect]),
+            mo.vstack([mo.md("**Sampling**"), resolution, equal_aspect]),
         ],
         justify="start",
         gap=2,
@@ -99,7 +99,7 @@ def _(mo, sp, x1, x2, y1, y2):
             return None, f"`{exc}`"
         extra = e.free_symbols - {t_sym}
         if extra:
-            return None, f"símbolos extra: {extra}"
+            return None, f"extra symbols: {extra}"
         return e, None
 
     parsed_x1, err_x1 = _parse(x1.value)
@@ -119,7 +119,7 @@ def _(mo, sp, x1, x2, y1, y2):
 
     mo.stop(
         problems,
-        mo.md("⚠️ No se puede interpretar la expresión:\n\n" + "\n".join(problems)),
+        mo.md("⚠️ Cannot parse the expression:\n\n" + "\n".join(problems)),
     )
 
     mo.md(

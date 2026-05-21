@@ -17,12 +17,12 @@ def _():
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
-    # Comparador de expresiones
+    # Expression comparer
 
-    Escribe dos expresiones en $x$ y se grafican simultáneamente sobre los
-    mismos ejes, con colores distintos. Útil para contrastar familias
-    ($x^2$ vs $x^3$), traslaciones ($f(x)$ vs $f(x-1)$) o aproximaciones
-    ($\sin x$ vs su Taylor de orden 3).
+    Type two expressions in $x$ and they are plotted simultaneously on
+    the same axes, with distinct colors. Useful for contrasting families
+    ($x^2$ vs $x^3$), translations ($f(x)$ vs $f(x-1)$), or approximations
+    ($\sin x$ vs its order-3 Taylor polynomial).
     """)
     return
 
@@ -40,20 +40,20 @@ def _(mo):
     x_min = mo.ui.number(value=-5.0, step=0.5, label=r"$x_{\min}$")
     x_max = mo.ui.number(value=5.0, step=0.5, label=r"$x_{\max}$")
     resolution = mo.ui.slider(
-        start=100, stop=5000, step=100, value=1000, label="puntos", show_value=True
+        start=100, stop=5000, step=100, value=1000, label="points", show_value=True
     )
 
-    y_override = mo.ui.checkbox(value=False, label="fijar eje $y$")
+    y_override = mo.ui.checkbox(value=False, label="fix $y$-axis")
     y_min = mo.ui.number(value=-10.0, step=1.0, label=r"$y_{\min}$")
     y_max = mo.ui.number(value=10.0, step=1.0, label=r"$y_{\max}$")
 
-    show_diff = mo.ui.checkbox(value=False, label="mostrar $f-g$")
+    show_diff = mo.ui.checkbox(value=False, label="show $f-g$")
 
     controls = mo.hstack(
         [
-            mo.vstack([mo.md("**Dominio**"), x_min, x_max]),
-            mo.vstack([mo.md("**Eje $y$**"), y_override, y_min, y_max]),
-            mo.vstack([mo.md("**Muestreo**"), resolution, show_diff]),
+            mo.vstack([mo.md("**Domain**"), x_min, x_max]),
+            mo.vstack([mo.md("**$y$-axis**"), y_override, y_min, y_max]),
+            mo.vstack([mo.md("**Sampling**"), resolution, show_diff]),
         ],
         justify="start",
         gap=2,
@@ -73,7 +73,7 @@ def _(expr_a, expr_b, mo, sp):
             return None, f"`{exc}`"
         extra = e.free_symbols - {x_sym}
         if extra:
-            return None, f"símbolos extra: {extra}"
+            return None, f"extra symbols: {extra}"
         return e, None
 
     parsed_a, err_a = _parse(expr_a.value)
@@ -87,7 +87,7 @@ def _(expr_a, expr_b, mo, sp):
 
     mo.stop(
         problems,
-        mo.md("⚠️ No se puede interpretar la expresión:\n\n" + "\n".join(problems)),
+        mo.md("⚠️ Cannot parse the expression:\n\n" + "\n".join(problems)),
     )
 
     mo.md(

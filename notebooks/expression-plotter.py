@@ -17,12 +17,12 @@ def _():
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
-    # Graficador de expresiones
+    # Expression plotter
 
-    Escribe una expresión en $x$ (por ejemplo `x**2 - 4`, `sin(x)/x` o
-    `exp(-x**2)`) y se representará en el dominio elegido. La expresión se
-    analiza con SymPy, así que están disponibles `sin`, `cos`, `tan`,
-    `exp`, `log`, `sqrt`, `Abs`, `pi`, `E`, etc.
+    Type an expression in $x$ (for example `x**2 - 4`, `sin(x)/x`, or
+    `exp(-x**2)`) and it will be plotted on the chosen domain. The
+    expression is parsed by SymPy, so `sin`, `cos`, `tan`, `exp`, `log`,
+    `sqrt`, `Abs`, `pi`, `E`, etc. are available.
     """)
     return
 
@@ -43,18 +43,18 @@ def _(mo):
     x_min = mo.ui.number(value=-.5, step=0.1, label=r"$x_{\min}$")
     x_max = mo.ui.number(value=.5, step=0.1, label=r"$x_{\max}$")
     resolution = mo.ui.slider(
-        start=100, stop=5000, step=100, value=1000, label="puntos", show_value=True
+        start=100, stop=5000, step=100, value=1000, label="points", show_value=True
     )
 
-    y_override = mo.ui.checkbox(value=False, label="fijar eje $y$")
+    y_override = mo.ui.checkbox(value=False, label="fix $y$-axis")
     y_min = mo.ui.number(value=-.25, step=0.1, label=r"$y_{\min}$")
     y_max = mo.ui.number(value=.25, step=0.1, label=r"$y_{\max}$")
 
     controls = mo.hstack(
         [
-            mo.vstack([mo.md("**Dominio**"), x_min, x_max]),
-            mo.vstack([mo.md("**Eje $y$**"), y_override, y_min, y_max]),
-            mo.vstack([mo.md("**Muestreo**"), resolution]),
+            mo.vstack([mo.md("**Domain**"), x_min, x_max]),
+            mo.vstack([mo.md("**$y$-axis**"), y_override, y_min, y_max]),
+            mo.vstack([mo.md("**Sampling**"), resolution]),
         ],
         justify="start",
         gap=2,
@@ -72,10 +72,10 @@ def _(expr, mo, sp):
         parsed = sp.sympify(expr.value, locals={"x": x_sym})
         extra = parsed.free_symbols - {x_sym}
         if extra:
-            error = f"Solo se permite la variable `x`. Símbolos extra: {extra}."
+            error = f"Only the variable `x` is allowed. Extra symbols: {extra}."
             parsed = None
     except (sp.SympifyError, SyntaxError, TypeError) as e:
-        error = f"No se puede interpretar la expresión: `{e}`."
+        error = f"Cannot parse the expression: `{e}`."
 
     mo.stop(parsed is None, mo.md(f"⚠️ {error}"))
     mo.md(rf"$$f(x) = {sp.latex(parsed)}$$")

@@ -1,72 +1,72 @@
 # Notebooks
 
-Cuadernos [Marimo](https://marimo.io/) para experimentar interactivamente con los conceptos del repositorio. Es un proyecto `uv` independiente con su propio `pyproject.toml` y `uv.lock`, igual que `scripts/`.
+[Marimo](https://marimo.io/) notebooks for interactively experimenting with the concepts in this repository. This is a standalone `uv` project with its own `pyproject.toml` and `uv.lock`, just like `scripts/`.
 
-## Prerrequisitos
+## Prerequisites
 
-- [`uv`](https://docs.astral.sh/uv/) — gestiona el entorno virtual y las dependencias.
+- [`uv`](https://docs.astral.sh/uv/) — manages the virtual environment and dependencies.
 
-## Ejecutar un cuaderno
+## Running a notebook
 
-Marimo tiene dos modos principales:
+Marimo has two main modes:
 
 ```bash
 cd notebooks/
 
-# Edición reactiva (lo habitual durante el estudio)
+# Reactive edit mode (the usual one during study)
 uv run marimo edit expression-plotter.py
 
-# Modo "app" sólo lectura (oculta el código)
+# Read-only "app" mode (hides the code)
 uv run marimo run expression-plotter.py
 ```
 
-La primera ejecución descarga e instala dependencias en `notebooks/.venv/` (ignorado por git).
+The first run downloads and installs dependencies into `notebooks/.venv/` (gitignored).
 
-## Cuadernos
+## Notebooks
 
 ### `expression-plotter.py`
 
-Escribe una expresión en $x$ (por ejemplo `x**2 - 4`, `sin(x)/x`, `exp(-x**2)`) y se grafica al vuelo. Parámetros expuestos:
+Type an expression in $x$ (for example `x**2 - 4`, `sin(x)/x`, `exp(-x**2)`) and it is plotted on the fly. Exposed parameters:
 
-- **Expresión** — se analiza con `sympy.sympify`, por lo que se aceptan `sin`, `cos`, `tan`, `exp`, `log`, `sqrt`, `Abs`, `pi`, `E`, etc. El resultado se renderiza en LaTeX como confirmación.
-- **Dominio** $[x_{\min}, x_{\max}]$ — controles numéricos independientes.
-- **Eje $y$** — por defecto se autoescala al percentil 2-98 (descarta picos por asíntotas). Marcando *fijar eje $y$* puedes imponer límites manuales.
-- **Muestreo** — número de puntos de la rejilla en $x$ (100 a 5000).
+- **Expression** — parsed by `sympy.sympify`, so `sin`, `cos`, `tan`, `exp`, `log`, `sqrt`, `Abs`, `pi`, `E`, etc. are accepted. The result is rendered in LaTeX as confirmation.
+- **Domain** $[x_{\min}, x_{\max}]$ — independent number inputs.
+- **$y$-axis** — autoscaled to the 2–98 percentile by default (discards asymptote spikes). Tick *fix $y$-axis* to impose manual limits.
+- **Sampling** — number of points in the $x$ grid (100 to 5000).
 
-Solo se admite la variable `x`; cualquier otro símbolo libre se rechaza con un mensaje.
+Only the variable `x` is allowed; any other free symbol is rejected with a message.
 
 ### `expression-comparer.py`
 
-Igual que el anterior pero con **dos** expresiones $f(x)$ y $g(x)$ representadas en los mismos ejes con colores distintos (`tab:blue` para $f$, `tab:orange` para $g$). Útil para contrastar familias, traslaciones o aproximaciones (p. ej. $\sin x$ frente a su Taylor de orden 3).
+Same as above, but with **two** expressions $f(x)$ and $g(x)$ plotted on the same axes in distinct colors (`tab:blue` for $f$, `tab:orange` for $g$). Useful for contrasting families, translations, or approximations (e.g. $\sin x$ vs. its order-3 Taylor polynomial).
 
-Parámetros adicionales sobre `expression-plotter.py`:
+Additional parameters on top of `expression-plotter.py`:
 
-- **Mostrar $f-g$** — superpone la diferencia como línea verde discontinua (rápido sanity-check de cuándo dos curvas coinciden).
+- **Show $f-g$** — overlays the difference as a dashed green line (a quick sanity check of where two curves coincide).
 
 ### `riemann-darboux-sums.py`
 
-Igual que `expression-plotter.py` (misma expresión $f(x)$, mismo dominio y eje $y$, mismo muestreo), pero añade una sección para visualizar las sumas que aparecen en `topics/integration-of-one-variable`: dado un intervalo $[a, b]$ y un número de particiones $n$, se dibujan los rectángulos de las **sumas de Darboux** (inferior y superior) y de las **sumas de Riemann** (extremo izquierdo, extremo derecho y punto medio) en dos gráficas separadas, cada una con su propio multi-selector para elegir qué familia mostrar.
+Same as `expression-plotter.py` (same expression $f(x)$, same domain and $y$-axis, same sampling), but adds a section to visualize the sums covered in `topics/integration-of-one-variable`: given an interval $[a, b]$ and a number of partitions $n$, it draws the rectangles of the **Darboux sums** (lower and upper) and of the **Riemann sums** (left endpoint, right endpoint, and midpoint) in two separate plots, each with its own multi-select to choose which family to show.
 
-Controles añadidos:
+Added controls:
 
-- **Intervalo $[a, b]$** — independiente del dominio del plot (el plot se extiende automáticamente para incluirlo). Si $a = b$, el cuaderno avisa y aborta el cálculo.
-- **Partición $n$** — slider de 1 a 200 (uniforme).
-- **Sumas de Darboux** — multi-select entre *Inferior* (`tab:blue`) y *Superior* (`tab:red`). El $\inf$ / $\sup$ de cada subintervalo se aproxima muestreando densamente $f$ dentro de él, así que basta con que la resolución supere holgadamente a $n$ para que el valor numérico coincida con el analítico para $f$ regulares.
-- **Sumas de Riemann** — multi-select entre *Izquierda* (`tab:green`), *Derecha* (`tab:orange`) y *Punto medio* (`tab:purple`).
+- **Interval $[a, b]$** — independent of the plot domain (the plot extends automatically to include it). If $a = b$, the notebook warns and aborts the computation.
+- **Partition $n$** — slider from 1 to 200 (uniform).
+- **Darboux sums** — multi-select between *Lower* (`tab:blue`) and *Upper* (`tab:red`). The $\inf$ / $\sup$ on each subinterval is approximated by densely sampling $f$ inside it, so as long as the resolution comfortably exceeds $n$ the numerical value matches the analytical one for regular $f$.
+- **Riemann sums** — multi-select between *Left* (`tab:green`), *Right* (`tab:orange`), and *Midpoint* (`tab:purple`).
 
-Debajo de las gráficas se muestra una tabla con los cinco valores y la regla del trapecio como referencia, útil para comprobar visualmente que $L(f, P) \le S(f, P, \{c_i\}) \le U(f, P)$ y cómo todas convergen al refinar la partición.
+Below the plots there is a table with the five values and the trapezoidal rule as reference, useful to visually confirm that $L(f, P) \le S(f, P, \{c_i\}) \le U(f, P)$ and how all of them converge as the partition is refined.
 
 ### `parametric-curves-2d.py`
 
-Define dos curvas paramétricas $\gamma_1(t) = (x_1(t), y_1(t))$ y $\gamma_2(t) = (x_2(t), y_2(t))$ sobre un mismo intervalo $t \in [t_{\min}, t_{\max}]$ y las dibuja superpuestas en el plano. Útil para circunferencias, elipses, espirales, figuras de Lissajous o para contrastar dos trayectorias.
+Define two parametric curves $\gamma_1(t) = (x_1(t), y_1(t))$ and $\gamma_2(t) = (x_2(t), y_2(t))$ on a common interval $t \in [t_{\min}, t_{\max}]$ and draws them superimposed on the plane. Useful for circles, ellipses, spirals, Lissajous figures, or comparing two trajectories.
 
-Las cuatro componentes se analizan con `sympy.sympify` y solo se admite la variable `t`; cualquier otro símbolo libre se rechaza con un mensaje. El resultado se renderiza en LaTeX como confirmación antes de plotear.
+The four components are parsed by `sympy.sympify` and only the variable `t` is allowed; any other free symbol is rejected with a message. The result is rendered in LaTeX as confirmation before plotting.
 
-Parámetros:
+Parameters:
 
-- **Dominio en $t$** — controles numéricos $t_{\min}$ y $t_{\max}$ (por defecto $[0, 2\pi]$).
-- **Ejes** — por defecto autoescala $x$ e $y$ al percentil 2-98 de los valores muestreados de cada curva. Marcando *fijar ejes* puedes imponer límites manuales para ambos ejes.
-- **Aspecto 1:1** — activo por defecto (las circunferencias se ven circulares). Desactívalo si prefieres que la curva llene los ejes.
-- **Muestreo** — número de puntos en $t$ (100 a 5000).
+- **Domain in $t$** — number inputs $t_{\min}$ and $t_{\max}$ (default $[0, 2\pi]$).
+- **Axes** — by default $x$ and $y$ are autoscaled to the 2–98 percentile of the sampled values of each curve. Tick *fix axes* to impose manual limits on both axes.
+- **1:1 aspect** — on by default (circles look circular). Turn it off if you prefer the curve to fill the axes.
+- **Sampling** — number of points in $t$ (100 to 5000).
 
-Colores: `tab:blue` para $\gamma_1$, `tab:orange` para $\gamma_2$.
+Colors: `tab:blue` for $\gamma_1$, `tab:orange` for $\gamma_2$.
