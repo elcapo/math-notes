@@ -15,6 +15,8 @@ Closes the single-variable arc started in `limits-and-derivatives`: the integral
 | 03 | [MIT 18.01 Lecture 20 (PDF)](https://ocw.mit.edu/courses/18-01-single-variable-calculus-fall-2006/3cd98c68cec64e9214c8c9003f6cf983_lec20.pdf) | Second Fundamental Theorem: $\frac{d}{dx}\int_a^x f = f$ |
 | 04 | [OpenStax Calculus Vol. 1, ch. 5–6](https://openstax.org/details/books/calculus-volume-1) | Textbook reference (not downloaded) |
 | 05 | [3Blue1Brown — Essence of Calculus, ch. 8](https://www.youtube.com/watch?v=rfG8ce4nNh0) | Visual recap of integration and the FTC |
+| 06 | [SpetzoMath — Riemann (…Darboux) Integrals](https://www.youtube.com/watch?v=b_cfcC4eMyM) | Darboux integrability criterion and the Riemann ↔ Darboux distinction |
+| 07 | [Jiří Lebl — *Basic Analysis I* (PDF)](https://www.jirka.org/ra/realanal.pdf) | Free real-analysis textbook; ch. 5 develops the Riemann integral via Darboux sums |
 
 Main study material: MIT OCW 18.01 lecture notes (Prof. David Jerison, Fall 2006), under CC BY-NC-SA 4.0. OpenStax (also CC BY-NC-SA 4.0) is a textbook to consult when a topic needs more worked examples; 3Blue1Brown's chapter 8 is the visual perspective-opener.
 
@@ -232,3 +234,4 @@ These are real and important but belong to later UEs; pulling them in here would
 - **2026-05-16** — Topic created. Materials 01–03 (MIT OCW lectures 18, 19, 20) downloaded; materials 04–05 (OpenStax, 3Blue1Brown) added as references without download. ROADMAP updated to mark the topic `[~]` in progress.
 - **2026-05-18** — Theory section expanded from a 4-point through-line to a 7-section skeleton (titles + one-line intents). Scope deliberately bounded to Riemann + FTC + core techniques; improper, multidimensional, and Lebesgue integration left to `Analyse I` / `Analyse II`.
 - **2026-05-18** — Theory section fully written: Riemann sums and Darboux integrability conditions (§1), FTC1 with its FTC2-based proof (§2), FTC2 with its average-value proof and "new functions" via integral definition (§3), the duality argument (§4), substitution and integration by parts (§5). §6 (applications) kept as bookmarks, §7 (out-of-scope) kept as boundary list. Source: MIT OCW 18.01 lectures 18–20 (materials 01–03).
+- **2026-05-21** — Materials 06 (SpetzoMath video on Riemann/Darboux integrability) and 07 (Jiří Lebl, *Basic Analysis I*) added to deepen the Darboux side of §1, which MIT 18.01 treats only informally.
