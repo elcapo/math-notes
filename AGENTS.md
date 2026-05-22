@@ -23,6 +23,7 @@ For every concept, the user works through this loop:
 - **Keep the repo offline-capable.** When a material is added, ensure it has a committed transcript (audio/video) and a stub. Binaries belong in `.gitignore`.
 - **Update `ROADMAP.md`** whenever a topic moves from "candidate" to "in progress" to "covered".
 - **Always use English for the materiales.** Despite the conversations usually happening in Spanish, the repository should be maintained in English.
+- **Avoid using acronyms as much as possible.** Instead of saying "FTC", say Fundamental Theorem of Calculus.
 
 ## Material stub format
 

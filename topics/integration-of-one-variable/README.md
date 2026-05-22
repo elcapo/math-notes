@@ -4,7 +4,7 @@ Closes the single-variable arc started in `limits-and-derivatives`: the integral
 
 ## Status
 
-`[~]` in progress — three MIT OCW lecture notes (definite integrals + both halves of the FTC) downloaded; OpenStax and 3Blue1Brown wired in as references. No conversation yet, no cards yet.
+`[~]` in progress — three MIT OCW lecture notes (definite integrals + both halves of the Fundamental Theorem of Calculus) downloaded; OpenStax and 3Blue1Brown wired in as references. No conversation yet, no cards yet.
 
 ## Materials
 
@@ -14,7 +14,7 @@ Closes the single-variable arc started in `limits-and-derivatives`: the integral
 | 02 | [MIT 18.01 Lecture 19 (PDF)](https://ocw.mit.edu/courses/18-01-single-variable-calculus-fall-2006/817a2c46ddc23e2efda247a79ddeed34_lec19.pdf) | First Fundamental Theorem: $\int_a^b f = F(b) - F(a)$ |
 | 03 | [MIT 18.01 Lecture 20 (PDF)](https://ocw.mit.edu/courses/18-01-single-variable-calculus-fall-2006/3cd98c68cec64e9214c8c9003f6cf983_lec20.pdf) | Second Fundamental Theorem: $\frac{d}{dx}\int_a^x f = f$ |
 | 04 | [OpenStax Calculus Vol. 1, ch. 5–6](https://openstax.org/details/books/calculus-volume-1) | Textbook reference (not downloaded) |
-| 05 | [3Blue1Brown — Essence of Calculus, ch. 8](https://www.youtube.com/watch?v=rfG8ce4nNh0) | Visual recap of integration and the FTC |
+| 05 | [3Blue1Brown — Essence of Calculus, ch. 8](https://www.youtube.com/watch?v=rfG8ce4nNh0) | Visual recap of integration and the Fundamental Theorem of Calculus |
 | 06 | [SpetzoMath — Riemann (…Darboux) Integrals](https://www.youtube.com/watch?v=b_cfcC4eMyM) | Darboux integrability criterion and the Riemann ↔ Darboux distinction |
 | 07 | [Jiří Lebl — *Basic Analysis I* (PDF)](https://www.jirka.org/ra/realanal.pdf) | Free real-analysis textbook; ch. 5 develops the Riemann integral via Darboux sums |
 
@@ -105,7 +105,7 @@ which makes additivity work for $a, b, c$ in any order and removes the ordering 
 
 #### 2.1 Statement
 
-> **FTC1.** Let $f$ be continuous on $[a, b]$ and let $F$ be any antiderivative of $f$ on $[a, b]$ (that is, $F' = f$). Then
+> **First Fundamental Theorem of Calculus.** Let $f$ be continuous on $[a, b]$ and let $F$ be any antiderivative of $f$ on $[a, b]$ (that is, $F' = f$). Then
 >
 > $$\int_a^b f(x)\,dx = F(b) - F(a).$$
 
@@ -113,25 +113,25 @@ The standard shorthand is $F(x)\Big|_a^b = F(b) - F(a)$. Two textbook applicatio
 
 $$\int_a^b x^2 \, dx = \left.\frac{x^3}{3}\right|_a^b = \frac{b^3 - a^3}{3}, \qquad \int_0^{\pi} \sin x \, dx = \bigl[-\cos x\bigr]_0^{\pi} = 2.$$
 
-#### 2.2 Proof sketch (via FTC2 and the Mean Value Theorem)
+#### 2.2 Proof sketch (via Second Fundamental Theorem of Calculus and the Mean Value Theorem)
 
-The cleanest argument actually uses FTC2 (next section) plus a corollary of the Mean Value Theorem from [`limits-and-derivatives`](../limits-and-derivatives/README.md): on a connected interval, *two antiderivatives of the same function differ by a constant*.
+The cleanest argument actually uses Second Fundamental Theorem of Calculus (next section) plus a corollary of the Mean Value Theorem from [`limits-and-derivatives`](../limits-and-derivatives/README.md): on a connected interval, *two antiderivatives of the same function differ by a constant*.
 
-Define $G(x) = \int_a^x f(t)\,dt$. By FTC2, $G' = f$. Since $F$ is also an antiderivative of $f$, the corollary above gives $F - G = c$ for some constant $c$. Evaluating at $a$ uses $G(a) = 0$, so $c = F(a)$. Then
+Define $G(x) = \int_a^x f(t)\,dt$. By Second Fundamental Theorem of Calculus, $G' = f$. Since $F$ is also an antiderivative of $f$, the corollary above gives $F - G = c$ for some constant $c$. Evaluating at $a$ uses $G(a) = 0$, so $c = F(a)$. Then
 
 $$F(b) - F(a) = G(b) + c - c = G(b) = \int_a^b f(x)\,dx. \qquad \blacksquare$$
 
-So FTC1 is, logically, a corollary of FTC2 plus MVT.
+So First Fundamental Theorem of Calculus is, logically, a corollary of Second Fundamental Theorem of Calculus plus Mean Value Theorem.
 
-#### 2.3 What FTC1 buys us
+#### 2.3 What First Fundamental Theorem of Calculus buys us
 
-Without FTC1, computing $\int_0^b x^2 \, dx$ required summing $1^2 + 2^2 + \cdots + n^2$ and taking a limit. With FTC1, the same answer falls out of "an antiderivative of $x^2$ is $x^3/3$". Integration is converted from a limit problem into an **antiderivative search**. That changes the practical character of the subject: most of single-variable integral calculus from here on is a catalogue of techniques (substitution, parts, partial fractions, trig identities) for finding antiderivatives.
+Without First Fundamental Theorem of Calculus, computing $\int_0^b x^2 \, dx$ required summing $1^2 + 2^2 + \cdots + n^2$ and taking a limit. With First Fundamental Theorem of Calculus, the same answer falls out of "an antiderivative of $x^2$ is $x^3/3$". Integration is converted from a limit problem into an **antiderivative search**. That changes the practical character of the subject: most of single-variable integral calculus from here on is a catalogue of techniques (substitution, parts, partial fractions, trig identities) for finding antiderivatives.
 
 ### 3. Second Fundamental Theorem of Calculus (construction form)
 
 #### 3.1 Statement
 
-> **FTC2.** Let $f$ be continuous on $[a, b]$. Define
+> **Second Fundamental Theorem of Calculus.** Let $f$ be continuous on $[a, b]$. Define
 >
 > $$G(x) = \int_a^x f(t)\,dt \qquad \text{for } x \in [a, b].$$
 >
@@ -157,7 +157,7 @@ is the **average value** of $f$ over $[x, x+h]$. Continuity of $f$ at $x$ forces
 
 #### 3.3 Existence of antiderivatives, and "new" functions
 
-FTC2 has a striking consequence: **every continuous function has an antiderivative**, even if no closed-form formula exists for it. Examples of functions that are continuous but whose antiderivatives are *not* expressible in elementary terms:
+Second Fundamental Theorem of Calculus has a striking consequence: **every continuous function has an antiderivative**, even if no closed-form formula exists for it. Examples of functions that are continuous but whose antiderivatives are *not* expressible in elementary terms:
 
 $$e^{-x^2}, \qquad \frac{\sin x}{x}, \qquad \sin(x^2), \qquad \cos(x^2), \qquad \frac{1}{\ln x}.$$
 
@@ -167,18 +167,18 @@ The way to *name* their antiderivatives is to declare them as integrals. This is
 - **Logarithmic integral.** $\operatorname{Li}(x) = \int_2^x \dfrac{dt}{\ln t}$ — counts primes up to $x$ (prime number theorem).
 - **Fresnel integrals.** $C(x) = \int_0^x \cos(t^2)\,dt$, $S(x) = \int_0^x \sin(t^2)\,dt$ — optics.
 
-Computing their derivatives is trivial by FTC2: $\operatorname{erf}'(x) = \tfrac{2}{\sqrt{\pi}} e^{-x^2}$, $C'(x) = \cos(x^2)$, etc.
+Computing their derivatives is trivial by Second Fundamental Theorem of Calculus: $\operatorname{erf}'(x) = \tfrac{2}{\sqrt{\pi}} e^{-x^2}$, $C'(x) = \cos(x^2)$, etc.
 
 ### 4. Duality between integration and differentiation
 
-The two halves of FTC, read together, say that on $\mathcal{C}^0([a, b])$ (continuous functions on $[a, b]$) the operations
+The two halves of Fundamental Theorem of Calculus, read together, say that on $\mathcal{C}^0([a, b])$ (continuous functions on $[a, b]$) the operations
 
 $$f \longmapsto G_f(x) = \int_a^x f(t)\,dt \qquad \text{and} \qquad F \longmapsto F'$$
 
 are mutually inverse — *up to a constant*:
 
-- **FTC2:** $\dfrac{d}{dx} \int_a^x f(t)\,dt = f(x)$. Integrate then differentiate $\Rightarrow$ recover $f$ exactly.
-- **FTC1 rearranged:** $\int_a^x F'(t)\,dt = F(x) - F(a)$. Differentiate then integrate $\Rightarrow$ recover $F$ *up to the additive constant $F(a)$*.
+- **Second Fundamental Theorem of Calculus:** $\dfrac{d}{dx} \int_a^x f(t)\,dt = f(x)$. Integrate then differentiate $\Rightarrow$ recover $f$ exactly.
+- **First Fundamental Theorem of Calculus rearranged:** $\int_a^x F'(t)\,dt = F(x) - F(a)$. Differentiate then integrate $\Rightarrow$ recover $F$ *up to the additive constant $F(a)$*.
 
 The constant is unavoidable for a structural reason: differentiation kills constants, so the inverse cannot possibly recover them — every $F + c$ has the same derivative, and the integral can only pin down $F$ to within that one-dimensional ambiguity.
 
@@ -186,7 +186,7 @@ This duality is the central organizing fact of single-variable calculus. The who
 
 ### 5. Core techniques
 
-Two techniques carry essentially all the working calculations done in `Analyse I` and `Analyse II`. Both are FTC1 read backwards: a derivative identity, run as an integration rule.
+Two techniques carry essentially all the working calculations done in `Analyse I` and `Analyse II`. Both are First Fundamental Theorem of Calculus read backwards: a derivative identity, run as an integration rule.
 
 #### 5.1 Substitution (change of variable)
 
@@ -216,7 +216,7 @@ The point is to trade an integral we cannot do for one we can, by moving the der
 
 Listed as bookmarks; not worked through here. They become relevant if the topic needs a second pass before tackling `Analyse II`.
 
-- **$\log$ via integral.** Defining $\log x = \int_1^x \tfrac{dt}{t}$ for $x > 0$ and recovering the algebraic properties of $\log$ purely from FTC + change of variable. The cleanest "axiomatic" entry into the logarithm. (MIT Lec 20 trailer; full treatment in Lec 21.)
+- **$\log$ via integral.** Defining $\log x = \int_1^x \tfrac{dt}{t}$ for $x > 0$ and recovering the algebraic properties of $\log$ purely from Fundamental Theorem of Calculus + change of variable. The cleanest "axiomatic" entry into the logarithm. (MIT Lec 20 trailer; full treatment in Lec 21.)
 - **Volumes by disks / shells.** $\int \pi [f(x)]^2\,dx$, $\int 2\pi x\, f(x)\,dx$. Standard physical-geometry applications.
 - **Work and accumulated physical quantities.** Total work as $\int F(x)\,dx$, total charge as $\int I(t)\,dt$, etc. The "borrowing function" example in MIT Lec 18 is a version of this.
 - **Numerical integration.** Trapezoid rule, Simpson's rule, error bounds. Relevant later in `LU3MA232 Analyse numérique`.
@@ -232,6 +232,6 @@ These are real and important but belong to later UEs; pulling them in here would
 ## Study log
 
 - **2026-05-16** — Topic created. Materials 01–03 (MIT OCW lectures 18, 19, 20) downloaded; materials 04–05 (OpenStax, 3Blue1Brown) added as references without download. ROADMAP updated to mark the topic `[~]` in progress.
-- **2026-05-18** — Theory section expanded from a 4-point through-line to a 7-section skeleton (titles + one-line intents). Scope deliberately bounded to Riemann + FTC + core techniques; improper, multidimensional, and Lebesgue integration left to `Analyse I` / `Analyse II`.
-- **2026-05-18** — Theory section fully written: Riemann sums and Darboux integrability conditions (§1), FTC1 with its FTC2-based proof (§2), FTC2 with its average-value proof and "new functions" via integral definition (§3), the duality argument (§4), substitution and integration by parts (§5). §6 (applications) kept as bookmarks, §7 (out-of-scope) kept as boundary list. Source: MIT OCW 18.01 lectures 18–20 (materials 01–03).
+- **2026-05-18** — Theory section expanded from a 4-point through-line to a 7-section skeleton (titles + one-line intents). Scope deliberately bounded to Riemann + Fundamental Theorem of Calculus + core techniques; improper, multidimensional, and Lebesgue integration left to `Analyse I` / `Analyse II`.
+- **2026-05-18** — Theory section fully written: Riemann sums and Darboux integrability conditions (§1), First Fundamental Theorem of Calculus with its Second Fundamental Theorem of Calculus-based proof (§2), Second Fundamental Theorem of Calculus with its average-value proof and "new functions" via integral definition (§3), the duality argument (§4), substitution and integration by parts (§5). §6 (applications) kept as bookmarks, §7 (out-of-scope) kept as boundary list. Source: MIT OCW 18.01 lectures 18–20 (materials 01–03).
 - **2026-05-21** — Materials 06 (SpetzoMath video on Riemann/Darboux integrability) and 07 (Jiří Lebl, *Basic Analysis I*) added to deepen the Darboux side of §1, which MIT 18.01 treats only informally.
