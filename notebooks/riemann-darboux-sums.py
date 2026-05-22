@@ -49,8 +49,8 @@ def _(mo):
 
 @app.cell(hide_code=True)
 def _(mo):
-    x_min = mo.ui.number(value=-4.0, step=0.1, label=r"$x_{\min}$")
-    x_max = mo.ui.number(value=4.0, step=0.1, label=r"$x_{\max}$")
+    x_min = mo.ui.number(value=-1.5, step=0.1, label=r"$x_{\min}$")
+    x_max = mo.ui.number(value=1.5, step=0.1, label=r"$x_{\max}$")
     resolution = mo.ui.slider(
         start=100, stop=5000, step=100, value=1000, label="points", show_value=True
     )
@@ -77,7 +77,7 @@ def _(mo):
     a = mo.ui.number(value=-2.0, step=0.1, label="$a$")
     b = mo.ui.number(value=2.0, step=0.1, label="$b$")
     n_parts = mo.ui.slider(
-        start=1, stop=200, step=1, value=7, label="$n$", show_value=True,
+        start=1, stop=200, step=1, value=3, label="$n$", show_value=True,
     )
     darboux_sel = mo.ui.multiselect(
         options=["Lower", "Upper"],
@@ -242,7 +242,7 @@ def _(darboux_sel, plt, sum_data, y_max, y_min, y_override):
                 color=colors[_kind], alpha=0.3, edgecolor=colors[_kind],
                 label=f"{_kind} ({s:.5f})",
             )
-    
+
         if y_override.value:
             ylo, yhi = sorted([y_min.value, y_max.value])
             if yhi - ylo < 1e-9:
@@ -250,10 +250,10 @@ def _(darboux_sel, plt, sum_data, y_max, y_min, y_override):
             ax.set_ylim(ylo, yhi)
         else:
             ax.set_ylim(*sum_data["y_auto"])
-    
+
         if darboux_sel.value:
             ax.legend(loc="best")
-    
+
         fig.tight_layout()
         return fig
 
@@ -276,9 +276,9 @@ def _(plt, riemann_sel, sum_data, y_max, y_min, y_override):
         ax.set_xlim(*sum_data["plot_xlim"])
 
         colors = {
-            "Left": "tab:green",
-            "Right": "tab:orange",
-            "Midpoint": "tab:purple",
+            "Left": "tab:blue",
+            "Right": "tab:red",
+            "Midpoint": "tab:green",
         }
         for kind in riemann_sel.value:
             h = sum_data["heights"][kind]
@@ -288,7 +288,7 @@ def _(plt, riemann_sel, sum_data, y_max, y_min, y_override):
                 color=colors[kind], alpha=0.3, edgecolor=colors[kind],
                 label=f"{kind} ({s:.5f})",
             )
-    
+
         if y_override.value:
             ylo, yhi = sorted([y_min.value, y_max.value])
             if yhi - ylo < 1e-9:
@@ -296,10 +296,10 @@ def _(plt, riemann_sel, sum_data, y_max, y_min, y_override):
             ax.set_ylim(ylo, yhi)
         else:
             ax.set_ylim(*sum_data["y_auto"])
-    
+
         if riemann_sel.value:
             ax.legend(loc="best")
-    
+
         fig.tight_layout()
         return fig
 
