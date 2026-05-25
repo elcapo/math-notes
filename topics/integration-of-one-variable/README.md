@@ -114,15 +114,30 @@ The standard shorthand is $F(x)\Big|_a^b = F(b) - F(a)$. Two textbook applicatio
 
 $$\int_a^b x^2 \, dx = \left.\frac{x^3}{3}\right|_a^b = \frac{b^3 - a^3}{3}, \qquad \int_0^{\pi} \sin x \, dx = \bigl[-\cos x\bigr]_0^{\pi} = 2.$$
 
-#### 2.2 Proof sketch (via Second Fundamental Theorem of Calculus and the Mean Value Theorem)
+#### 2.2 Proof sketch (direct, via the Mean Value Theorem)
 
-The cleanest argument actually uses Second Fundamental Theorem of Calculus (next section) plus a corollary of the Mean Value Theorem from [`limits-and-derivatives`](../limits-and-derivatives/README.md): on a connected interval, *two antiderivatives of the same function differ by a constant*.
+This is the classical argument (Spivak, Apostol). It needs only the Mean Value Theorem from [`limits-and-derivatives`](../limits-and-derivatives/README.md) and the fact that a continuous $f$ is integrable (established earlier, under *Sufficient conditions for integrability*).
 
-Define $G(x) = \int_a^x f(t)\,dt$. By Second Fundamental Theorem of Calculus, $G' = f$. Since $F$ is also an antiderivative of $f$, the corollary above gives $F - G = c$ for some constant $c$. Evaluating at $a$ uses $G(a) = 0$, so $c = F(a)$. Then
+Take any partition $a = x_0 < x_1 < \cdots < x_n = b$ and telescope the total change of $F$:
 
-$$F(b) - F(a) = G(b) + c - c = G(b) = \int_a^b f(x)\,dx. \qquad \blacksquare$$
+$$F(b) - F(a) = \sum_{i=1}^n \bigl[F(x_i) - F(x_{i-1})\bigr].$$
 
-So First Fundamental Theorem of Calculus is, logically, a corollary of Second Fundamental Theorem of Calculus plus Mean Value Theorem.
+Since $F' = f$, $F$ is differentiable on each $[x_{i-1}, x_i]$, so the Mean Value Theorem supplies a sample point $c_i \in (x_{i-1}, x_i)$ with
+
+$$F(x_i) - F(x_{i-1}) = F'(c_i)\,\Delta x_i = f(c_i)\,\Delta x_i.$$
+
+Summing over $i$,
+
+$$F(b) - F(a) = \sum_{i=1}^n f(c_i)\,\Delta x_i,$$
+
+which is exactly a Riemann sum for $f$ with these Mean-Value-Theorem-chosen sample points. The left-hand side does not depend on the partition; and because $f$ is continuous it is integrable, so its Riemann sums converge to $\int_a^b f$ as the mesh $\max_i \Delta x_i \to 0$ for *any* choice of sample points. Letting the mesh tend to $0$,
+
+$$F(b) - F(a) = \lim_{\max_i \Delta x_i \to 0} \sum_{i=1}^n f(c_i)\,\Delta x_i = \int_a^b f(x)\,dx. \qquad \blacksquare$$
+
+The single step that needs integrability is the last one: for every partition the tagged sum *already* equals $F(b) - F(a)$, but only integrability lets us identify that common value with the integral $\int_a^b f$.
+
+> [!NOTE]
+> **Shorter route, once the Second Fundamental Theorem of Calculus is available.** Define $G(x) = \int_a^x f(t)\,dt$. The Second Fundamental Theorem of Calculus gives $G' = f$, and since two antiderivatives on an interval differ by a constant (a corollary of the Mean Value Theorem), $F - G \equiv c$. Evaluating at $a$ gives $c = F(a)$ (because $G(a) = 0$), so $F(b) - F(a) = G(b) = \int_a^b f$. This is more economical — it makes First Fundamental Theorem of Calculus a two-line corollary — but it leans on a result proved only later, which is why the direct argument above is the primary one.
 
 #### 2.3 What First Fundamental Theorem of Calculus buys us
 
@@ -228,7 +243,7 @@ These are real and important but belong to later courses; pulling them in here w
 
 - **Improper / generalized integrals** — integration over unbounded intervals or with unbounded integrands.
 - **Multiple integrals, Fubini, multidimensional change of variable.**
-- **Lebesgue integral** — the framework that integrates functions like the Dirichlet function flagged in §1.4.
+- **Lebesgue integral** — the framework that integrates functions like the Dirichlet function flagged under *Sufficient conditions for integrability*.
 
 ## Connections to UPMC courses
 
@@ -236,25 +251,26 @@ Where the threads opened above get picked up in the distance Licence syllabus. T
 
 ### LU2MA260 — Analyse I
 
-- **Improper / generalized integrals** — integration over unbounded intervals or with unbounded integrands, extending the definite integral of §1.
-- **Integration by parts** (§5.2) returns as a workhorse, notably in Fourier-coefficient estimates.
+- **Improper / generalized integrals** — integration over unbounded intervals or with unbounded integrands, extending the definite integral developed earlier.
+- **Integration by parts** returns as a workhorse, notably in Fourier-coefficient estimates.
 
 ### LU2MA211 — Analyse II
 
 The most direct continuation of this topic, and the reason it sits where it does in the roadmap: it develops **Lebesgue integration on $\mathbb{R}^n$**, taking the Riemann integral built here as its motivation and reference point.
 
-- **Lebesgue integral** — integrates functions the Riemann integral cannot, such as the Dirichlet function of §1.4, and answers the question raised in §4: what notion of integration keeps integration and differentiation mutually inverse once $f$ is no longer continuous.
-- **Multidimensional change of variable** — the several-variable generalization of substitution (§5.1), with a Jacobian determinant in place of $u'(x)$.
+- **Lebesgue integral** — integrates functions the Riemann integral cannot, such as the Dirichlet function encountered earlier, and settles the duality question raised above: what notion of integration keeps integration and differentiation mutually inverse once $f$ is no longer continuous.
+- **Multidimensional change of variable** — the several-variable generalization of substitution, with a Jacobian determinant in place of $u'(x)$.
 - **Multiple integrals and Fubini's theorem.**
 
 ### LU3MA232 — Analyse numérique
 
-- **Numerical integration** — the trapezoid rule, Simpson's rule, and their error bounds (§6).
+- **Numerical integration** — the trapezoid rule, Simpson's rule, and their error bounds.
 
 ## Study log
 
 - **2026-05-16** — Topic created. Materials 01–03 (MIT OCW lectures 18, 19, 20) downloaded; materials 04–05 (OpenStax, 3Blue1Brown) added as references without download. ROADMAP updated to mark the topic `[~]` in progress.
 - **2026-05-18** — Theory section expanded from a 4-point through-line to a 7-section skeleton (titles + one-line intents). Scope deliberately bounded to Riemann + Fundamental Theorem of Calculus + core techniques; improper, multidimensional, and Lebesgue integration left to `Analyse I` / `Analyse II`.
-- **2026-05-18** — Theory section fully written: Riemann sums and Darboux integrability conditions (§1), First Fundamental Theorem of Calculus with its Second Fundamental Theorem of Calculus-based proof (§2), Second Fundamental Theorem of Calculus with its average-value proof and "new functions" via integral definition (§3), the duality argument (§4), substitution and integration by parts (§5). §6 (applications) kept as bookmarks, §7 (out-of-scope) kept as boundary list. Source: MIT OCW 18.01 lectures 18–20 (materials 01–03).
-- **2026-05-21** — Materials 06 (SpetzoMath video on Riemann/Darboux integrability) and 07 (Jiří Lebl, *Basic Analysis I*) added to deepen the Darboux side of §1, which MIT 18.01 treats only informally.
-- **2026-05-25** — Moved the inline UPMC course references (Analyse I / Analyse II / Analyse numérique) out of the Theory section into a dedicated *Connections to UPMC courses* section, so the theory prose reads course-reference-free; §7 keeps the out-of-scope topic list and now points to the new section.
+- **2026-05-18** — Theory section fully written: Riemann sums and Darboux integrability conditions, the First Fundamental Theorem of Calculus with its Second-Theorem-based proof, the Second Fundamental Theorem of Calculus with its average-value proof and "new functions" via integral definition, the duality argument, and substitution and integration by parts. Applications kept as bookmarks, out-of-scope topics kept as a boundary list. Source: MIT OCW 18.01 lectures 18–20 (materials 01–03).
+- **2026-05-21** — Materials 06 (SpetzoMath video on Riemann/Darboux integrability) and 07 (Jiří Lebl, *Basic Analysis I*) added to deepen the Darboux side of the opening definite-integral section, which MIT 18.01 treats only informally.
+- **2026-05-25** — Moved the inline UPMC course references (Analyse I / Analyse II / Analyse numérique) out of the Theory section into a dedicated *Connections to UPMC courses* section, so the theory prose reads course-reference-free; the *What this article deliberately leaves out* list keeps the out-of-scope topics and now points to the new section.
+- **2026-05-25** — Reworked the First Fundamental Theorem's proof: it now carries the classical direct argument (telescoping + Mean Value Theorem + integrability of continuous functions), removing the forward reference to the Second Fundamental Theorem. The shorter Second-Theorem-based derivation is kept as a deferred note for comparison.
