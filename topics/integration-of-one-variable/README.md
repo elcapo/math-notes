@@ -1,6 +1,6 @@
 # Integration of one variable
 
-Closes the single-variable arc started in `limits-and-derivatives`: the integral as accumulation, the definite integral as a limit of Riemann sums, and the fundamental theorem of calculus tying it back to the derivative. Direct prerequisite for the UPMC L2 `Analyse II` UE (Lebesgue integration on $\mathbb{R}^n$), which uses the Riemann integral as motivation and reference point.
+Closes the single-variable arc started in `limits-and-derivatives`: the integral as accumulation, the definite integral as a limit of Riemann sums, and the fundamental theorem of calculus tying it back to the derivative. It is a direct prerequisite for the L2 analysis sequence — see *Connections to UPMC courses* at the end for where each thread is picked up.
 
 ## Status
 
@@ -79,7 +79,8 @@ The definition is delicate — not every bounded function is integrable. Two suf
 - If $f$ is **continuous** on $[a, b]$, then $f$ is Riemann integrable on $[a, b]$.
 - If $f$ is **bounded and piecewise continuous** (continuous except at finitely many points), then $f$ is Riemann integrable on $[a, b]$.
 
-The classical pathology that *fails* is the Dirichlet function $\mathbf{1}_{\mathbb{Q} \cap [0, 1]}$: on every sub-interval $m_i = 0$ and $M_i = 1$, so $L \equiv 0$ and $U \equiv 1$ for every partition and the gap never closes. The Lebesgue integral, picked up in `LU2MA211 Analyse II`, is precisely the framework that makes such functions integrable.
+> [!WARNING]
+> The classical pathology that *fails* is the Dirichlet function $\mathbf{1}_{\mathbb{Q} \cap [0, 1]}$: on every sub-interval $m_i = 0$ and $M_i = 1$, so $L \equiv 0$ and $U \equiv 1$ for every partition and the gap never closes. The Lebesgue integral is precisely the framework that makes such functions integrable.
 
 #### 1.5 Signed area and basic properties
 
@@ -182,11 +183,11 @@ are mutually inverse — *up to a constant*:
 
 The constant is unavoidable for a structural reason: differentiation kills constants, so the inverse cannot possibly recover them — every $F + c$ has the same derivative, and the integral can only pin down $F$ to within that one-dimensional ambiguity.
 
-This duality is the central organizing fact of single-variable calculus. The whole story of `analyse-II` (Lebesgue integration on $\mathbb{R}^n$) is, in part, the question: *what is the right notion of integration so that this duality keeps working when $f$ is no longer continuous?*
+This duality is the central organizing fact of single-variable calculus. A natural next question — *what is the right notion of integration so that this duality keeps working when $f$ is no longer continuous?* — is the entry point to Lebesgue integration.
 
 ### 5. Core techniques
 
-Two techniques carry essentially all the working calculations done in `Analyse I` and `Analyse II`. Both are First Fundamental Theorem of Calculus read backwards: a derivative identity, run as an integration rule.
+Two techniques carry essentially all the working calculations in single-variable integration (and, later, the multivariable case). Both are First Fundamental Theorem of Calculus read backwards: a derivative identity, run as an integration rule.
 
 #### 5.1 Substitution (change of variable)
 
@@ -202,7 +203,7 @@ Example: for $\int_1^2 (x^3 + 2)^4 \, x^2\,dx$, let $u = x^3 + 2$, so $du = 3x^2
 
 $$\int_3^{10} u^4 \, \frac{du}{3} = \left.\frac{u^5}{15}\right|_3^{10} = \frac{10^5 - 3^5}{15}.$$
 
-Substitution is the one-dimensional shadow of the *change-of-variable formula* in $\mathbb{R}^n$ (with a Jacobian determinant replacing $u'(x)$), which is a central object in `LU2MA211 Analyse II`.
+Substitution is the one-dimensional shadow of the *change-of-variable formula* in $\mathbb{R}^n$ (with a Jacobian determinant replacing $u'(x)$).
 
 #### 5.2 Integration by parts
 
@@ -210,24 +211,45 @@ Reading the product rule $(uv)' = u'v + uv'$ as an integration statement:
 
 $$\int_a^b u(x)\, v'(x)\,dx = \bigl[u(x)\, v(x)\bigr]_a^b - \int_a^b u'(x)\, v(x)\,dx.$$
 
-The point is to trade an integral we cannot do for one we can, by moving the derivative from $v$ onto $u$. Recurring uses: $\int x e^x\,dx$ (take $u = x$, $v' = e^x$), $\int \ln x\,dx$ (take $u = \ln x$, $v' = 1$), and a constant companion of Fourier coefficient estimates and integration-by-parts proofs in `LU2MA260 Analyse I`.
+The point is to trade an integral we cannot do for one we can, by moving the derivative from $v$ onto $u$. Recurring uses: $\int x e^x\,dx$ (take $u = x$, $v' = e^x$) and $\int \ln x\,dx$ (take $u = \ln x$, $v' = 1$); it is also a constant companion of Fourier-coefficient estimates.
 
 ### 6. Applications (placeholder — not developed this round)
 
-Listed as bookmarks; not worked through here. They become relevant if the topic needs a second pass before tackling `Analyse II`.
+Listed as bookmarks; not worked through here.
 
 - **$\log$ via integral.** Defining $\log x = \int_1^x \tfrac{dt}{t}$ for $x > 0$ and recovering the algebraic properties of $\log$ purely from Fundamental Theorem of Calculus + change of variable. The cleanest "axiomatic" entry into the logarithm. (MIT Lec 20 trailer; full treatment in Lec 21.)
 - **Volumes by disks / shells.** $\int \pi [f(x)]^2\,dx$, $\int 2\pi x\, f(x)\,dx$. Standard physical-geometry applications.
 - **Work and accumulated physical quantities.** Total work as $\int F(x)\,dx$, total charge as $\int I(t)\,dt$, etc. The "borrowing function" example in MIT Lec 18 is a version of this.
-- **Numerical integration.** Trapezoid rule, Simpson's rule, error bounds. Relevant later in `LU3MA232 Analyse numérique`.
+- **Numerical integration.** Trapezoid rule, Simpson's rule, error bounds.
 
 ### 7. What this article deliberately leaves out
 
-These are real and important but belong to later UEs; pulling them in here would just blur the boundaries.
+These are real and important but belong to later courses; pulling them in here would just blur the boundaries. The specific UPMC courses are listed in *Connections to UPMC courses* below.
 
-- **Improper / generalized integrals** (integration over unbounded intervals or with unbounded integrands) $\to$ `LU2MA260 Analyse I`.
-- **Multiple integrals, Fubini, multidimensional change of variable** $\to$ `LU2MA211 Analyse II`.
-- **Lebesgue integral** (the framework that integrates functions like the Dirichlet function flagged in §1.4) $\to$ `LU2MA211 Analyse II`.
+- **Improper / generalized integrals** — integration over unbounded intervals or with unbounded integrands.
+- **Multiple integrals, Fubini, multidimensional change of variable.**
+- **Lebesgue integral** — the framework that integrates functions like the Dirichlet function flagged in §1.4.
+
+## Connections to UPMC courses
+
+Where the threads opened above get picked up in the distance Licence syllabus. These pointers are gathered here on purpose, so the theory stays focused on the mathematics rather than on curriculum bookkeeping.
+
+### LU2MA260 — Analyse I
+
+- **Improper / generalized integrals** — integration over unbounded intervals or with unbounded integrands, extending the definite integral of §1.
+- **Integration by parts** (§5.2) returns as a workhorse, notably in Fourier-coefficient estimates.
+
+### LU2MA211 — Analyse II
+
+The most direct continuation of this topic, and the reason it sits where it does in the roadmap: it develops **Lebesgue integration on $\mathbb{R}^n$**, taking the Riemann integral built here as its motivation and reference point.
+
+- **Lebesgue integral** — integrates functions the Riemann integral cannot, such as the Dirichlet function of §1.4, and answers the question raised in §4: what notion of integration keeps integration and differentiation mutually inverse once $f$ is no longer continuous.
+- **Multidimensional change of variable** — the several-variable generalization of substitution (§5.1), with a Jacobian determinant in place of $u'(x)$.
+- **Multiple integrals and Fubini's theorem.**
+
+### LU3MA232 — Analyse numérique
+
+- **Numerical integration** — the trapezoid rule, Simpson's rule, and their error bounds (§6).
 
 ## Study log
 
@@ -235,3 +257,4 @@ These are real and important but belong to later UEs; pulling them in here would
 - **2026-05-18** — Theory section expanded from a 4-point through-line to a 7-section skeleton (titles + one-line intents). Scope deliberately bounded to Riemann + Fundamental Theorem of Calculus + core techniques; improper, multidimensional, and Lebesgue integration left to `Analyse I` / `Analyse II`.
 - **2026-05-18** — Theory section fully written: Riemann sums and Darboux integrability conditions (§1), First Fundamental Theorem of Calculus with its Second Fundamental Theorem of Calculus-based proof (§2), Second Fundamental Theorem of Calculus with its average-value proof and "new functions" via integral definition (§3), the duality argument (§4), substitution and integration by parts (§5). §6 (applications) kept as bookmarks, §7 (out-of-scope) kept as boundary list. Source: MIT OCW 18.01 lectures 18–20 (materials 01–03).
 - **2026-05-21** — Materials 06 (SpetzoMath video on Riemann/Darboux integrability) and 07 (Jiří Lebl, *Basic Analysis I*) added to deepen the Darboux side of §1, which MIT 18.01 treats only informally.
+- **2026-05-25** — Moved the inline UPMC course references (Analyse I / Analyse II / Analyse numérique) out of the Theory section into a dedicated *Connections to UPMC courses* section, so the theory prose reads course-reference-free; §7 keeps the out-of-scope topic list and now points to the new section.
