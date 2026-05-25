@@ -18,6 +18,8 @@ Closes the single-variable arc started in `limits-and-derivatives`: the integral
 | 06 | [SpetzoMath — Riemann (…Darboux) Integrals](https://www.youtube.com/watch?v=b_cfcC4eMyM) | Darboux integrability criterion and the Riemann ↔ Darboux distinction |
 | 07 | [Jiří Lebl — *Basic Analysis I* (PDF)](https://www.jirka.org/ra/realanal.pdf) | Free real-analysis textbook; ch. 5 develops the Riemann integral via Darboux sums |
 
+*Naming note: MIT 18.01 labels Lecture 19's evaluation form the "First" and Lecture 20's construction form the "Second" Fundamental Theorem; conventions differ across textbooks (Stewart and Wikipedia reverse them). The Theory section below presents the construction form first and refers to the two halves by name — construction form and evaluation form — rather than by ordinal.*
+
 Main study material: MIT OCW 18.01 lecture notes (Prof. David Jerison, Fall 2006), under CC BY-NC-SA 4.0. OpenStax (also CC BY-NC-SA 4.0) is a textbook to consult when a topic needs more worked examples; 3Blue1Brown's chapter 8 is the visual perspective-opener.
 
 If MIT 18.01 needs to be extended later, the integration unit continues with lectures 21–24 (applications: logarithms, volumes by disks/shells, work, numerical integration) and 26 (trig integrals, substitution).
@@ -102,11 +104,57 @@ $$\int_a^a f(x)\,dx = 0, \qquad \int_b^a f(x)\,dx = -\int_a^b f(x)\,dx,$$
 
 which makes additivity work for $a, b, c$ in any order and removes the ordering hypothesis from later statements.
 
-### 2. First Fundamental Theorem of Calculus (evaluation form)
+### 2. Fundamental Theorem of Calculus — construction form
+
+The Fundamental Theorem of Calculus has two faces. We develop the **construction form** first — it says that integrating up to a variable upper limit builds an antiderivative, and its proof needs nothing beyond the definition of the derivative — and then read the **evaluation form** off it as a short corollary.
 
 #### 2.1 Statement
 
-> **First Fundamental Theorem of Calculus.** Let $f$ be continuous on $[a, b]$ and let $F$ be any antiderivative of $f$ on $[a, b]$ (that is, $F' = f$). Then
+> **Fundamental Theorem of Calculus (construction form).** Let $f$ be continuous on $[a, b]$. Define
+>
+> $$G(x) = \int_a^x f(t)\,dt \qquad \text{for } x \in [a, b].$$
+>
+> Then $G$ is differentiable on $[a, b]$ with $G'(x) = f(x)$.
+
+In words: *integration with a variable upper limit constructs an antiderivative*. Every continuous function has an antiderivative — namely, its own running accumulation from a base point.
+
+#### 2.2 Proof sketch
+
+Apply the definition of the derivative to $G$:
+
+$$G'(x) = \lim_{h \to 0} \frac{G(x + h) - G(x)}{h}.$$
+
+By additivity over intervals,
+
+$$G(x + h) - G(x) = \int_a^{x+h} f(t)\,dt - \int_a^x f(t)\,dt = \int_x^{x+h} f(t)\,dt.$$
+
+Geometrically this is the thin sliver of area between $x$ and $x + h$; its base is $h$ and its height is approximately $f(x)$, so
+
+$$\frac{G(x + h) - G(x)}{h} = \frac{1}{h}\int_x^{x+h} f(t)\,dt$$
+
+is the **average value** of $f$ over $[x, x+h]$. Continuity of $f$ at $x$ forces that average to converge to $f(x)$ as $h \to 0$ (formally: an $\varepsilon$-$\delta$ argument bounds $|f(t) - f(x)| < \varepsilon$ for $|t - x| < \delta$ and squeezes the average). Hence $G'(x) = f(x)$. $\quad\blacksquare$
+
+Notice how little this uses: only the definition of the derivative, additivity of the integral, and continuity of $f$ — no Mean Value Theorem, and nothing proved later. That is what makes it the natural entry point.
+
+#### 2.3 Existence of antiderivatives, and "new" functions
+
+The construction form has a striking consequence: **every continuous function has an antiderivative**, even if no closed-form formula exists for it. Examples of functions that are continuous but whose antiderivatives are *not* expressible in elementary terms:
+
+$$e^{-x^2}, \qquad \frac{\sin x}{x}, \qquad \sin(x^2), \qquad \cos(x^2), \qquad \frac{1}{\ln x}.$$
+
+The way to *name* their antiderivatives is to declare them as integrals. This is how several special functions enter mathematics:
+
+- **Error function.** $\operatorname{erf}(x) = \dfrac{2}{\sqrt{\pi}} \int_0^x e^{-t^2}\,dt$ — ubiquitous in probability (Gaussian tails).
+- **Logarithmic integral.** $\operatorname{Li}(x) = \int_2^x \dfrac{dt}{\ln t}$ — counts primes up to $x$ (prime number theorem).
+- **Fresnel integrals.** $C(x) = \int_0^x \cos(t^2)\,dt$, $S(x) = \int_0^x \sin(t^2)\,dt$ — optics.
+
+Computing their derivatives is trivial by the construction form: $\operatorname{erf}'(x) = \tfrac{2}{\sqrt{\pi}} e^{-x^2}$, $C'(x) = \cos(x^2)$, etc.
+
+### 3. Fundamental Theorem of Calculus — evaluation form
+
+#### 3.1 Statement
+
+> **Fundamental Theorem of Calculus (evaluation form).** Let $f$ be continuous on $[a, b]$ and let $F$ be any antiderivative of $f$ on $[a, b]$ (that is, $F' = f$). Then
 >
 > $$\int_a^b f(x)\,dx = F(b) - F(a).$$
 
@@ -114,9 +162,15 @@ The standard shorthand is $F(x)\Big|_a^b = F(b) - F(a)$. Two textbook applicatio
 
 $$\int_a^b x^2 \, dx = \left.\frac{x^3}{3}\right|_a^b = \frac{b^3 - a^3}{3}, \qquad \int_0^{\pi} \sin x \, dx = \bigl[-\cos x\bigr]_0^{\pi} = 2.$$
 
-#### 2.2 Proof sketch (direct, via the Mean Value Theorem)
+#### 3.2 Proof sketch (as a corollary of the construction form)
 
-This is the classical argument (Spivak, Apostol). It needs only the Mean Value Theorem from [`limits-and-derivatives`](../limits-and-derivatives/README.md) and the fact that a continuous $f$ is integrable (established earlier, under *Sufficient conditions for integrability*).
+With the construction form in hand, the evaluation form is a two-line corollary. Define $G(x) = \int_a^x f(t)\,dt$; by the construction form $G' = f$, so $G$ is an antiderivative of $f$. Since two antiderivatives on an interval differ by a constant (a corollary of the Mean Value Theorem from [`limits-and-derivatives`](../limits-and-derivatives/README.md)), $F - G \equiv c$. Evaluating at $a$ gives $c = F(a)$, because $G(a) = 0$. Therefore
+
+$$F(b) - F(a) = G(b) + c - c = G(b) = \int_a^b f(x)\,dx. \qquad \blacksquare$$
+
+#### 3.3 Alternative proof, independent of the construction form
+
+The evaluation form can also be proved on its own, without the construction form — the classical argument (Spivak, Apostol), which needs only the Mean Value Theorem and the fact that a continuous $f$ is integrable (established earlier, under *Sufficient conditions for integrability*).
 
 Take any partition $a = x_0 < x_1 < \cdots < x_n = b$ and telescope the total change of $F$:
 
@@ -136,65 +190,20 @@ $$F(b) - F(a) = \lim_{\max_i \Delta x_i \to 0} \sum_{i=1}^n f(c_i)\,\Delta x_i =
 
 The single step that needs integrability is the last one: for every partition the tagged sum *already* equals $F(b) - F(a)$, but only integrability lets us identify that common value with the integral $\int_a^b f$.
 
-> [!NOTE]
-> **Shorter route, once the Second Fundamental Theorem of Calculus is available.** Define $G(x) = \int_a^x f(t)\,dt$. The Second Fundamental Theorem of Calculus gives $G' = f$, and since two antiderivatives on an interval differ by a constant (a corollary of the Mean Value Theorem), $F - G \equiv c$. Evaluating at $a$ gives $c = F(a)$ (because $G(a) = 0$), so $F(b) - F(a) = G(b) = \int_a^b f$. This is more economical — it makes First Fundamental Theorem of Calculus a two-line corollary — but it leans on a result proved only later, which is why the direct argument above is the primary one.
+#### 3.4 What the evaluation form buys us
 
-#### 2.3 What First Fundamental Theorem of Calculus buys us
-
-Without First Fundamental Theorem of Calculus, computing $\int_0^b x^2 \, dx$ required summing $1^2 + 2^2 + \cdots + n^2$ and taking a limit. With First Fundamental Theorem of Calculus, the same answer falls out of "an antiderivative of $x^2$ is $x^3/3$". Integration is converted from a limit problem into an **antiderivative search**. That changes the practical character of the subject: most of single-variable integral calculus from here on is a catalogue of techniques (substitution, parts, partial fractions, trig identities) for finding antiderivatives.
-
-### 3. Second Fundamental Theorem of Calculus (construction form)
-
-#### 3.1 Statement
-
-> **Second Fundamental Theorem of Calculus.** Let $f$ be continuous on $[a, b]$. Define
->
-> $$G(x) = \int_a^x f(t)\,dt \qquad \text{for } x \in [a, b].$$
->
-> Then $G$ is differentiable on $[a, b]$ with $G'(x) = f(x)$.
-
-In words: *integration with a variable upper limit constructs an antiderivative*. Every continuous function has an antiderivative — namely, its own running accumulation from a base point.
-
-#### 3.2 Proof sketch
-
-By definition of the derivative,
-
-$$G'(x) = \lim_{h \to 0} \frac{G(x + h) - G(x)}{h}.$$
-
-By additivity over intervals,
-
-$$G(x + h) - G(x) = \int_a^{x+h} f(t)\,dt - \int_a^x f(t)\,dt = \int_x^{x+h} f(t)\,dt.$$
-
-Geometrically this is the thin sliver of area between $x$ and $x + h$; its base is $h$ and its height is approximately $f(x)$, so
-
-$$\frac{G(x + h) - G(x)}{h} = \frac{1}{h}\int_x^{x+h} f(t)\,dt$$
-
-is the **average value** of $f$ over $[x, x+h]$. Continuity of $f$ at $x$ forces that average to converge to $f(x)$ as $h \to 0$ (formally: a $\varepsilon$-$\delta$ argument bounds $|f(t) - f(x)| < \varepsilon$ for $|t - x| < \delta$ and squeezes the average). Hence $G'(x) = f(x)$. $\quad\blacksquare$
-
-#### 3.3 Existence of antiderivatives, and "new" functions
-
-Second Fundamental Theorem of Calculus has a striking consequence: **every continuous function has an antiderivative**, even if no closed-form formula exists for it. Examples of functions that are continuous but whose antiderivatives are *not* expressible in elementary terms:
-
-$$e^{-x^2}, \qquad \frac{\sin x}{x}, \qquad \sin(x^2), \qquad \cos(x^2), \qquad \frac{1}{\ln x}.$$
-
-The way to *name* their antiderivatives is to declare them as integrals. This is how several special functions enter mathematics:
-
-- **Error function.** $\operatorname{erf}(x) = \dfrac{2}{\sqrt{\pi}} \int_0^x e^{-t^2}\,dt$ — ubiquitous in probability (Gaussian tails).
-- **Logarithmic integral.** $\operatorname{Li}(x) = \int_2^x \dfrac{dt}{\ln t}$ — counts primes up to $x$ (prime number theorem).
-- **Fresnel integrals.** $C(x) = \int_0^x \cos(t^2)\,dt$, $S(x) = \int_0^x \sin(t^2)\,dt$ — optics.
-
-Computing their derivatives is trivial by Second Fundamental Theorem of Calculus: $\operatorname{erf}'(x) = \tfrac{2}{\sqrt{\pi}} e^{-x^2}$, $C'(x) = \cos(x^2)$, etc.
+Without the evaluation form, computing $\int_0^b x^2 \, dx$ required summing $1^2 + 2^2 + \cdots + n^2$ and taking a limit. With it, the same answer falls out of "an antiderivative of $x^2$ is $x^3/3$". Integration is converted from a limit problem into an **antiderivative search**. That changes the practical character of the subject: most of single-variable integral calculus from here on is a catalogue of techniques (substitution, parts, partial fractions, trig identities) for finding antiderivatives.
 
 ### 4. Duality between integration and differentiation
 
-The two halves of Fundamental Theorem of Calculus, read together, say that on $\mathcal{C}^0([a, b])$ (continuous functions on $[a, b]$) the operations
+The two halves of the Fundamental Theorem of Calculus, read together, say that on $\mathcal{C}^0([a, b])$ (continuous functions on $[a, b]$) the operations
 
 $$f \longmapsto G_f(x) = \int_a^x f(t)\,dt \qquad \text{and} \qquad F \longmapsto F'$$
 
 are mutually inverse — *up to a constant*:
 
-- **Second Fundamental Theorem of Calculus:** $\dfrac{d}{dx} \int_a^x f(t)\,dt = f(x)$. Integrate then differentiate $\Rightarrow$ recover $f$ exactly.
-- **First Fundamental Theorem of Calculus rearranged:** $\int_a^x F'(t)\,dt = F(x) - F(a)$. Differentiate then integrate $\Rightarrow$ recover $F$ *up to the additive constant $F(a)$*.
+- **Construction form:** $\dfrac{d}{dx} \int_a^x f(t)\,dt = f(x)$. Integrate then differentiate $\Rightarrow$ recover $f$ exactly.
+- **Evaluation form, rearranged:** $\int_a^x F'(t)\,dt = F(x) - F(a)$. Differentiate then integrate $\Rightarrow$ recover $F$ *up to the additive constant $F(a)$*.
 
 The constant is unavoidable for a structural reason: differentiation kills constants, so the inverse cannot possibly recover them — every $F + c$ has the same derivative, and the integral can only pin down $F$ to within that one-dimensional ambiguity.
 
@@ -202,7 +211,7 @@ This duality is the central organizing fact of single-variable calculus. A natur
 
 ### 5. Core techniques
 
-Two techniques carry essentially all the working calculations in single-variable integration (and, later, the multivariable case). Both are First Fundamental Theorem of Calculus read backwards: a derivative identity, run as an integration rule.
+Two techniques carry essentially all the working calculations in single-variable integration (and, later, the multivariable case). Both are the evaluation form read backwards: a derivative identity, run as an integration rule.
 
 #### 5.1 Substitution (change of variable)
 
@@ -270,7 +279,8 @@ The most direct continuation of this topic, and the reason it sits where it does
 
 - **2026-05-16** — Topic created. Materials 01–03 (MIT OCW lectures 18, 19, 20) downloaded; materials 04–05 (OpenStax, 3Blue1Brown) added as references without download. ROADMAP updated to mark the topic `[~]` in progress.
 - **2026-05-18** — Theory section expanded from a 4-point through-line to a 7-section skeleton (titles + one-line intents). Scope deliberately bounded to Riemann + Fundamental Theorem of Calculus + core techniques; improper, multidimensional, and Lebesgue integration left to `Analyse I` / `Analyse II`.
-- **2026-05-18** — Theory section fully written: Riemann sums and Darboux integrability conditions, the First Fundamental Theorem of Calculus with its Second-Theorem-based proof, the Second Fundamental Theorem of Calculus with its average-value proof and "new functions" via integral definition, the duality argument, and substitution and integration by parts. Applications kept as bookmarks, out-of-scope topics kept as a boundary list. Source: MIT OCW 18.01 lectures 18–20 (materials 01–03).
+- **2026-05-18** — Theory section fully written: Riemann sums and Darboux integrability conditions, the evaluation form of the Fundamental Theorem of Calculus with its construction-form-based proof, the construction form with its average-value proof and "new functions" via integral definition, the duality argument, and substitution and integration by parts. Applications kept as bookmarks, out-of-scope topics kept as a boundary list. Source: MIT OCW 18.01 lectures 18–20 (materials 01–03).
 - **2026-05-21** — Materials 06 (SpetzoMath video on Riemann/Darboux integrability) and 07 (Jiří Lebl, *Basic Analysis I*) added to deepen the Darboux side of the opening definite-integral section, which MIT 18.01 treats only informally.
 - **2026-05-25** — Moved the inline UPMC course references (Analyse I / Analyse II / Analyse numérique) out of the Theory section into a dedicated *Connections to UPMC courses* section, so the theory prose reads course-reference-free; the *What this article deliberately leaves out* list keeps the out-of-scope topics and now points to the new section.
-- **2026-05-25** — Reworked the First Fundamental Theorem's proof: it now carries the classical direct argument (telescoping + Mean Value Theorem + integrability of continuous functions), removing the forward reference to the Second Fundamental Theorem. The shorter Second-Theorem-based derivation is kept as a deferred note for comparison.
+- **2026-05-25** — Reworked the evaluation form's proof: it now carries the classical direct argument (telescoping + Mean Value Theorem + integrability of continuous functions), removing the forward reference to the construction form. The shorter construction-form-based derivation is kept as a deferred note for comparison.
+- **2026-05-25** — Reordered the Fundamental Theorem of Calculus so the construction form ($\frac{d}{dx}\int_a^x f = f$) leads, proved straight from the definition of the derivative; the evaluation form ($\int_a^b f = F(b) - F(a)$) now follows as a corollary, with the telescoping + Mean Value Theorem argument kept as an independent alternative proof. Prose names the two halves descriptively (construction / evaluation form); the First/Second ordinals survive only in the Materials table, where a naming note was added.
