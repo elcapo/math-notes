@@ -20,6 +20,9 @@
 .idea/
 .vscode/
 
+# Malcolm database
+malcolm.db*
+
 # Python / uv
 __pycache__/
 *.pyc

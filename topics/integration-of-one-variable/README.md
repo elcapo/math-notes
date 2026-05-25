@@ -26,7 +26,7 @@ If MIT 18.01 needs to be extended later, the integration unit continues with lec
 
 ## Cards
 
-None yet — see `cards/integration-of-one-variable.txt` after the topic is closed.
+`cards/integration-of-one-variable.txt` — 4 cards so far, on the *existence vs. closed form* distinction for antiderivatives (the construction form's consequence). More to follow as the topic is worked through.
 
 ## Theory
 
@@ -284,3 +284,4 @@ The most direct continuation of this topic, and the reason it sits where it does
 - **2026-05-25** — Moved the inline UPMC course references (Analyse I / Analyse II / Analyse numérique) out of the Theory section into a dedicated *Connections to UPMC courses* section, so the theory prose reads course-reference-free; the *What this article deliberately leaves out* list keeps the out-of-scope topics and now points to the new section.
 - **2026-05-25** — Reworked the evaluation form's proof: it now carries the classical direct argument (telescoping + Mean Value Theorem + integrability of continuous functions), removing the forward reference to the construction form. The shorter construction-form-based derivation is kept as a deferred note for comparison.
 - **2026-05-25** — Reordered the Fundamental Theorem of Calculus so the construction form ($\frac{d}{dx}\int_a^x f = f$) leads, proved straight from the definition of the derivative; the evaluation form ($\int_a^b f = F(b) - F(a)$) now follows as a corollary, with the telescoping + Mean Value Theorem argument kept as an independent alternative proof. Prose names the two halves descriptively (construction / evaluation form); the First/Second ordinals survive only in the Materials table, where a naming note was added.
+- **2026-05-25** — First cards authored (`cards/integration-of-one-variable.txt`, 4 cards) after a conversation on the *existence vs. closed form* distinction for antiderivatives: existence is dictionary-independent (construction form), closed form is relative to the elementary-function dictionary and — once fixed — provably unattainable for some functions (Liouville). Deck validates clean.
