@@ -17,6 +17,7 @@ Closes the single-variable arc started in `limits-and-derivatives`: the integral
 | 05 | [3Blue1Brown — Essence of Calculus, ch. 8](https://www.youtube.com/watch?v=rfG8ce4nNh0) | Visual recap of integration and the Fundamental Theorem of Calculus |
 | 06 | [SpetzoMath — Riemann (…Darboux) Integrals](https://www.youtube.com/watch?v=b_cfcC4eMyM) | Darboux integrability criterion and the Riemann ↔ Darboux distinction |
 | 07 | [Jiří Lebl — *Basic Analysis I* (PDF)](https://www.jirka.org/ra/realanal.pdf) | Free real-analysis textbook; ch. 5 develops the Riemann integral via Darboux sums |
+| 08 | [Jeffrey Chasnov — First Fundamental Theorem of Calculus Explained](https://www.youtube.com/watch?v=aP2fKCagds4) | Demonstration of the construction form of the fundamental theorem of calculus |
 
 *Naming note: MIT 18.01 labels Lecture 19's evaluation form the "First" and Lecture 20's construction form the "Second" Fundamental Theorem; conventions differ across textbooks (Stewart and Wikipedia reverse them). The Theory section below presents the construction form first and refers to the two halves by name — construction form and evaluation form — rather than by ordinal.*
 
