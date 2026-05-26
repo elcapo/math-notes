@@ -56,15 +56,31 @@ Geometrically, $L$ is the area of the tallest staircase that stays below the gra
 
 ![Darboux sums](./resources/darboux-sums.png)
 
-#### 1.3 Riemann sums and the limit
+#### 1.3 Refinement and the Darboux criterion
+
+Adding points to a partition turns it into a *refinement*. For two partitions with $P \subseteq Q$, on the smaller sub-intervals of $Q$ the infimum can only go up and the supremum can only go down, so
+
+$$L(f, P) \le L(f, Q) \le U(f, Q) \le U(f, P).$$
+
+Refinement pushes the lower sum up and the upper sum down, squeezing them together. Since every lower sum is bounded above by every upper sum (any $L$ is $\le$ any $U$), the numbers
+
+$$\underline{I}(f) = \sup_{P} L(f, P), \qquad \overline{I}(f) = \inf_{P} U(f, P)$$
+
+are well-defined and satisfy $\underline{I}(f) \le \overline{I}(f)$. Their difference measures the area that the staircase approximations leave ambiguous no matter how fine the partition. When $\underline{I}(f) = \overline{I}(f)$, the function is called **Riemann integrable** on $[a, b]$, and the common value is the **definite integral**
+
+$$\int_a^b f(x)\,dx = \underline{I}(f) = \overline{I}(f).$$
+
+Equivalently (Darboux's criterion), $f$ is integrable if and only if for every $\varepsilon > 0$ there exists a partition $P$ with $U(f, P) - L(f, P) < \varepsilon$.
+
+#### 1.4 Riemann sums
 
 A *Riemann sum* uses a free sample point $c_i \in [x_{i-1}, x_i]$ on each sub-interval, not the inf/sup:
 
 $$S(f, P, \{c_i\}) = \sum_{i=1}^n f(c_i) \, \Delta x_i.$$
 
-Always $L(f, P) \le S(f, P, \{c_i\}) \le U(f, P)$. If, as we refine the partition (taking the mesh $\max_i \Delta x_i$ to $0$), the lower and upper sums converge to the *same* limit, $f$ is called *Riemann integrable* on $[a, b]$, and that common limit is the **definite integral**
+For any partition, $L(f, P) \le S(f, P, \{c_i\}) \le U(f, P)$. By the Darboux criterion, when $f$ is integrable the Riemann sums are squeezed between $L$ and $U$, so they too converge to $\int_a^b f(x)\,dx$ as the mesh $\max_i \Delta x_i \to 0$:
 
-$$\int_a^b f(x)\,dx \;=\; \lim_{n \to \infty} \sum_{i=1}^n f(c_i)\,\Delta x_i.$$
+$$\int_a^b f(x)\,dx \;=\; \lim_{\max_i \Delta x_i \to 0} \sum_{i=1}^n f(c_i)\,\Delta x_i.$$
 
 The notation is suggestive: $\int$ is a stretched "S" for *sum*, $dx$ is an infinitesimal width, and the integrand $f(x)$ is the height being summed.
 
@@ -76,7 +92,7 @@ using the staircase-pyramid bound $\tfrac{1}{3} n^3 < 1^2 + 2^2 + \cdots + n^2 <
 
 ![Riemann sums](./resources/riemann-sums.png)
 
-#### 1.4 Sufficient conditions for integrability
+#### 1.5 Sufficient conditions for integrability
 
 The definition is delicate — not every bounded function is integrable. Two sufficient conditions cover essentially everything seen at this level:
 
@@ -86,7 +102,7 @@ The definition is delicate — not every bounded function is integrable. Two suf
 > [!WARNING]
 > The classical pathology that *fails* is the Dirichlet function $\mathbf{1}_{\mathbb{Q} \cap [0, 1]}$: on every sub-interval $m_i = 0$ and $M_i = 1$, so $L \equiv 0$ and $U \equiv 1$ for every partition and the gap never closes. The Lebesgue integral is precisely the framework that makes such functions integrable.
 
-#### 1.5 Signed area and basic properties
+#### 1.6 Signed area and basic properties
 
 When $f \ge 0$, $\int_a^b f$ is the area under the graph. When $f$ dips below the axis, those contributions enter with a **minus sign** — the integral is a *signed* area:
 
@@ -146,11 +162,11 @@ $$e^{-x^2}, \qquad \frac{\sin x}{x}, \qquad \sin(x^2), \qquad \cos(x^2), \qquad 
 
 The way to *name* their antiderivatives is to declare them as integrals. This is how several special functions enter mathematics:
 
-- **Error function.** $\operatorname{erf}(x) = \dfrac{2}{\sqrt{\pi}} \int_0^x e^{-t^2}\,dt$ — ubiquitous in probability (Gaussian tails).
-- **Logarithmic integral.** $\operatorname{Li}(x) = \int_2^x \dfrac{dt}{\ln t}$ — counts primes up to $x$ (prime number theorem).
+- **Error function.** $erf(x) = \dfrac{2}{\sqrt{\pi}} \int_0^x e^{-t^2}\,dt$ — ubiquitous in probability (Gaussian tails).
+- **Logarithmic integral.** $Li(x) = \int_2^x \dfrac{dt}{\ln t}$ — counts primes up to $x$ (prime number theorem).
 - **Fresnel integrals.** $C(x) = \int_0^x \cos(t^2)\,dt$, $S(x) = \int_0^x \sin(t^2)\,dt$ — optics.
 
-Computing their derivatives is trivial by the construction form: $\operatorname{erf}'(x) = \tfrac{2}{\sqrt{\pi}} e^{-x^2}$, $C'(x) = \cos(x^2)$, etc.
+Computing their derivatives is trivial by the construction form: $erf'(x) = \tfrac{2}{\sqrt{\pi}} e^{-x^2}$, $C'(x) = \cos(x^2)$, etc.
 
 ### 3. Fundamental Theorem of Calculus — evaluation form
 
