@@ -44,9 +44,9 @@ A *partition* of $[a, b]$ is a finite increasing sequence
 
 $$a = x_0 < x_1 < x_2 < \cdots < x_n = b,$$
 
-cutting the interval into $n$ sub-intervals $[x_{i-1}, x_i]$ of length $\Delta x_i = x_i - x_{i-1}$. Given a bounded function $f$ on $[a, b]$, on each sub-interval set
+cutting the interval into $n$ sub-intervals $S_i = [x_{i-1}, x_i]$ of length $\Delta x_i = x_i - x_{i-1}$. Given a bounded function $f$ on $[a, b]$, on each sub-interval set
 
-$$m_i = \inf_{x \in [x_{i-1}, x_i]} f(x), \qquad M_i = \sup_{x \in [x_{i-1}, x_i]} f(x).$$
+$$m_i = \inf_{x \in S_i} f(x), \qquad M_i = \sup_{x \in S_i} f(x).$$
 
 The *lower Darboux sum* and *upper Darboux sum* are
 
@@ -58,9 +58,9 @@ Geometrically, $L$ is the area of the tallest staircase that stays below the gra
 
 #### 1.3 Refinement and the Darboux criterion
 
-Adding points to a partition turns it into a *refinement*. For two partitions with $P \subseteq Q$, on the smaller sub-intervals of $Q$ the infimum can only go up and the supremum can only go down, so
+Adding points to a partition turns it into a *refinement*. For two partitions with $P_1 \subseteq P_2$, on the smaller sub-intervals of $P_2$ the infimum can only go up and the supremum can only go down, so
 
-$$L(f, P) \le L(f, Q) \le U(f, Q) \le U(f, P).$$
+$$L(f, P_1) \le L(f, P_2) \le U(f, P_2) \le U(f, P_1).$$
 
 Refinement pushes the lower sum up and the upper sum down, squeezing them together. Since every lower sum is bounded above by every upper sum (any $L$ is $\le$ any $U$), the numbers
 
