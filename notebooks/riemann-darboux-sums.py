@@ -39,7 +39,7 @@ def _(mo):
 @app.cell
 def _(mo):
     expr = mo.ui.text(
-        value="1 - abs(sin(x))",
+        value="x - x**3/3! + x**5/5! - x**7/7! + x**9/9! - x**11/11!",
         label=r"$f(x) =$",
         full_width=True,
     )
@@ -49,13 +49,13 @@ def _(mo):
 
 @app.cell(hide_code=True)
 def _(mo):
-    x_min = mo.ui.number(value=-1.5, step=0.1, label=r"$x_{\min}$")
-    x_max = mo.ui.number(value=1.5, step=0.1, label=r"$x_{\max}$")
+    x_min = mo.ui.number(value=-8.0, step=0.1, label=r"$x_{\min}$")
+    x_max = mo.ui.number(value=8.0, step=0.1, label=r"$x_{\max}$")
     resolution = mo.ui.slider(
         start=100, stop=5000, step=100, value=1000, label="points", show_value=True
     )
 
-    y_override = mo.ui.checkbox(value=False, label="fix $y$-axis")
+    y_override = mo.ui.checkbox(value=True, label="fix $y$-axis")
     y_min = mo.ui.number(value=-2, step=0.5, label=r"$y_{\min}$")
     y_max = mo.ui.number(value=2, step=0.5, label=r"$y_{\max}$")
 

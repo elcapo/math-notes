@@ -168,6 +168,18 @@ The way to *name* their antiderivatives is to declare them as integrals. This is
 
 Computing their derivatives is trivial by the construction form: $erf'(x) = \tfrac{2}{\sqrt{\pi}} e^{-x^2}$, $C'(x) = \cos(x^2)$, etc.
 
+### Lemma — antiderivatives differ by a constant
+
+> If $F$ and $G$ are differentiable on an interval $I$ and $F' = G'$ on $I$, then $F - G$ is constant on $I$.
+
+*Proof.* Set $h = F - G$. Then $h' = F' - G'$ on $I$, and by hypothesis $F' = G'$, so $h' = 0$ on $I$. For any $a, b \in I$ with $a < b$, Lagrange's Mean Value Theorem (see [`limits-and-derivatives`](../limits-and-derivatives/README.md)) supplies $c \in (a, b)$ such that
+
+$$h(b) - h(a) = h'(c)\,(b - a) = 0 \cdot (b - a) = 0.$$
+
+Hence $h(b) = h(a)$, and since $a, b$ were arbitrary, $h$ is constant on $I$. $\qquad\blacksquare$
+
+In the language of antiderivatives: if $F' = f$ and $G' = f$, then $F$ and $G$ differ by at most a constant. The constant is unavoidable — differentiation kills constants, so the inverse cannot recover them.
+
 ### 3. Fundamental Theorem of Calculus — evaluation form
 
 #### 3.1 Statement
@@ -182,7 +194,7 @@ $$\int_a^b x^2 \, dx = \left.\frac{x^3}{3}\right|_a^b = \frac{b^3 - a^3}{3}, \qq
 
 #### 3.2 Proof sketch (as a corollary of the construction form)
 
-With the construction form in hand, the evaluation form is a two-line corollary. Define $G(x) = \int_a^x f(t)\,dt$; by the construction form $G' = f$, so $G$ is an antiderivative of $f$. Since two antiderivatives on an interval differ by a constant (a corollary of the Mean Value Theorem from [`limits-and-derivatives`](../limits-and-derivatives/README.md)), $F - G \equiv c$. Evaluating at $a$ gives $c = F(a)$, because $G(a) = 0$. Therefore
+With the construction form in hand, the evaluation form is a two-line corollary. Define $G(x) = \int_a^x f(t)\,dt$; by the construction form $G' = f$, so $G$ is an antiderivative of $f$. By the lemma above, two antiderivatives on an interval differ by a constant, so $F - G \equiv c$. Evaluating at $a$ gives $c = F(a)$, because $G(a) = 0$. Therefore
 
 $$F(b) - F(a) = G(b) + c - c = G(b) = \int_a^b f(x)\,dx. \qquad \blacksquare$$
 
