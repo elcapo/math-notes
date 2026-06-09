@@ -226,16 +226,17 @@ Without the evaluation form, computing $\int_0^b x^2 \, dx$ required summing $1^
 
 ### 4. Duality between integration and differentiation
 
-The two halves of the Fundamental Theorem of Calculus, read together, say that on $\mathcal{C}^0([a, b])$ (continuous functions on $[a, b]$) the operations
+The two halves of the Fundamental Theorem of Calculus, read together, say that on continuous functions the operations
 
-$$f \longmapsto G_f(x) = \int_a^x f(t)\,dt \qquad \text{and} \qquad F \longmapsto F'$$
+$$f \longmapsto G(x) = \int_a^x f(t)\,dt \qquad\text{and}\qquad F \longmapsto F'$$
 
-are mutually inverse — *up to a constant*:
+are mutually inverse — up to an additive constant:
 
-- **Construction form:** $\dfrac{d}{dx} \int_a^x f(t)\,dt = f(x)$. Integrate then differentiate $\Rightarrow$ recover $f$ exactly.
-- **Evaluation form, rearranged:** $\int_a^x F'(t)\,dt = F(x) - F(a)$. Differentiate then integrate $\Rightarrow$ recover $F$ *up to the additive constant $F(a)$*.
+- **Integrate then differentiate (construction form).** $\displaystyle\frac{d}{dx}\int_a^x f(t)\,dt = f(x)$. Build the accumulation of $f$ and then differentiate: $f$ is recovered exactly.
 
-The constant is unavoidable for a structural reason: differentiation kills constants, so the inverse cannot possibly recover them — every $F + c$ has the same derivative, and the integral can only pin down $F$ to within that one-dimensional ambiguity.
+- **Differentiate then integrate (evaluation form).** $\displaystyle\int_a^x F'(t)\,dt = F(x) - F(a)$. Differentiate $F$ and then integrate: $F$ is recovered up to the constant $F(a)$.
+
+The constant is structural: differentiation kills constants, so its inverse cannot recover them. Every $F + c$ has the same derivative, and the integral can only pin down $F$ to within that one-dimensional ambiguity — this is the same observation as the lemma in section 2 (antiderivatives differ by a constant), now seen from the dual perspective.
 
 This duality is the central organizing fact of single-variable calculus. A natural next question — *what is the right notion of integration so that this duality keeps working when $f$ is no longer continuous?* — is the entry point to Lebesgue integration.
 
