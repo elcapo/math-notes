@@ -64,11 +64,11 @@ $$L(f, P_1) \le L(f, P_2) \le U(f, P_2) \le U(f, P_1).$$
 
 Refinement pushes the lower sum up and the upper sum down, squeezing them together. Since every lower sum is bounded above by every upper sum (any $L$ is $\le$ any $U$), the numbers
 
-$$\underline{I}(f) = \sup_{P} L(f, P), \qquad \overline{I}(f) = \inf_{P} U(f, P)$$
+$$\underline{L}(f) = \sup_{P} L(f, P), \qquad \overline{U}(f) = \inf_{P} U(f, P)$$
 
-are well-defined and satisfy $\underline{I}(f) \le \overline{I}(f)$. Their difference measures the area that the staircase approximations leave ambiguous no matter how fine the partition. When $\underline{I}(f) = \overline{I}(f)$, the function is called **Riemann integrable** on $[a, b]$, and the common value is the **definite integral**
+are well-defined and satisfy $\underline{L}(f) \le \overline{U}(f)$. Their difference measures the area that the staircase approximations leave ambiguous no matter how fine the partition. When $\underline{L}(f) = \overline{U}(f)$, the function is called **Riemann integrable** on $[a, b]$, and the common value is the **definite integral**
 
-$$\int_a^b f(x)\,dx = \underline{I}(f) = \overline{I}(f).$$
+$$\int_a^b f(x)\,dx = \underline{L}(f) = \overline{U}(f).$$
 
 Equivalently (Darboux's criterion), $f$ is integrable if and only if for every $\varepsilon > 0$ there exists a partition $P$ with $U(f, P) - L(f, P) < \varepsilon$.
 
