@@ -246,19 +246,56 @@ Two techniques carry essentially all the working calculations in single-variable
 
 #### 5.1 Substitution (change of variable)
 
-If $u = u(x)$ is differentiable and $g$ is continuous,
+Substitution is the **chain rule read backwards as an integration rule** — just as integration by parts (section 5.2) is the product rule read backwards.
 
-$$\int g(u(x))\, u'(x)\,dx = \int g(u)\,du.$$
+##### Where the formula comes from
 
-For definite integrals, the bounds change too: with $u_1 = u(x_1)$ and $u_2 = u(x_2)$,
+Let $F$ be an antiderivative of $g$, so $F' = g$. If $u = u(x)$ is differentiable, the chain rule says
 
-$$\int_{x_1}^{x_2} g(u(x))\, u'(x)\,dx = \int_{u_1}^{u_2} g(u)\,du.$$
+$$\frac{d}{dx} F(u(x)) = F'(u(x))\, u'(x) = g(u(x))\, u'(x).$$
 
-Example: for $\int_1^2 (x^3 + 2)^4 \, x^2\,dx$, let $u = x^3 + 2$, so $du = 3x^2\,dx$. Bounds map $1 \mapsto 3$ and $2 \mapsto 10$, giving
+Now integrate both sides with respect to $x$ and use the evaluation form of the Fundamental Theorem of Calculus:
 
-$$\int_3^{10} u^4 \, \frac{du}{3} = \left.\frac{u^5}{15}\right|_3^{10} = \frac{10^5 - 3^5}{15}.$$
+$$\int g(u(x))\, u'(x)\,dx = \int \frac{d}{dx} F(u(x))\, dx = F(u(x)) + C.$$
 
-Substitution is the one-dimensional shadow of the *change-of-variable formula* in $\mathbb{R}^n$ (with a Jacobian determinant replacing $u'(x)$).
+But $F(u) + C$ is exactly $\int g(u)\,du$, evaluated at $u = u(x)$. Therefore
+
+$$\boxed{\;\int g(u(x))\, u'(x)\,dx = \int g(u)\,du\;}.$$
+
+The rule *changes the variable of integration* from $x$ to $u$: the factor $u'(x)$ is absorbed into $du$ and the integrand simplifies to $g(u)$. In differential notation, $du = u'(x)\,dx$ — the $u'(x)$ is the price we pay for switching variables, and it is exactly the derivative that the chain rule forces us to include.
+
+##### Definite integrals
+
+For a definite integral, the evaluation form of the FTC applies to $F(u(x))$ between the original limits:
+
+$$\int_{x_1}^{x_2} g(u(x))\, u'(x)\,dx = \bigl[F(u(x))\bigr]_{x=x_1}^{x=x_2} = F(u(x_2)) - F(u(x_1)).$$
+
+Writing $u_1 = u(x_1)$ and $u_2 = u(x_2)$, the right-hand side is $\int_{u_1}^{u_2} g(u)\,du$. Hence
+
+$$\boxed{\;\int_{x_1}^{x_2} g(u(x))\, u'(x)\,dx = \int_{u_1}^{u_2} g(u)\,du\;}.$$
+
+The limits transform with the substitution — no need to back-substitute $x$ after integrating, as long as we convert the bounds at the same time as we change the variable.
+
+##### Worked example
+
+Compute $\displaystyle\int_1^2 (x^3 + 2)^4 \, x^2\,dx$.
+
+1. Choose $u = x^3 + 2$. Then $du = 3x^2\,dx$ (that is, $u'(x) = 3x^2$).
+2. Solve for the piece we have: $x^2\,dx = \dfrac{du}{3}$.
+3. Transform the bounds: $x = 1 \implies u = 1^3 + 2 = 3$, $x = 2 \implies u = 2^3 + 2 = 10$.
+4. Substitute:
+
+   $$\int_1^2 (x^3 + 2)^4 \, x^2\,dx = \int_3^{10} u^4 \, \frac{du}{3}
+   = \frac{1}{3} \int_3^{10} u^4\,du
+   = \frac{1}{3}\left[\,\frac{u^5}{5}\,\right]_3^{10}
+   = \left.\frac{u^5}{15}\right|_3^{10}
+   = \frac{10^5 - 3^5}{15}.$$
+
+The same integral done without substitution would require expanding $(x^3 + 2)^4$ — a polynomial with 15 terms — term-by-term. The substitution compresses the calculation to a single power-rule antiderivative.
+
+##### Relation to higher dimensions
+
+Substitution is the one-dimensional shadow of the *change-of-variable formula* in $\mathbb{R}^n$, where the factor $|u'(x)|$ generalises to the absolute value of the Jacobian determinant of the coordinate transformation.
 
 #### 5.2 Integration by parts
 
