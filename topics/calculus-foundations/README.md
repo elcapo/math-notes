@@ -21,8 +21,6 @@ Vocabulary and intuition every later calculus topic rests on: what a function is
 
 ## Theory
 
-What follows is the settled prose version of what was worked out in conversation while studying the materials. The cards test the same content from different angles; this section is for re-reading before review.
-
 ### 1. What a function is
 
 A function is a rule that assigns to **each** input **exactly one** output. The "exactly one" is the load-bearing part and combines two requirements:
@@ -74,6 +72,8 @@ Many natural rules are not injective on their full domain ($x^2$, $\sin x$, …)
 
 - **Strict monotonicity** (strictly increasing or strictly decreasing) implies injectivity for free.
 - The interval should be **closed at the endpoints where the function reaches the extremes of its codomain**, so that surjectivity onto the chosen codomain is preserved.
+
+If an endpoint were omitted, the function would never hit the corresponding extreme value, and surjectivity would fail.
 
 **Worked case — $\arcsin$**. The function $\sin: \mathbb{R} \to [-1, 1]$ is surjective but very far from injective. To define an inverse, restrict to a maximal monotonic interval. The standard choice is $\sin: [-\pi/2, \pi/2] \to [-1, 1]$:
 
