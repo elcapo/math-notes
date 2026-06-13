@@ -4,7 +4,7 @@ Closes the single-variable arc started in `limits-and-derivatives`: the integral
 
 ## Status
 
-`[~]` in progress — three MIT OCW lecture notes (definite integrals + both halves of the Fundamental Theorem of Calculus) downloaded; OpenStax and 3Blue1Brown wired in as references. No conversation yet, no cards yet.
+`[x]` covered — theory summary, 33 cards, two rounds of conversation (FTC duality, techniques).
 
 ## Materials
 
@@ -28,7 +28,7 @@ If MIT 18.01 needs to be extended later, the integration unit continues with lec
 
 ## Cards
 
-`cards/integration-of-one-variable.txt` — 4 cards so far, on the *existence vs. closed form* distinction for antiderivatives (the construction form's consequence). More to follow as the topic is worked through.
+`cards/integration-of-one-variable.txt` — 33 cards covering the Riemann/Darboux integral, both FTC forms and their duality, the existence vs. closed-form distinction for antiderivatives, substitution (change of variable), and integration by parts.
 
 ## Theory
 
@@ -305,16 +305,7 @@ $$\int_a^b u(x)\, v'(x)\,dx = \bigl[u(x)\, v(x)\bigr]_a^b - \int_a^b u'(x)\, v(x
 
 The point is to trade an integral we cannot do for one we can, by moving the derivative from $v$ onto $u$. Recurring uses: $\int x e^x\,dx$ (take $u = x$, $v' = e^x$) and $\int \ln x\,dx$ (take $u = \ln x$, $v' = 1$); it is also a constant companion of Fourier-coefficient estimates.
 
-### 6. Applications (placeholder — not developed this round)
-
-Listed as bookmarks; not worked through here.
-
-- **$\log$ via integral.** Defining $\log x = \int_1^x \tfrac{dt}{t}$ for $x > 0$ and recovering the algebraic properties of $\log$ purely from Fundamental Theorem of Calculus + change of variable. The cleanest "axiomatic" entry into the logarithm. (MIT Lec 20 trailer; full treatment in Lec 21.)
-- **Volumes by disks / shells.** $\int \pi [f(x)]^2\,dx$, $\int 2\pi x\, f(x)\,dx$. Standard physical-geometry applications.
-- **Work and accumulated physical quantities.** Total work as $\int F(x)\,dx$, total charge as $\int I(t)\,dt$, etc. The "borrowing function" example in MIT Lec 18 is a version of this.
-- **Numerical integration.** Trapezoid rule, Simpson's rule, error bounds.
-
-### 7. What this article deliberately leaves out
+### 6. What this article deliberately leaves out
 
 These are real and important but belong to later courses; pulling them in here would just blur the boundaries. The specific UPMC courses are listed in *Connections to UPMC courses* below.
 
@@ -353,3 +344,4 @@ The most direct continuation of this topic, and the reason it sits where it does
 - **2026-05-25** — Reworked the evaluation form's proof: it now carries the classical direct argument (telescoping + Mean Value Theorem + integrability of continuous functions), removing the forward reference to the construction form. The shorter construction-form-based derivation is kept as a deferred note for comparison.
 - **2026-05-25** — Reordered the Fundamental Theorem of Calculus so the construction form ($\frac{d}{dx}\int_a^x f = f$) leads, proved straight from the definition of the derivative; the evaluation form ($\int_a^b f = F(b) - F(a)$) now follows as a corollary, with the telescoping + Mean Value Theorem argument kept as an independent alternative proof. Prose names the two halves descriptively (construction / evaluation form); the First/Second ordinals survive only in the Materials table, where a naming note was added.
 - **2026-05-25** — First cards authored (`cards/integration-of-one-variable.txt`, 4 cards) after a conversation on the *existence vs. closed form* distinction for antiderivatives: existence is dictionary-independent (construction form), closed form is relative to the elementary-function dictionary and — once fixed — provably unattainable for some functions (Liouville). Deck validates clean.
+- **2026-06-13** — Cards expanded to 25 (Riemann integral + FTC duality series), then to 33 (substitution + parts techniques). Applications placeholder moved to ROADMAP as extension notes. ROADMAP status updated to `[x]`.

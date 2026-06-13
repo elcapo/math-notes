@@ -22,7 +22,8 @@ Topics that the UPMC L2 program assumes as already mastered. Sequence them befor
 - `[ ]` **real-numbers-and-sequences** — construction of $\mathbb{N}, \mathbb{Z}, \mathbb{Q}, \mathbb{R}$; convergence of sequences; Bolzano–Weierstrass in $\mathbb{R}$; completeness.
 - `[ ]` **continuity** — $\varepsilon$–$\delta$ continuity, IVT, extreme value theorem, uniform continuity (motivation for L2 topology).
 - `[ ]` **linear-algebra-basics** — vector spaces, bases, dimension, linear maps, matrices, rank, determinants in low dimension.
-- `[~]` [**integration-of-one-variable**](topics/integration-of-one-variable/README.md) — Riemann integral, fundamental theorem of calculus, integration techniques (warm-up for `analyse-II`). Three MIT OCW 18.01 lecture notes (def. integrals + FTC I & II) downloaded; OpenStax and 3Blue1Brown wired in as references.
+- `[x]` [**integration-of-one-variable**](topics/integration-of-one-variable/README.md) — Riemann/Darboux integral, fundamental theorem of calculus (construction + evaluation forms), duality, substitution, integration by parts. 33 cards. Materials via MIT OCW 18.01, OpenStax, 3Blue1Brown, SpetzoMath, Jiří Lebl.
+  - *Extensions left as bookmarks (not carded):* $\log x = \int_1^x dt/t$ as an axiomatic definition (MIT Lec 21); volumes by disks/shells; work as $\int F(x)\,dx$; numerical integration (trapezoid, Simpson). These belong to downstream UPMC courses (Analyse I, Analyse numérique) or to a future applications topic.
 
 ## UPMC L2 — Semester 3 (S3)
 
